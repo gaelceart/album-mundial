@@ -25,7 +25,7 @@ public class Album {
 		}
 	}
 
-	public boolean figuritaPegada(Figurita figurita) {
+	public boolean esFiguritaRepetida(Figurita figurita) {
 		for (Figurita figuritaPegada : _figuritasEncontradas) {
 			if (figuritaPegada.equals(figurita)) {
 				return true;
