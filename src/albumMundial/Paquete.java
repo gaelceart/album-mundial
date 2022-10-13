@@ -1,5 +1,5 @@
 package albumMundial;
 
-public class Figuritas {
+public class Paquete {
 
 }
