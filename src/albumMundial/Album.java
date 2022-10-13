@@ -16,6 +16,17 @@ public class Album {
 		_figuritasEncontradas = new HashMap<>();
 	}
 
+	public void pegarFigurita(Figurita figurita) {
+		_figuritasEncontradas.put(figurita.getNumero(), true);
+	}
+
+	public boolean figuritaPegada(Figurita figurita) {
+		if (_figuritasEncontradas.containsKey(figurita.getNumero())) {
+			return _figuritasEncontradas.get(figurita.getNumero());
+		}
+		return false;
+	}
+
 	public int getCantidadFiguritas() {
 		return _cantidadFiguritas;
 	}
@@ -27,5 +38,5 @@ public class Album {
 	public boolean isCompleto() {
 		return _completo;
 	}
-	
+
 }
