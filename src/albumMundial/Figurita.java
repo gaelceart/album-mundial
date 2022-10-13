@@ -9,4 +9,11 @@ public class Figurita {
 		_pocoComun = pocoComun;
 	}
 	
+	public int getNumero() {
+		return _numFigurita;
+	}
+	
+	public boolean isPocoComun() {
+		return _pocoComun;
+	}
 }
