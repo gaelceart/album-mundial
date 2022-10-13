@@ -93,8 +93,14 @@ public class Usuario {
 
 
 	public void pegarFiguritas(Paquete paquete) {
-		for (Figurita f : paquete.getFiguritas())
-			pegarFigurita(f);
+		for (Figurita f : paquete.getFiguritas()) {
+			if (_album.esFiguritaRepetida(f)) {
+				_figuritasRepetidas.add(f);
+			}
+			else {
+				pegarFigurita(f);
+			}
+		}
 	}
 	
 }

@@ -8,6 +8,7 @@ import albumMundial.Paquete;
 
 public class Simulacion {
 	private Usuario[] _users; 
+	private int _cantidadFigusPorPaquete;
 	private	int _paquetesTotalesComprados;
 	private	int _figusTotalesRepetidas;
 
@@ -26,20 +27,13 @@ public class Simulacion {
 			//Fase 1 Comprar paquetes
 			HashMap<Integer, Paquete> paquetes = s.comprarPaquetes(5);
 			
-			//Fase 2 Comprobar repetidas
-			for (int i = 0; i < s._users.length; i++) {
-				if (paquetes.containsKey(i))
-					s._users[i].descartarRepetidas(paquetes.get(i));
-			}
-
-			//Fase 3 Intercambiar -NO IMPLEMENTADO
-
-			//Fase 4 Pegar figuritas 
+			//Fase 2 Pegar figuritas
 			for (int i = 0; i < s._users.length; i++) {
 				if (paquetes.containsKey(i))
 					s._users[i].pegarFiguritas(paquetes.get(i));
-			}
+				}
 		}
+			//Fase 3 Intercambiar -NO IMPLEMENTADO
 		s._calcularPaquetesTotales();
 		s._calcularFigusRepetidasTotales();
 		System.out.println("Paquetes totales: " + s._paquetesTotalesComprados);
