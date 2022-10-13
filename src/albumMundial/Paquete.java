@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Paquete {
-	private int _Cantidadfiguritas;
+	private int _cantidadFiguritas;
 	private List<Figurita> _figuritas;
 
 	public Paquete(int figuritasPorPaquete) {
@@ -13,14 +13,14 @@ public class Paquete {
 			throw new IllegalArgumentException(
 					"Un Paquete no puede contener tener 0 o menos figuritas:" + figuritasPorPaquete);
 		}
-		_Cantidadfiguritas = figuritasPorPaquete;
+		_cantidadFiguritas = figuritasPorPaquete;
 		_figuritas = new ArrayList<>();
 		crearPaquete();
 	}
 
-	//crearPaquete(int figuritasPosibles)?
+	// crearPaquete(int figuritasPosibles)?
 	public void crearPaquete() {
-		while (tamanoPaquete() < _Cantidadfiguritas) {
+		while (tamanoPaquete() < _cantidadFiguritas) {
 			Random random = new Random();
 			int figuritaSeleccionada = random.nextInt(638);
 			Figurita figurita = new Figurita(figuritaSeleccionada, false);
@@ -29,7 +29,7 @@ public class Paquete {
 			}
 		}
 	}
-	
+
 	public List<Figurita> getFiguritas() {
 		return _figuritas;
 	}
