@@ -21,11 +21,18 @@ public class Paquete {
 	// crearPaquete(int figuritasPosibles)? o genera acomplamiento
 	public void crearPaquete() {
 		while (tamanoPaquete() < _cantidadFiguritas) {
-			Random random = new Random();
-			int figuritaSeleccionada = random.nextInt(Album._cantidadFiguritas);
-			Figurita figurita = new Figurita(figuritaSeleccionada, false);
-			_figuritas.add(figurita);
+			Figurita figurita = crearFiguritaAleatoria();
+			if(!_figuritas.contains(figurita)) {
+				_figuritas.add(figurita);
+			}
 		}
+	}
+
+	private Figurita crearFiguritaAleatoria() {
+		Random random = new Random();
+		int figuritaSeleccionada = random.nextInt(Album._cantidadFiguritas);
+		Figurita figurita = new Figurita(figuritaSeleccionada, false);
+		return figurita;
 	}
 
 	public List<Figurita> getFiguritas() {
@@ -38,7 +45,7 @@ public class Paquete {
 
 	@Override
 	public String toString() {
-		return "Paquete [_cantidadFiguritas=" + _cantidadFiguritas + ", _figuritas=" + _figuritas + "]";
+		return "Paquete de "+ _cantidadFiguritas + "\n[" + " figuritas = " + _figuritas + "]";
 	}
 	
 }
