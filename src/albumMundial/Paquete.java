@@ -18,11 +18,11 @@ public class Paquete {
 		crearPaquete();
 	}
 
-	// crearPaquete(int figuritasPosibles)?
+	// crearPaquete(int figuritasPosibles)? o genera acomplamiento
 	public void crearPaquete() {
 		while (tamanoPaquete() < _cantidadFiguritas) {
 			Random random = new Random();
-			int figuritaSeleccionada = random.nextInt(638);
+			int figuritaSeleccionada = random.nextInt(Album._cantidadFiguritas);
 			Figurita figurita = new Figurita(figuritaSeleccionada, false);
 			_figuritas.add(figurita);
 		}

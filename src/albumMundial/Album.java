@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Album {
-	private int _cantidadFiguritas;
+	//esta bien esto?
+	static int _cantidadFiguritas;
 	private Set<Figurita> _figuritasEncontradas;
 	private boolean _completo;
 
