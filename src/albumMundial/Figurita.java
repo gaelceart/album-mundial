@@ -1,7 +1,5 @@
 package albumMundial;
 
-import java.util.Objects;
-
 public class Figurita {
 	private int _numFigurita;
 	private boolean _pocoComun;
