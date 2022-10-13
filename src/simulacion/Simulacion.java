@@ -1,6 +1,7 @@
 package simulacion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import albumMundial.Figurita;
 import albumMundial.Paquete;
@@ -13,7 +14,7 @@ public class Simulacion {
 	public Simulacion(int cantUsuarios) {
 		_users = new Usuario[cantUsuarios];
 		for (int i = 0; i < _users.length; i++)
-			_users[i] = new Usuario(5);
+			_users[i] = new Usuario(638);
 		
 		_paquetesTotalesComprados = 0;
 		_figusTotalesRepetidas = 0;
@@ -23,50 +24,50 @@ public class Simulacion {
 		Simulacion s = new Simulacion(1);
 		while (!s.albumesCompletos()) {
 			//Fase 1 Comprar paquetes
-			ArrayList<Paquete> paquetes = s.comprarPaquetes(2);
-			//System.out.println(paquetes);
-			s._paquetesTotalesComprados++;
+			HashMap<Integer, Paquete> paquetes = s.comprarPaquetes(5);
 			
 			//Fase 2 Comprobar repetidas
 			for (int i = 0; i < s._users.length; i++) {
-				s._users[i].descartarRepetidas(paquetes.get(i));
+				if (paquetes.containsKey(i))
+					s._users[i].descartarRepetidas(paquetes.get(i));
 			}
 
 			//Fase 3 Intercambiar -NO IMPLEMENTADO
 
+			//Fase 4 Pegar figuritas 
 			for (int i = 0; i < s._users.length; i++) {
-				s._users[i].pegarFiguritas(paquetes.get(i));
+				if (paquetes.containsKey(i))
+					s._users[i].pegarFiguritas(paquetes.get(i));
 			}
-			
-			/*Fase 4 Pegar figuritas
-			for (Figurita f : paquete.getFiguritas()) {
-				if (s._users[0].esFiguritaRepetida(f)) {
-					_figusTotalesRepetidas++;
-				}
-				else {
-					s._users[0].pegarFigurita(f);
-				}
-			}
-*/
 		}
-		//System.out.println(album.getFiguritasEncontradas().size());
+		s._calcularPaquetesTotales();
+		s._calcularFigusRepetidasTotales();
 		System.out.println(s._paquetesTotalesComprados);
 		System.out.println(s._figusTotalesRepetidas);
 		System.out.println(s._users[0].getFiguritasRepetidas().size());
 	}
 
-	private void chequearRepetidas(Paquete p) {
-		for (Figurita f : p.getFiguritas()) {
-			if (_users[0].esFiguritaRepetida(f)) {
-				_figusTotalesRepetidas++;
-			}
-		}
+	private void _calcularFigusRepetidasTotales() {
+		for (Usuario u : _users)
+			_figusTotalesRepetidas += u.getFiguritasRepetidas().size();
+		
 	}
 
-	private ArrayList<Paquete> comprarPaquetes(int cantFigus) {
-		ArrayList<Paquete> ret = new ArrayList<>();
+	private void _calcularPaquetesTotales() {
 		for (Usuario u : _users)
-			ret.add(u.comprarPaquete(cantFigus));
+			_paquetesTotalesComprados += u.getCantidadPaquetesComprados();
+	}
+
+	private HashMap<Integer, Paquete> comprarPaquetes(int cantFigus) {
+		HashMap<Integer, Paquete> ret = new HashMap<>();
+		int index = 0;
+		for (Usuario u : _users) {
+			if (!u.tieneAlbumCompleto()) {
+				ret.put(index, u.comprarPaquete(cantFigus));
+				_paquetesTotalesComprados++;
+			}
+			index++;
+		}
 		return ret;
 	}
 
