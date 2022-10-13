@@ -1,11 +1,11 @@
 package albumMundial;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Album {
 	private int _cantidadFiguritas;
-	private Map<Integer, Boolean> _figuritasEncontradas;
+	private Set<Figurita> _figuritasEncontradas;
 	private boolean _completo;
 
 	public Album(int cantidadFiguritas) {
@@ -14,25 +14,22 @@ public class Album {
 					"Un Album no puede contener tener 0 o menos figuritas: " + cantidadFiguritas);
 		}
 		_cantidadFiguritas = cantidadFiguritas;
-		_figuritasEncontradas = new HashMap<>();
+		_figuritasEncontradas = new HashSet<>();
 	}
 
 	public void pegarFigurita(Figurita figurita) {
-		_figuritasEncontradas.put(figurita.getNumero(), true);
+		_figuritasEncontradas.add(figurita);
 	}
 
 	public boolean figuritaPegada(Figurita figurita) {
-		if (_figuritasEncontradas.containsKey(figurita.getNumero())) {
-			return _figuritasEncontradas.get(figurita.getNumero());
-		}
-		return false;
+		return _figuritasEncontradas.contains(figurita);
 	}
 
 	public int getCantidadFiguritas() {
 		return _cantidadFiguritas;
 	}
 
-	public Map<Integer, Boolean> getFiguritasEncontradas() {
+	public Set<Figurita> getFiguritasEncontradas() {
 		return _figuritasEncontradas;
 	}
 
