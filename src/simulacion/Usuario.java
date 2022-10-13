@@ -31,6 +31,5 @@ public class Usuario {
 		System.out.println(album.getFiguritasEncontradas().size());
 		System.out.println(paquetesComprados);
 		System.out.println(figusRepetidas);
-		System.out.println(album);
 	}
 }
