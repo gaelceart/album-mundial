@@ -21,7 +21,7 @@ public class Simulacion {
 	}
 	
 	public static void main(String[] args) {
-		Simulacion s = new Simulacion(1);
+		Simulacion s = new Simulacion(5);
 		while (!s.albumesCompletos()) {
 			//Fase 1 Comprar paquetes
 			HashMap<Integer, Paquete> paquetes = s.comprarPaquetes(5);
@@ -42,9 +42,9 @@ public class Simulacion {
 		}
 		s._calcularPaquetesTotales();
 		s._calcularFigusRepetidasTotales();
-		System.out.println(s._paquetesTotalesComprados);
-		System.out.println(s._figusTotalesRepetidas);
-		System.out.println(s._users[0].getFiguritasRepetidas().size());
+		System.out.println("Paquetes totales: " + s._paquetesTotalesComprados);
+		System.out.println("Figuritas repetidas totales: " + s._figusTotalesRepetidas);
+		System.out.println("Figuritas repetidas del usuario 0: " + s._users[0].getFiguritasRepetidas().size());
 	}
 
 	private void _calcularFigusRepetidasTotales() {
