@@ -10,7 +10,7 @@ public class Album {
 
 	public Album(int cantidadFiguritas) {
 		if (cantidadFiguritas <= 0) {
-			throw new IllegalArgumentException("Un album no puede contener menos de 0 figuritas: " + cantidadFiguritas);
+			throw new IllegalArgumentException("Un Album no puede contener tener 0 o menos figuritas: " + cantidadFiguritas);
 		}
 		_cantidadFiguritas = cantidadFiguritas;
 		_figuritasEncontradas = new HashMap<>();
