@@ -11,7 +11,7 @@ public class Paquete {
 	public Paquete(int figuritasPorPaquete) {
 		if (figuritasPorPaquete <= 0) {
 			throw new IllegalArgumentException(
-					"Paquete debe contener mas de 0 figuritas por paquete:" + figuritasPorPaquete);
+					"Un Paquete no puede contener tener 0 o menos figuritas:" + figuritasPorPaquete);
 		}
 		_Cantidadfiguritas = figuritasPorPaquete;
 		_figuritas = new ArrayList<>();
