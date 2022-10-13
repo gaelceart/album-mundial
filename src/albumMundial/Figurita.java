@@ -19,7 +19,7 @@ public class Figurita {
 
 	@Override
 	public String toString() {
-		return "Figurita [ numFigurita = " + _numFigurita + ", pocoComun = " + _pocoComun + "]";
+		return " Figurita [ numFigurita = " + _numFigurita + " pocoComun = " + _pocoComun + "]\n";
 	}
 
 	@Override

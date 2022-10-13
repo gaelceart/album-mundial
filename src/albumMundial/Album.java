@@ -19,13 +19,25 @@ public class Album {
 	}
 
 	public void pegarFigurita(Figurita figurita) {
-		_figuritasEncontradas.add(figurita);
+		if(!estaPegada(figurita)) {
+			_figuritasEncontradas.add(figurita);
+		}else {
+			tengoRepetida(figurita);
+		}
+		completoElAlbum();
+	}
+
+	private void completoElAlbum() {
 		if (_figuritasEncontradas.size() == _cantidadFiguritas) {
 			_completo = true;
 		}
 	}
 
-	public boolean figuritaPegada(Figurita figurita) {
+	private void tengoRepetida(Figurita figurita) {
+		
+	}
+
+	public boolean estaPegada(Figurita figurita) {
 		for (Figurita figuritaPegada : _figuritasEncontradas) {
 			if (figuritaPegada.equals(figurita)) {
 				return true;
