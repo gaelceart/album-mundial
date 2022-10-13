@@ -32,8 +32,12 @@ public class Simulacion {
 				if (paquetes.containsKey(i))
 					s._users[i].pegarFiguritas(paquetes.get(i));
 				}
-		}
 			//Fase 3 Intercambiar -NO IMPLEMENTADO
+		
+			//Fase 4 Volver a pegar figuritas si hubo intercambio
+			
+		}
+		
 		s._calcularPaquetesTotales();
 		s._calcularFigusRepetidasTotales();
 		System.out.println("Paquetes totales: " + s._paquetesTotalesComprados);
