@@ -20,7 +20,7 @@ public class Paquete {
 
 	public void crearPaquete() {
 		while (tamanoPaquete() < _Cantidadfiguritas) {
-			Random random = null;
+			Random random = new Random();
 			int figuritaSeleccionada = random.nextInt(638);
 			Figurita figurita = new Figurita(figuritaSeleccionada, false);
 			if (!_figuritas.contains(figurita)) {
