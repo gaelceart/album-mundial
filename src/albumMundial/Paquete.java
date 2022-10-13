@@ -18,6 +18,7 @@ public class Paquete {
 		crearPaquete();
 	}
 
+	//crearPaquete(int figuritasPosibles)?
 	public void crearPaquete() {
 		while (tamanoPaquete() < _Cantidadfiguritas) {
 			Random random = new Random();
@@ -27,6 +28,10 @@ public class Paquete {
 				_figuritas.add(figurita);
 			}
 		}
+	}
+	
+	public List<Figurita> getFiguritas() {
+		return _figuritas;
 	}
 
 	public int tamanoPaquete() {
