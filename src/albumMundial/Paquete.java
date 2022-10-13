@@ -8,7 +8,6 @@ import java.util.Random;
 public class Paquete {
 	private int _cantidadFiguritas;
 	private List<Figurita> _figuritas;
-	private int _currentSize;
 
 	public Paquete(int figuritasPorPaquete) {
 		if (figuritasPorPaquete <= 0) {
@@ -18,7 +17,6 @@ public class Paquete {
 		_cantidadFiguritas = figuritasPorPaquete;
 		_figuritas = new ArrayList<>();
 		crearPaquete();
-		_currentSize = figuritasPorPaquete;
 	}
 
 	// crearPaquete(int figuritasPosibles)? o genera acomplamiento
