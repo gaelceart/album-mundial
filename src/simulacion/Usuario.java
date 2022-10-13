@@ -26,10 +26,8 @@ public class Usuario {
 	
 	public void descartarRepetidas(Paquete p) {
 		List<Figurita> figus = p.getFiguritas();
-		System.out.println("ANTES: " + figus);
 		descartarRepetidasEnMano(figus);
 		descartarRepetidasEnAlbum(figus);
-		System.out.println("DESPUES: " + figus);
 	}
 	
 	private void descartarRepetidasEnAlbum(List<Figurita> figus) {
