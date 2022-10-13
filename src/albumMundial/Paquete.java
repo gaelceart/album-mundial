@@ -24,9 +24,7 @@ public class Paquete {
 			Random random = new Random();
 			int figuritaSeleccionada = random.nextInt(638);
 			Figurita figurita = new Figurita(figuritaSeleccionada, false);
-			if (!_figuritas.contains(figurita)) {
-				_figuritas.add(figurita);
-			}
+			_figuritas.add(figurita);
 		}
 	}
 
@@ -37,4 +35,10 @@ public class Paquete {
 	public int tamanoPaquete() {
 		return _figuritas.size();
 	}
+
+	@Override
+	public String toString() {
+		return "Paquete [_cantidadFiguritas=" + _cantidadFiguritas + ", _figuritas=" + _figuritas + "]";
+	}
+	
 }

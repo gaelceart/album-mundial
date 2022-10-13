@@ -19,10 +19,18 @@ public class Album {
 
 	public void pegarFigurita(Figurita figurita) {
 		_figuritasEncontradas.add(figurita);
+		if (_figuritasEncontradas.size() == _cantidadFiguritas) {
+			_completo = true;
+		}
 	}
 
 	public boolean figuritaPegada(Figurita figurita) {
-		return _figuritasEncontradas.contains(figurita);
+		for (Figurita figuritaPegada : _figuritasEncontradas) {
+			if (figuritaPegada.equals(figurita)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public int getCantidadFiguritas() {
