@@ -26,10 +26,11 @@ public class Simulacion {
 	}
 	
 	public static void main(String[] args) {
-		Simulacion s = new Simulacion(2);
+		Simulacion s = new Simulacion(50000);
 		while (!s.albumesCompletos()) {
 			//Fase 1 Comprar paquetes
-			HashMap<Integer, Paquete> paquetes = s.comprarPaquetes(s._cantidadFigusPorPaquete);
+			//HashMap<Integer, Paquete> paquetes = s.comprarPaquetes(s._cantidadFigusPorPaquete);
+			HashMap<Integer, Integer[]> paquetes = s.comprarPaquetes(s._cantidadFigusPorPaquete);
 			
 			//Fase 2 Pegar figuritas
 			for (int i = 0; i < s._users.length; i++) {
@@ -63,12 +64,14 @@ public class Simulacion {
 			_paquetesTotalesComprados += u.getCantidadPaquetesComprados();
 	}
 
-	private HashMap<Integer, Paquete> comprarPaquetes(int cantFigus) {
-		HashMap<Integer, Paquete> ret = new HashMap<>();
+	private HashMap<Integer, Integer[]> comprarPaquetes(int cantFigus) {
+		//HashMap<Integer, Paquete> ret = new HashMap<>();
+		HashMap<Integer, Integer[]> ret = new HashMap<>();
 		int index = 0;
 		for (Usuario u : _users) {
 			if (!u.tieneAlbumCompleto()) {
-				ret.put(index, u.comprarPaquete(cantFigus));
+				//ret.put(index, u.comprarPaquete(cantFigus));
+				ret.put(index, u.comprarPaqueteB(cantFigus));
 			}
 			index++;
 		}
