@@ -16,29 +16,39 @@ public class Simulacion implements Runnable {
 
 	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusPorPaquete) {
 		_cantidadFigusAlbum = cantFigusAlbum;
-		
-		_users = new Usuario[cantUsuarios];
-		for (int i = 0; i < _users.length; i++)
-			_users[i] = new Usuario(_cantidadFigusAlbum);
-		
+		_cantidadFigusPorPaquete = cantFigusPorPaquete;
+		_users = inicializarUsers(cantUsuarios);
 		_paquetesTotalesComprados = 0;
 		_figusTotalesRepetidas = 0;
-		_cantidadFigusPorPaquete = cantFigusPorPaquete;
 	}
 	
+	private Usuario[] inicializarUsers(int cantUsuarios) {
+		Usuario[] ret = new Usuario[cantUsuarios];
+		for (int i = 0; i < cantUsuarios; i++)
+			ret[i] = new Usuario(_cantidadFigusAlbum);
+		return ret;
+	}
+
 	public static void main(String[] args) throws InterruptedException {
-		Simulacion s = new Simulacion(20000, 638, 5);
+		Simulacion s = new Simulacion(15000, 638, 5);
 		Thread t1 = new Thread(s);
-		Simulacion s2 = new Simulacion(20000, 638, 10);
+		Simulacion s2 = new Simulacion(15000, 638, 5);
 		Thread t2 = new Thread(s2);
+		Simulacion s3 = new Simulacion(15000, 638, 5);
+		Thread t3 = new Thread(s3);
+		Simulacion s4 = new Simulacion(15000, 638, 5);
+		Thread t4 = new Thread(s4);
 		
 		t1.start();
 		t2.start();
+		t3.start();
+		t4.start();
 		System.out.println("CARGANDO...\n");
 		
 		t1.join();
 		t2.join();
-		
+		t3.join();
+		t4.join();
 	}
 	
 	@Override
@@ -48,10 +58,11 @@ public class Simulacion implements Runnable {
 			HashMap<Integer, Integer[]> paquetes = comprarPaquetes(_cantidadFigusPorPaquete);
 			
 			//Fase 2 Pegar figuritas
-			for (int i = 0; i < _users.length; i++) {
+			for (int i = 0; i < _users.length; i++)
 				if (paquetes.containsKey(i))
 					_users[i].pegarFiguritas(paquetes.get(i));
-			}
+			
+			
 			//Fase 3 Intercambiar -NO IMPLEMENTADO
 		
 			//Fase 4 Volver a pegar figuritas si hubo intercambio
