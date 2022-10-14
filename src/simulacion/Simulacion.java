@@ -64,6 +64,7 @@ public class Simulacion implements Runnable {
 	
 	@Override
 	public void run() {
+		long startTime = System.currentTimeMillis();
 		while (!albumesCompletos()) {
 			//Fase 1 Comprar paquetes
 			HashMap<Integer, Integer[]> paquetes = comprarPaquetes(_cantidadFigusPorPaquete);
@@ -73,7 +74,7 @@ public class Simulacion implements Runnable {
 				if (paquetes.containsKey(i))
 					_users[i].pegarFiguritas(paquetes.get(i));
 			
-			//Fase 3 Donar
+			//Fase 3 Donar y pegar donadas
 			if (_escenario == tipoEscenario.donacion) {
 				//donar
 				for (int donante = 0; donante < _users.length; donante++) {
@@ -119,6 +120,9 @@ public class Simulacion implements Runnable {
 		System.out.println("Figuritas repetidas totales: " + _figusTotalesRepetidas);
 		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getFiguritasRepetidas().size());
 		System.out.println();
+		long endTime = System.currentTimeMillis();
+		System.out.println((endTime - startTime));
+
 	}
 
 	private void _calcularFigusRepetidasTotales() {
