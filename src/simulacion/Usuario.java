@@ -1,37 +1,61 @@
 package simulacion;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+
 import albumMundial.*;
 
 public class Usuario {
-	private String _nombre;
+	
 	private Album _album;
 	private List<Figurita> _figuritasRepetidas;
 	private int _paquetesComprados;
 	
-	public Usuario(String nombre) {
-		_nombre= nombre;
+	public Usuario(int cantFigusAlbum) {
+		_album = new Album(cantFigusAlbum);
+		_figuritasRepetidas = new LinkedList<>();
+		_paquetesComprados = 0;
+	}
+
+	public Paquete comprarPaquete(int cantFigus) {
+		_paquetesComprados++;
+		return new Paquete(cantFigus);
 	}
 	
-	public static void main(String[] args) {
-		Album album = new Album(638);
-		int paquetesComprados = 0;
-		int figusRepetidas = 0;
-		while (!album.isCompleto()) {
-			Paquete paquete = new Paquete(5);
-			System.out.println(paquete);
-			for (Figurita f : paquete.getFiguritas()) {
-				if (album.estaPegada(f)) {
-					figusRepetidas++;
-				}
-				else {
-					album.pegarFigurita(f);
-				}
-			}
-			paquetesComprados++;
-		}
-		System.out.println(album.getFiguritasEncontradas().size());
-		System.out.println(paquetesComprados);
-		System.out.println(figusRepetidas);
+	public boolean esFiguritaRepetida(Figurita f) {
+		if (!_album.esFiguritaRepetida(f))
+			return false;
+		_figuritasRepetidas.add(f);
+		return true;
 	}
+
+	public void pegarFigurita(Figurita f) {
+		_album.pegarFigurita(f);
+	}
+	
+	public boolean tieneAlbumCompleto() {
+		return _album.isCompleto();
+	}
+	
+	public int getCantidadPaquetesComprados() {
+		return _paquetesComprados;
+	}
+	
+	public List<Figurita> getFiguritasRepetidas() {
+		return _figuritasRepetidas;
+	}
+
+	public void pegarFiguritas(Paquete paquete) {
+		for (Figurita f : paquete.abrirPaquete()) {
+			if (_album.esFiguritaRepetida(f)) {
+				_figuritasRepetidas.add(f);
+			}
+			else {
+				pegarFigurita(f);
+			}
+		}
+	}
+	
 }
