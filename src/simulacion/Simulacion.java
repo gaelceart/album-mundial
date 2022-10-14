@@ -2,6 +2,7 @@ package simulacion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -34,11 +35,15 @@ public class Simulacion implements Runnable {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		Simulacion s = new Simulacion(2, 638, 5, tipoEscenario.individual);
+		Simulacion s = new Simulacion(220, 638, 5, tipoEscenario.donacion);
 		Thread t1 = new Thread(s);
+		Simulacion s5 = new Simulacion(219, 638, 5, tipoEscenario.individual);
+		Thread t5 = new Thread(s5);
 		t1.start();
+		t5.start();
 		System.out.println("CARGANDO...\n");
 		t1.join();
+		t5.join();
 		/*
 		Simulacion s2 = new Simulacion(15000, 638, 5, tipoEscenario.individual);
 		Thread t2 = new Thread(s2);
@@ -62,7 +67,7 @@ public class Simulacion implements Runnable {
 		while (!albumesCompletos()) {
 			//Fase 1 Comprar paquetes
 			HashMap<Integer, Integer[]> paquetes = comprarPaquetes(_cantidadFigusPorPaquete);
-			
+
 			//Fase 2 Pegar figuritas
 			for (int i = 0; i < _users.length; i++)
 				if (paquetes.containsKey(i))
@@ -71,6 +76,30 @@ public class Simulacion implements Runnable {
 			//Fase 3 Donar
 			if (_escenario == tipoEscenario.donacion) {
 				//donar
+				for (int donante = 0; donante < _users.length; donante++) {
+					ArrayList<Integer> repetidasDonante = _users[donante].getFiguritasRepetidas();
+					HashMap<Integer, ArrayList<Integer>> repesADonar = new HashMap<>();	
+
+					//recorro los destinos
+					for (int destino = donante + 1; destino < _users.length; destino++) {
+						repesADonar.put(destino, new ArrayList<Integer>());
+						//recorro las cartas de donante
+						for (Integer i : repetidasDonante) {
+							// si no es repetida lo agrego
+							if (!_users[destino].esFiguritaRepetida(i))
+								repesADonar.get(destino).add(i);
+						}
+					}
+					
+					for (int d = donante + 1; d < _users.length; d++) {
+						if (repesADonar.containsKey(d)) {
+							for (Integer f : repesADonar.get(d)) {
+								_users[d].pegarFigurita(f);
+								_users[donante].getFiguritasRepetidas().remove(f);
+							}
+						}
+					}
+				}
 			}
 			
 			//Fase 3 Intercambiar -NO IMPLEMENTADO
@@ -78,7 +107,6 @@ public class Simulacion implements Runnable {
 				//intercambio
 			}
 		
-			//Fase 4 Volver a pegar figuritas si hubo intercambio
 			
 		}
 		

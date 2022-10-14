@@ -36,6 +36,10 @@ public class Usuario {
 	public ArrayList<Integer> getFiguritasRepetidas() {
 		return _figuritasRepetidas;
 	}
+	
+	public boolean esFiguritaRepetida(int n) {
+		return _album.esFiguritaRepetida(n);
+	}
 
 	public void pegarFiguritas(Integer[] paquete) {
 		for (int i = 0; i < paquete.length; i++) {
