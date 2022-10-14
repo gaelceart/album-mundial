@@ -18,56 +18,11 @@ public class Usuario {
 		_paquetesComprados = 0;
 	}
 
-	
 	public Paquete comprarPaquete(int cantFigus) {
 		_paquetesComprados++;
 		return new Paquete(cantFigus);
 	}
 	
-	public void descartarRepetidas(Paquete p) {
-		List<Figurita> figus = p.getFiguritas();
-		descartarRepetidasEnMano(figus);
-		descartarRepetidasEnAlbum(figus);
-	}
-	
-	private void descartarRepetidasEnAlbum(List<Figurita> figus) {
-		Iterator<Figurita> it = figus.iterator();
-		while (it.hasNext()) {
-			Figurita f = it.next();
-			
-			if (esFiguritaRepetida(f))
-				it.remove();
-		}
-	}
-
-
-	private void descartarRepetidasEnMano(List<Figurita> figus) {
-		ArrayList<Integer> repetidasEnMano = new ArrayList<>();
-		for (int i = 0; i < figus.size(); i++) {
-			for (int j = i+1; j < figus.size(); j++) {
-				if (repetidasEnMano.contains(i))
-					break;
-				
-				if (figus.get(i).equals(figus.get(j))) {
-					repetidasEnMano.add(j);
-					break;
-				}
-			}
-		}
-
-		Iterator<Figurita> it = figus.iterator();
-		int index = 0;
-		while (it.hasNext()) {
-			Figurita f = it.next();
-			if (repetidasEnMano.contains(index)) {
-				_figuritasRepetidas.add(f);
-				it.remove();
-			}
-			index++;
-		}
-	}
-
-
 	public boolean esFiguritaRepetida(Figurita f) {
 		if (!_album.esFiguritaRepetida(f))
 			return false;
@@ -91,9 +46,8 @@ public class Usuario {
 		return _figuritasRepetidas;
 	}
 
-
 	public void pegarFiguritas(Paquete paquete) {
-		for (Figurita f : paquete.getFiguritas()) {
+		for (Figurita f : paquete.abrirPaquete()) {
 			if (_album.esFiguritaRepetida(f)) {
 				_figuritasRepetidas.add(f);
 			}

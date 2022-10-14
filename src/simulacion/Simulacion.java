@@ -11,21 +11,25 @@ public class Simulacion {
 	private int _cantidadFigusPorPaquete;
 	private	int _paquetesTotalesComprados;
 	private	int _figusTotalesRepetidas;
+	private int _cantidadFigusAlbum;
 
 	public Simulacion(int cantUsuarios) {
+		_cantidadFigusAlbum = 638;
+		
 		_users = new Usuario[cantUsuarios];
 		for (int i = 0; i < _users.length; i++)
-			_users[i] = new Usuario(638);
+			_users[i] = new Usuario(_cantidadFigusAlbum);
 		
 		_paquetesTotalesComprados = 0;
 		_figusTotalesRepetidas = 0;
+		_cantidadFigusPorPaquete = 5;
 	}
 	
 	public static void main(String[] args) {
-		Simulacion s = new Simulacion(5);
+		Simulacion s = new Simulacion(2);
 		while (!s.albumesCompletos()) {
 			//Fase 1 Comprar paquetes
-			HashMap<Integer, Paquete> paquetes = s.comprarPaquetes(5);
+			HashMap<Integer, Paquete> paquetes = s.comprarPaquetes(s._cantidadFigusPorPaquete);
 			
 			//Fase 2 Pegar figuritas
 			for (int i = 0; i < s._users.length; i++) {
@@ -40,6 +44,9 @@ public class Simulacion {
 		
 		s._calcularPaquetesTotales();
 		s._calcularFigusRepetidasTotales();
+		System.out.println("CANT USERS:" + s._users.length);
+		System.out.println("CANTIDAD FIGUS ALBUM: " + s._cantidadFigusAlbum);
+		System.out.println("CANTIDAD FIGUS PAQUETE: " + s._cantidadFigusPorPaquete);
 		System.out.println("Paquetes totales: " + s._paquetesTotalesComprados);
 		System.out.println("Figuritas repetidas totales: " + s._figusTotalesRepetidas);
 		System.out.println("Figuritas repetidas del usuario 0: " + s._users[0].getFiguritasRepetidas().size());
@@ -62,7 +69,6 @@ public class Simulacion {
 		for (Usuario u : _users) {
 			if (!u.tieneAlbumCompleto()) {
 				ret.put(index, u.comprarPaquete(cantFigus));
-				_paquetesTotalesComprados++;
 			}
 			index++;
 		}

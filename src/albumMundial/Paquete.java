@@ -10,10 +10,13 @@ public class Paquete {
 	private List<Figurita> _figuritas;
 
 	public Paquete(int figuritasPorPaquete) {
-		if (figuritasPorPaquete <= 0) {
+		if (figuritasPorPaquete <= 0) 
 			throw new IllegalArgumentException(
 					"Un Paquete no puede contener tener 0 o menos figuritas:" + figuritasPorPaquete);
-		}
+		
+		if (figuritasPorPaquete > Album._cantidadFiguritas)
+			throw new IllegalArgumentException("Un paquete no puede contener mas figuritas que el album: Cant. figus paquete = " + figuritasPorPaquete + " > Cant. figus album = " + Album._cantidadFiguritas);
+		
 		_cantidadFiguritas = figuritasPorPaquete;
 		_figuritas = new ArrayList<>();
 		crearPaquete();
@@ -22,14 +25,29 @@ public class Paquete {
 	// crearPaquete(int figuritasPosibles)? o genera acomplamiento
 	public void crearPaquete() {
 		while (tamanoPaquete() < _cantidadFiguritas) {
-			Random random = new Random();
-			int figuritaSeleccionada = random.nextInt(Album._cantidadFiguritas);
-			Figurita figurita = new Figurita(figuritaSeleccionada, false);
-			_figuritas.add(figurita);
+			Figurita figurita = generarFigurita();
+			agregarFigurita(figurita);
 		}
 	}
 
-	public List<Figurita> getFiguritas() {
+	private Figurita generarFigurita() {
+		Random random = new Random();
+		int figuritaSeleccionada = random.nextInt(Album._cantidadFiguritas);
+		Figurita figurita = new Figurita(figuritaSeleccionada, false);
+		return figurita;
+	}
+	
+	private void agregarFigurita(Figurita f) {
+			if (tamanoPaquete() == 0)
+				_figuritas.add(f);
+
+			for (int i = 0; i < tamanoPaquete(); i++) {
+				if (!f.equals(_figuritas.get(i)))
+					_figuritas.add(f);
+			}
+	}
+
+	public List<Figurita> abrirPaquete() {
 		return _figuritas;
 	}
 
@@ -42,20 +60,4 @@ public class Paquete {
 		return "Paquete [_cantidadFiguritas=" + _cantidadFiguritas + ", _figuritas=" + _figuritas + "]\n";
 	}
     
-    public static void main(String[] args) {
-    	Album a = new Album(638);
-		Paquete p = new Paquete(3);
-		System.out.println(p.toString());
-		
-		Iterator<Figurita> it = p.getFiguritas().iterator();
-		while (it.hasNext()) {
-			Figurita f = it.next();
-			if (f.getNumero() % 2 == 0) {
-				it.remove();
-			}
-		}
-		System.out.println(p.toString());
-		
-	}
-	
 }
