@@ -59,16 +59,28 @@ public class Interfaz {
 	 */
 	private void initialize() {
 		setupFrame();
-		_albumContainer = Recurso.setupAlbumContainer();
-		_userContainer = Recurso.setupUserContainer();
-		_statisticsContainer = Recurso.setupStatisticsContainer();
-		_albumContainer.add(Recurso.setupAlbumImage());
-		_userContainer.add(Recurso.setupUserImage());
-		_statisticsContainer.add(Recurso.setupStatisticsImage());
-		frame.getContentPane().add(_userContainer);
-		frame.getContentPane().add(_statisticsContainer);
-		frame.getContentPane().add(_albumContainer);
+		setupAlbumContainer();
+		setupStatisticsContainer();
+		setupUserContainer();
 		
+	}
+
+	private void setupUserContainer() {
+		_userContainer = Recurso.setupUserContainer();
+		_userContainer.add(Recurso.setupUserImage());
+		frame.getContentPane().add(_userContainer);
+	}
+
+	private void setupStatisticsContainer() {
+		_statisticsContainer = Recurso.setupStatisticsContainer();
+		_statisticsContainer.add(Recurso.setupStatisticsImage());
+		frame.getContentPane().add(_statisticsContainer);
+	}
+
+	private void setupAlbumContainer() {
+		_albumContainer = Recurso.setupAlbumContainer();
+		_albumContainer.add(Recurso.setupAlbumImage());
+		frame.getContentPane().add(_albumContainer);
 	}
 	
 	
