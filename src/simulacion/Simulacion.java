@@ -199,16 +199,5 @@ public class Simulacion implements Runnable {
 		return true;
 	}
 
-	public static Integer[] comprarPaquete(int cantFigus) {
-		List<Integer> paquete = new ArrayList<>();
-		Random random = new Random();
-		while (paquete.size() < cantFigus) {
-			int figuritaSeleccionada = random.nextInt(Album._cantidadFiguritas);
-			if (!paquete.contains(figuritaSeleccionada)) 
-				paquete.add(figuritaSeleccionada);
-			
-		}
-		return paquete.toArray(new Integer[cantFigus]);
-	}
 
 }
