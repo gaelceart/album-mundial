@@ -22,6 +22,14 @@ import java.awt.event.MouseMotionAdapter;
 public class Interfaz {
 
 	private JFrame frame;
+	private JPanel _albumContainer;
+	private JPanel _statisticsContainer;
+	private JPanel _userContainer;
+	private JComboBox _escenarios;
+	private JButton _donar;
+	private JButton _intercambiar;
+	private JButton _iniciar;
+	
 	
 	/**
 	 * Launch the application.
@@ -51,7 +59,19 @@ public class Interfaz {
 	 */
 	private void initialize() {
 		setupFrame();
+		_albumContainer = Recurso.setupAlbumContainer();
+		_userContainer = Recurso.setupUserContainer();
+		_statisticsContainer = Recurso.setupStatisticsContainer();
+		_albumContainer.add(Recurso.setupAlbumImage());
+		_userContainer.add(Recurso.setupUserImage());
+		_statisticsContainer.add(Recurso.setupStatisticsImage());
+		frame.getContentPane().add(_userContainer);
+		frame.getContentPane().add(_statisticsContainer);
+		frame.getContentPane().add(_albumContainer);
+		
 	}
+	
+	
 	private void setupFrame() {
 		frame = Recurso.setupFrame();
 
