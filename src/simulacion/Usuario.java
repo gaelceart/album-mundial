@@ -1,7 +1,6 @@
 package simulacion;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import albumMundial.*;
 
@@ -20,7 +19,7 @@ public class Usuario {
 
 	public Integer[] comprarPaquete(int cantFigus) {
 		_paquetesComprados++;
-		return Simulacion.comprarPaquete(cantFigus);
+		return Paquete.comprarPaquete(cantFigus);
 	}
 
 	public void pegarFigurita(int f) {
