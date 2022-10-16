@@ -15,7 +15,7 @@ public class Simulacion implements Runnable {
 	private int _figusTotalesRepetidas;
 	private int _cantidadFigusAlbum;
 	private int _cantidadFigusDonadas;
-	private int _intercambiosRealizados;
+	private int _cantIntercambiosRealizados;
 	private enum tipoEscenario {
 		individual, donacion, intercambio
 	};
@@ -32,7 +32,7 @@ public class Simulacion implements Runnable {
 		_escenario = e;
 		_cantidadFigusDonadas = 0;
 		_figusRepetidasSobrantes = 0;
-		_intercambiosRealizados = 0;
+		_cantIntercambiosRealizados = 0;
 	}
 
 	private Usuario[] inicializarUsers(int cantUsuarios) {
@@ -46,8 +46,8 @@ public class Simulacion implements Runnable {
 	// cantFigusAlbum, int cantFigusPorPaquete, double costoPaquete, tipoEscenario
 	// e) {
 	public static void main(String[] args) throws InterruptedException {
-		int cantSimulaciones = 5;
-		int cantUsuarios = 10;
+		int cantSimulaciones = 2;
+		int cantUsuarios = 2;
 		int cantFigusAlbum = 638;
 		int cantFigusPorPaquete = 5;
 		tipoEscenario e = tipoEscenario.intercambio;
@@ -64,6 +64,7 @@ public class Simulacion implements Runnable {
 			t[i] = new Thread(s[i]);
 			t[i].start();
 		}
+
 		System.out.println("CARGANDO...\n");
 
 		for (int i = 0; i < cantSimulaciones; i++) {
@@ -110,6 +111,8 @@ public class Simulacion implements Runnable {
 			// Fase 3 Intercambiar 
 			if (_escenario == tipoEscenario.intercambio) {
 				for (int trader = 0; trader < _users.length; trader++) {
+					if (_users[trader].tieneAlbumCompleto())
+						continue;
 					// recorro figus
 					Iterator<Integer> itA = _users[trader].getFiguritasRepetidas().iterator();
 					while (itA.hasNext()) {
@@ -123,13 +126,13 @@ public class Simulacion implements Runnable {
 									if (!_users[trader].esFiguritaRepetida(figuB)) {
 										_users[trader].pegarFigurita(figuB);
 										_users[destino].pegarFigurita(figuTrader);
-										itA.remove();
-										itB.remove();
 										seIntercambio = true;
-										_intercambiosRealizados ++;
+										_cantIntercambiosRealizados ++;
 										break;
 									}
+									itB.remove();
 									if (seIntercambio) {
+										itA.remove();
 										break;
 									}
 								}
@@ -149,12 +152,15 @@ public class Simulacion implements Runnable {
 		System.out.println("CANTIDAD FIGUS PAQUETE: " + _cantidadFigusPorPaquete);
 		System.out.println("Paquetes totales: " + _paquetesTotalesComprados);
 		System.out.println("Paquetes comprados por el usuario 0: " + _users[0].getCantidadPaquetesComprados());
+		System.out.println("Paquetes comprados por el usuario final: " + _users[_users.length-1].getCantidadPaquetesComprados());
 		System.out.println("Figuritas repetidas totales: " + _figusTotalesRepetidas);
 		System.out.println("Figuritas repetidas sobrantes: " + _figusRepetidasSobrantes);
-		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getFiguritasRepetidas().size());
+		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getCantidadFigusRepetidasTotal());
+		System.out.println("Figuritas repetidas del usuario final: " + _users[_users.length-1].getCantidadFigusRepetidasTotal());
 		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
+		System.out.println("Figuritas intercambiadas: " + _cantIntercambiosRealizados);
 		long endTime = System.currentTimeMillis();
-		System.out.println((endTime - startTime));
+		System.out.println("TIEMPO TRANSCURRIDO: " + (endTime - startTime) + "ms\n");
 
 	}
 
@@ -177,10 +183,10 @@ public class Simulacion implements Runnable {
 		HashMap<Integer, Integer[]> ret = new HashMap<>();
 		int index = 0;
 		for (Usuario u : _users) {
-			if (!u.tieneAlbumCompleto()) {
+			if (!u.tieneAlbumCompleto())
 				ret.put(index, u.comprarPaquete(cantFigus));
-			}
 			index++;
+			
 		}
 		return ret;
 	}
@@ -198,8 +204,9 @@ public class Simulacion implements Runnable {
 		Random random = new Random();
 		while (paquete.size() < cantFigus) {
 			int figuritaSeleccionada = random.nextInt(Album._cantidadFiguritas);
-			if (!paquete.contains(figuritaSeleccionada))
+			if (!paquete.contains(figuritaSeleccionada)) 
 				paquete.add(figuritaSeleccionada);
+			
 		}
 		return paquete.toArray(new Integer[cantFigus]);
 	}
