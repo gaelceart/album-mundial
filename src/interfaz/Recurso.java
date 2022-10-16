@@ -38,14 +38,14 @@ public class Recurso {
 	 
 	 public static JPanel setupStatisticsContainer() {
 		 JPanel statisticsContainer = new JPanel();
-		 statisticsContainer.setBounds(0, 400, 780, 200);
+		 statisticsContainer.setBounds(0, 400, 550, 200);
 		 statisticsContainer.setLayout(null);
 		 return statisticsContainer;
 	 }
 	 
 	 public static JPanel setupUserContainer() {
 		 JPanel userContainer = new JPanel();
-		 userContainer.setBounds(550, 0, 225, 400);
+		 userContainer.setBounds(550, 0, 230, 600);
 		 userContainer.setLayout(null);
 		 return userContainer;
 	 }
@@ -94,7 +94,7 @@ public class Recurso {
 	 
 	 public static JLabel setupUserImage() {
 		 JLabel userImagen = new JLabel();
-		 userImagen.setSize(225, 400);
+		 userImagen.setSize(230, 600);
 		 ImageIcon imagen = new ImageIcon("src/usuario.jpg");
 		 Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(userImagen.getWidth(), userImagen.getHeight(), Image.SCALE_DEFAULT));
 		 userImagen.setIcon(icono);
@@ -103,7 +103,7 @@ public class Recurso {
 	 
 	 public static JLabel setupStatisticsImage() {
 		 JLabel statisticsImagen = new JLabel();
-		 statisticsImagen.setSize(780, 155);
+		 statisticsImagen.setSize(550, 155);
 		 ImageIcon imagen = new ImageIcon("src/estadisticas.jpg");
 		 Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(statisticsImagen.getWidth(), statisticsImagen.getHeight(), Image.SCALE_DEFAULT));
 		 statisticsImagen.setIcon(icono);
