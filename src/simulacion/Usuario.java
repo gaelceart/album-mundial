@@ -1,37 +1,30 @@
 package simulacion;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Random;
 
 import albumMundial.*;
 
 public class Usuario {
 	
 	private Album _album;
-	private List<Figurita> _figuritasRepetidas;
 	private int _paquetesComprados;
+	private ArrayList<Integer> _figuritasRepetidas;
+	private int _cantidadFigusRepetidasTotal;
 	
 	public Usuario(int cantFigusAlbum) {
 		_album = new Album(cantFigusAlbum);
-		_figuritasRepetidas = new LinkedList<>();
+		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
+		_cantidadFigusRepetidasTotal = 0;
 	}
 
-	public Paquete comprarPaquete(int cantFigus) {
+	public Integer[] comprarPaquete(int cantFigus) {
 		_paquetesComprados++;
-		return new Paquete(cantFigus);
-	}
-	
-	public boolean esFiguritaRepetida(Figurita f) {
-		if (!_album.esFiguritaRepetida(f))
-			return false;
-		_figuritasRepetidas.add(f);
-		return true;
+		return Simulacion.comprarPaquete(cantFigus);
 	}
 
-	public void pegarFigurita(Figurita f) {
+	public void pegarFigurita(int f) {
 		_album.pegarFigurita(f);
 	}
 	
@@ -43,19 +36,28 @@ public class Usuario {
 		return _paquetesComprados;
 	}
 	
-	public List<Figurita> getFiguritasRepetidas() {
+	public ArrayList<Integer> getFiguritasRepetidas() {
 		return _figuritasRepetidas;
 	}
+	
+	public boolean esFiguritaRepetida(int n) {
+		return _album.esFiguritaRepetida(n);
+	}
 
-	public void pegarFiguritas(Paquete paquete) {
-		for (Figurita f : paquete.abrirPaquete()) {
-			if (_album.esFiguritaRepetida(f)) {
-				_figuritasRepetidas.add(f);
+	public void pegarFiguritas(Integer[] paquete) {
+		for (int i = 0; i < paquete.length; i++) {
+			if (_album.esFiguritaRepetida(paquete[i])) {
+				_figuritasRepetidas.add(paquete[i]);
+				_cantidadFigusRepetidasTotal = getCantidadFigusRepetidasTotal() + 1;
 			}
 			else {
-				pegarFigurita(f);
+				pegarFigurita(paquete[i]);
 			}
 		}
+	}
+
+	public int getCantidadFigusRepetidasTotal() {
+		return _cantidadFigusRepetidasTotal;
 	}
 	
 }
