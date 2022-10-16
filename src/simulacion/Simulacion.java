@@ -14,8 +14,10 @@ public class Simulacion implements Runnable {
 	private	int _paquetesTotalesComprados;
 	private	int _figusTotalesRepetidas;
 	private int _cantidadFigusAlbum;
+	private int _cantidadFigusDonadas;
 	private enum tipoEscenario{individual, donacion, intercambio};
 	private tipoEscenario _escenario;
+	private int _figusRepetidasSobrantes;
 
 	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusPorPaquete, tipoEscenario e) {
 		_cantidadFigusAlbum = cantFigusAlbum;
@@ -24,6 +26,8 @@ public class Simulacion implements Runnable {
 		_paquetesTotalesComprados = 0;
 		_figusTotalesRepetidas = 0;
 		_escenario = e;
+		_cantidadFigusDonadas = 0;
+		_figusRepetidasSobrantes = 0;
 	}
 
 	
@@ -34,32 +38,35 @@ public class Simulacion implements Runnable {
 		return ret;
 	}
 
+	//public double simular(int cantSimulaciones, int cantUsuarios, int cantFigusAlbum, int cantFigusPorPaquete, double costoPaquete, tipoEscenario e) {
 	public static void main(String[] args) throws InterruptedException {
-		Simulacion s = new Simulacion(220, 638, 5, tipoEscenario.donacion);
-		Thread t1 = new Thread(s);
-		Simulacion s5 = new Simulacion(219, 638, 5, tipoEscenario.individual);
-		Thread t5 = new Thread(s5);
-		t1.start();
-		t5.start();
+		int cantSimulaciones = 5; 
+		int cantUsuarios = 10;
+		int cantFigusAlbum = 638;
+		int cantFigusPorPaquete = 5;
+		tipoEscenario e = tipoEscenario.donacion;
+
+		double costoPaquete = 150.0;
+		double costoTotal = 0.0;
+		double costoPromedio = 0.0;
+		
+		Simulacion[] s = new Simulacion[cantSimulaciones];
+		Thread[] t = new Thread[cantSimulaciones];
+		
+		for (int i = 0; i < cantSimulaciones; i++) {
+			s[i] = new Simulacion(cantUsuarios, cantFigusAlbum, cantFigusPorPaquete, e);
+			t[i] = new Thread(s[i]);
+			t[i].start();
+		}
 		System.out.println("CARGANDO...\n");
-		t1.join();
-		t5.join();
-		/*
-		Simulacion s2 = new Simulacion(15000, 638, 5, tipoEscenario.individual);
-		Thread t2 = new Thread(s2);
-		Simulacion s3 = new Simulacion(15000, 638, 5, tipoEscenario.individual);
-		Thread t3 = new Thread(s3);
-		Simulacion s4 = new Simulacion(15000, 638, 5, tipoEscenario.individual);
-		Thread t4 = new Thread(s4);
-		
-		t2.start();
-		t3.start();
-		t4.start();
-		
-		t2.join();
-		t3.join();
-		t4.join();
-		*/
+
+		for (int i = 0; i < cantSimulaciones; i++) {
+			t[i].join();
+			costoTotal += s[i]._paquetesTotalesComprados * costoPaquete / cantUsuarios;
+		}
+		costoPromedio = costoTotal/cantSimulaciones;
+		System.out.println("COSTO TOTAL: " + costoTotal);
+		System.out.println("COSTO PROMEDIO: " + costoPromedio);
 	}
 	
 	@Override
@@ -78,25 +85,16 @@ public class Simulacion implements Runnable {
 			if (_escenario == tipoEscenario.donacion) {
 				//donar
 				for (int donante = 0; donante < _users.length; donante++) {
-					ArrayList<Integer> repetidasDonante = _users[donante].getFiguritasRepetidas();
-					HashMap<Integer, ArrayList<Integer>> repesADonar = new HashMap<>();	
-
-					//recorro los destinos
-					for (int destino = donante + 1; destino < _users.length; destino++) {
-						repesADonar.put(destino, new ArrayList<Integer>());
-						//recorro las cartas de donante
-						for (Integer i : repetidasDonante) {
-							// si no es repetida lo agrego
-							if (!_users[destino].esFiguritaRepetida(i))
-								repesADonar.get(destino).add(i);
-						}
-					}
-					
-					for (int d = donante + 1; d < _users.length; d++) {
-						if (repesADonar.containsKey(d)) {
-							for (Integer f : repesADonar.get(d)) {
-								_users[d].pegarFigurita(f);
-								_users[donante].getFiguritasRepetidas().remove(f);
+					//recorro figus
+					Iterator<Integer> it = _users[donante].getFiguritasRepetidas().iterator();
+					while(it.hasNext()) {
+						Integer figu = it.next();
+						for (int destino = donante + 1; destino < _users.length; destino++) {
+							if (!_users[destino].esFiguritaRepetida(figu)) {
+								_users[destino].pegarFigurita(figu);
+								it.remove();
+								_cantidadFigusDonadas++;
+								break;
 							}
 						}
 					}
@@ -108,18 +106,20 @@ public class Simulacion implements Runnable {
 				//intercambio
 			}
 		
-			
 		}
 		
 		_calcularPaquetesTotales();
 		_calcularFigusRepetidasTotales();
+		_calcularFigusRepetidasSobrantes();
 		System.out.println("CANT USERS:" + _users.length);
 		System.out.println("CANTIDAD FIGUS ALBUM: " + _cantidadFigusAlbum);
 		System.out.println("CANTIDAD FIGUS PAQUETE: " + _cantidadFigusPorPaquete);
 		System.out.println("Paquetes totales: " + _paquetesTotalesComprados);
+		System.out.println("Paquetes comprados por el usuario 0: " + _users[0].getCantidadPaquetesComprados());
 		System.out.println("Figuritas repetidas totales: " + _figusTotalesRepetidas);
+		System.out.println("Figuritas repetidas sobrantes: " + _figusRepetidasSobrantes);
 		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getFiguritasRepetidas().size());
-		System.out.println();
+		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
 		long endTime = System.currentTimeMillis();
 		System.out.println((endTime - startTime));
 
@@ -127,12 +127,17 @@ public class Simulacion implements Runnable {
 
 	private void _calcularFigusRepetidasTotales() {
 		for (Usuario u : _users)
-			_figusTotalesRepetidas += u.getFiguritasRepetidas().size();
+			_figusTotalesRepetidas += u.getCantidadFigusRepetidasTotal();
 	}
 
 	private void _calcularPaquetesTotales() {
 		for (Usuario u : _users)
 			_paquetesTotalesComprados += u.getCantidadPaquetesComprados();
+	}
+
+	private void _calcularFigusRepetidasSobrantes() {
+		for (Usuario u : _users)
+			_figusRepetidasSobrantes += u.getFiguritasRepetidas().size();
 	}
 
 	private HashMap<Integer, Integer[]> comprarPaquetes(int cantFigus) {
