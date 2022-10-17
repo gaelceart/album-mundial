@@ -1,11 +1,7 @@
 package albumMundial;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Album {
-	//esta bien esto?
-	public static int _cantidadFiguritas;
+	private int _cantidadFiguritas;
 	private boolean[] _figuritas;
 	private boolean _completo;
 
@@ -17,7 +13,7 @@ public class Album {
 		_cantidadFiguritas = cantidadFiguritas;
 		_figuritas = new boolean[cantidadFiguritas];
 	}
-	
+
 	public void pegarFigurita(int n) {
 		_figuritas[n] = true;
 		if (checkEsCompleto())
@@ -35,7 +31,7 @@ public class Album {
 	public boolean esFiguritaRepetida(int n) {
 		return _figuritas[n];
 	}
-	
+
 	public int getCantidadFiguritas() {
 		return _cantidadFiguritas;
 	}

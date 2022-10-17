@@ -19,7 +19,7 @@ public class Usuario {
 
 	public Integer[] comprarPaquete(int cantFigus) {
 		_paquetesComprados++;
-		return Paquete.comprarPaquete(cantFigus);
+		return Paquete.comprarPaquete(cantFigus, _album.getCantidadFiguritas());
 	}
 
 	public void pegarFigurita(int f) {
