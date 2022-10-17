@@ -51,7 +51,7 @@ public class Simulacion implements Runnable {
 		int cantUsuarios = 2;
 		int cantFigusAlbum = 638;
 		int cantFigusPorPaquete = 5;
-		tipoEscenario e = tipoEscenario.intercambio;
+		tipoEscenario e = tipoEscenario.donacion;
 
 		double costoPaquete = 150.0;
 		double costoTotal = 0.0;

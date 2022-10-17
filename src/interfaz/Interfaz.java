@@ -59,30 +59,63 @@ public class Interfaz {
 	 */
 	private void initialize() {
 		setupFrame();
-		setupAlbumContainer();
-		setupStatisticsContainer();
-		setupUserContainer();
+		setupContainers();
+		updateFrame();
 		
 	}
 
-	private void setupUserContainer() {
+	private void setupContainers() {
+		setupPanelDeAlbum();
+		setupPanelDeEstadisticas();
+		setupPanelDeUsuario();
+	}
+
+	private void setupPanelDeAlbum() {
+		_albumContainer = Recurso.setupAlbumContainer();
+		_albumContainer.add(Recurso.setupAlbumImage());
+		
+		setupEventosDeAlbum();
+		
+		frame.getContentPane().add(_albumContainer);
+	}
+
+	private void setupPanelDeEstadisticas() {
+		_statisticsContainer = Recurso.setupStatisticsContainer();
+		_statisticsContainer.add(Recurso.setupStatisticsImage());
+		
+		setupEventosDeEstadisticas();
+	
+		frame.getContentPane().add(_statisticsContainer);
+	}
+	
+	private void setupPanelDeUsuario() {
 		_userContainer = Recurso.setupUserContainer();
-		_userContainer.add(Recurso.setupUserImage());
+		_iniciar = Recurso.setupBtnIniciar();
+		_escenarios = Recurso.setupBtnEscenarios();
+		_donar = Recurso.setupBtnDonar();
+		_intercambiar = Recurso.setupBtnIntercambiar();
+		
+		setupEventosDeUsuario();
+		
+		_userContainer.add(_iniciar);
+		_userContainer.add(_escenarios);
+		_userContainer.add(_donar);
+		_userContainer.add(_intercambiar);
+		
 		frame.getContentPane().add(_userContainer);
 	}
 
-	private void setupStatisticsContainer() {
-		_statisticsContainer = Recurso.setupStatisticsContainer();
-		_statisticsContainer.add(Recurso.setupStatisticsImage());
-		frame.getContentPane().add(_statisticsContainer);
-	}
-
-	private void setupAlbumContainer() {
-		_albumContainer = Recurso.setupAlbumContainer();
-		_albumContainer.add(Recurso.setupAlbumImage());
-		frame.getContentPane().add(_albumContainer);
+	private void setupEventosDeAlbum() {
+		
 	}
 	
+	private void setupEventosDeEstadisticas() {
+		
+	}
+	
+	private void setupEventosDeUsuario() {
+		
+	}
 	
 	private void setupFrame() {
 		frame = Recurso.setupFrame();
