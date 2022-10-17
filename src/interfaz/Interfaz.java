@@ -26,8 +26,6 @@ public class Interfaz {
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
 	private JComboBox _escenarios;
-	private JButton _donar;
-	private JButton _intercambiar;
 	private JButton _iniciar;
 	
 	
@@ -92,16 +90,12 @@ public class Interfaz {
 		_userContainer = Recurso.setupUserContainer();
 		_iniciar = Recurso.setupBtnIniciar();
 		_escenarios = Recurso.setupBtnEscenarios();
-		_donar = Recurso.setupBtnDonar();
-		_intercambiar = Recurso.setupBtnIntercambiar();
 		
 		desactivarBtnIniciar();
 		setupEventosDeUsuario();
 		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
-		_userContainer.add(_donar);
-		_userContainer.add(_intercambiar);
 		
 		frame.getContentPane().add(_userContainer);
 	}
@@ -139,24 +133,6 @@ public class Interfaz {
 				
 			}
 
-		});
-		
-		_donar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
-		_intercambiar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
 		});
 		
 	}

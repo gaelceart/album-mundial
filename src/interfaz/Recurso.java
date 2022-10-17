@@ -70,18 +70,6 @@ public class Recurso {
 		ret[3] = "Todos Intercambian";
 		return ret;
 	}
-
-	 public static JButton setupBtnDonar() {
-			JButton btnEliminarAllArcos = new JButton("Donar");
-			btnEliminarAllArcos.setBounds(625, 409, 115, 23);
-			return btnEliminarAllArcos;
-	 }
-	 
-	 public static JButton setupBtnIntercambiar() {
-			JButton btnEliminarAllVertices = new JButton("Intercambiar");
-			btnEliminarAllVertices.setBounds(625, 440, 115, 23);
-			return btnEliminarAllVertices;
-	 }
 	 
 	 public static JLabel setupAlbumImage() {
 		 JLabel albumImagen = new JLabel();
@@ -112,7 +100,7 @@ public class Recurso {
 
 	public static JButton setupBtnIniciar() {
 		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.setBounds(625, 137, 115, 23);
+		btnIniciar.setBounds(615, 260, 140, 25);
 		return btnIniciar;
 	}
 }
