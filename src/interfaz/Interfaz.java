@@ -1,6 +1,7 @@
 package interfaz;
 import simulacion.Simulacion;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 
@@ -178,6 +179,7 @@ public class Interfaz {
 	}
 	
 	public void updateFrame() {
+		//_userContainer.setBackground(new Color(141,27,61));
 		SwingUtilities.updateComponentTreeUI(frame);
 		frame.setVisible(true);
 		frame.toFront();

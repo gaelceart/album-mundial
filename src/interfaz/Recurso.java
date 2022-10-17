@@ -1,6 +1,8 @@
 package interfaz;
 
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -18,6 +20,7 @@ import javax.swing.SwingConstants;
 
 public class Recurso {
 
+	
 	 public static JFrame setupFrame() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -42,6 +45,7 @@ public class Recurso {
 		 JPanel statisticsContainer = new JPanel();
 		 statisticsContainer.setBounds(0, 400, 575, 200);
 		 statisticsContainer.setLayout(null);
+		 statisticsContainer.setBackground(new Color(0,0,0));
 		 return statisticsContainer;
 	 }
 	 
@@ -49,6 +53,7 @@ public class Recurso {
 		 JPanel userContainer = new JPanel();
 		 userContainer.setBounds(575, 0, 225, 600);
 		 userContainer.setLayout(null);
+		 userContainer.setBackground(new Color(141,27,61));
 		 return userContainer;
 	 }
 	 
@@ -72,7 +77,7 @@ public class Recurso {
 	 
 	 public static JLabel setupStatisticsImage() {
 		 JLabel statisticsImagen = new JLabel();
-		 statisticsImagen.setSize(170, 160);
+		 statisticsImagen.setSize(150, 160);
 		 ImageIcon imagen = new ImageIcon("src/copa.png");
 		 Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(statisticsImagen.getWidth(), statisticsImagen.getHeight(), Image.SCALE_DEFAULT));
 		 statisticsImagen.setIcon(icono);
@@ -82,6 +87,7 @@ public class Recurso {
 	 public static JLabel setupTextoFigusPorAlbum() {
 		 JLabel cantidadDeFigusAlbum = new JLabel("Figuritas por Álbum", SwingConstants.CENTER);
 		 cantidadDeFigusAlbum.setBounds(615, 75, 140, 35);
+		 cantidadDeFigusAlbum.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		 return cantidadDeFigusAlbum;
 	 }
 	 
@@ -92,44 +98,48 @@ public class Recurso {
 	 }
 	 
 	 public static JLabel setupTextoFigusPorPaquete() {
-		 JLabel cantidadDeFigusAlbum = new JLabel("Figuritas por Paquete", SwingConstants.CENTER);
-		 cantidadDeFigusAlbum.setBounds(615, 125, 140, 35);
-		 return cantidadDeFigusAlbum;
+		 JLabel cantidadDeFigusPaquete = new JLabel("Figuritas por Paquete", SwingConstants.CENTER);
+		 cantidadDeFigusPaquete.setBounds(615, 125, 140, 35);
+		 cantidadDeFigusPaquete.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		 return cantidadDeFigusPaquete;
 	 }
 	 
 	 public static JTextField setupFigusPorPaquete() {
-		 JTextField cantidadDeFigusAlbum = new JTextField();
-		 cantidadDeFigusAlbum.setBounds(615, 150, 140, 25);
-		 return cantidadDeFigusAlbum;
+		 JTextField cantidadDeFigusPaquete = new JTextField();
+		 cantidadDeFigusPaquete.setBounds(615, 150, 140, 25);
+		 return cantidadDeFigusPaquete;
 	 }
 	 
 	 public static JLabel setupTextoUsuarios() {
-		 JLabel cantidadDeFigusAlbum = new JLabel("Usuarios", SwingConstants.CENTER);
-		 cantidadDeFigusAlbum.setBounds(615, 175, 140, 35);
-		 return cantidadDeFigusAlbum;
+		 JLabel usuarios = new JLabel("Usuarios", SwingConstants.CENTER);
+		 usuarios.setBounds(615, 175, 140, 35);
+		 usuarios.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		 return usuarios;
 	 }
 
 	 public static JTextField setupUsuarios() {
-		 JTextField cantidadDeFigusAlbum = new JTextField();
-		 cantidadDeFigusAlbum.setBounds(615, 200, 140, 25);
-		 return cantidadDeFigusAlbum;
+		 JTextField usuarios = new JTextField();
+		 usuarios.setBounds(615, 200, 140, 25);
+		 return usuarios;
 	 }
 	 
 	 public static JButton setupBtnIniciar() {
 			JButton btnIniciar = new JButton("Iniciar");
-			btnIniciar.setBounds(615, 260, 140, 25);
+			btnIniciar.setBounds(615, 255, 140, 25);
+			btnIniciar.setFont(new Font("Arial Black", Font.PLAIN, 12));
 			return btnIniciar;
 	 }
 	 
 	 public static JComboBox setupBtnEscenarios() {
 			JComboBox menuEscenarios = new JComboBox();
-			menuEscenarios.setBounds(615, 294, 140, 25);
+			menuEscenarios.setBounds(610, 286, 150, 25);
 			menuEscenarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			menuEscenarios.setToolTipText("Escenarios");
 			String [] escenarios = setupEscenarios();
 			DefaultComboBoxModel model = new DefaultComboBoxModel(escenarios);
 			menuEscenarios.setModel(model);
 			menuEscenarios.setSelectedIndex(0);
+			menuEscenarios.setFont(new Font("Arial Black", Font.PLAIN, 12));
 			return menuEscenarios;
 	 }
 	 
@@ -141,6 +151,5 @@ public class Recurso {
 		ret[3] = "Todos Intercambian";
 		return ret;
 	}
-
 
 }
