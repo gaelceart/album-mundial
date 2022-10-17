@@ -95,6 +95,7 @@ public class Interfaz {
 		_donar = Recurso.setupBtnDonar();
 		_intercambiar = Recurso.setupBtnIntercambiar();
 		
+		desactivarBtnIniciar();
 		setupEventosDeUsuario();
 		
 		_userContainer.add(_iniciar);
@@ -114,9 +115,60 @@ public class Interfaz {
 	}
 	
 	private void setupEventosDeUsuario() {
+		_iniciar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		_escenarios.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (_escenarios.getSelectedIndex() == 0) {
+					desactivarBtnIniciar();
+				}
+				if (_escenarios.getSelectedIndex() == 1) {
+					
+				}
+				else {
+					activarBtnIniciar();
+				}
+				
+			}
+
+		});
+		
+		_donar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		_intercambiar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 	}
 	
+	private void desactivarBtnIniciar() {
+		_iniciar.setEnabled(false);
+	}
+	
+	private void activarBtnIniciar() {
+		_iniciar.setEnabled(true);	
+	}
+
 	private void setupFrame() {
 		frame = Recurso.setupFrame();
 

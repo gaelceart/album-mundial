@@ -52,7 +52,7 @@ public class Recurso {
 	 
 	 public static JComboBox setupBtnEscenarios() {
 			JComboBox menuEscenarios = new JComboBox();
-			menuEscenarios.setBounds(625, 300, 115, 22);
+			menuEscenarios.setBounds(615, 294, 140, 25);
 			menuEscenarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			menuEscenarios.setToolTipText("Escenarios");
 			String [] escenarios = setupEscenarios();
@@ -64,7 +64,7 @@ public class Recurso {
 	 
 	 private static String[] setupEscenarios() {
 		String[] ret = new String[4];
-		ret[0] = "Seleccione un archivo...";
+		ret[0] = "Elija un escenario";
 		ret[1] = "Individual";
 		ret[2] = "Todos Donan";
 		ret[3] = "Todos Intercambian";
