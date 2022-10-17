@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -23,6 +24,9 @@ public class Interfaz {
 	private JPanel _albumContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
+	private JLabel _textoFigusPorAlbum;
+	private JLabel _textoFigusPorPaquete;
+	private JLabel _textoUsuarios;
 	private JTextField _figusPorAlbum;
 	private JTextField _figusPorPaquete;
 	private JTextField _usuarios;
@@ -93,6 +97,9 @@ public class Interfaz {
 		_figusPorAlbum = Recurso.setupCantidadDeFigusAlbum();
 		_figusPorPaquete = Recurso.setupFigusPorPaquete();
 		_usuarios = Recurso.setupUsuarios();
+		_textoFigusPorAlbum = Recurso.setupTextoFigusPorAlbum();
+		_textoFigusPorPaquete = Recurso.setupTextoFigusPorPaquete();
+		_textoUsuarios = Recurso.setupTextoUsuarios();
 		
 		desactivarBtnIniciar();
 		setupEventosDeUsuario();
@@ -102,6 +109,9 @@ public class Interfaz {
 		_userContainer.add(_figusPorAlbum);
 		_userContainer.add(_figusPorPaquete);
 		_userContainer.add(_usuarios);
+		_userContainer.add(_textoFigusPorAlbum);
+		_userContainer.add(_textoFigusPorPaquete);
+		_userContainer.add(_textoUsuarios);
 		
 		frame.getContentPane().add(_userContainer);
 	}

@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 
 public class Recurso {
@@ -78,15 +79,33 @@ public class Recurso {
 		 return statisticsImagen;
 	 }
 	 
+	 public static JLabel setupTextoFigusPorAlbum() {
+		 JLabel cantidadDeFigusAlbum = new JLabel("Figuritas por Álbum", SwingConstants.CENTER);
+		 cantidadDeFigusAlbum.setBounds(615, 75, 140, 35);
+		 return cantidadDeFigusAlbum;
+	 }
+	 
 	 public static JTextField setupCantidadDeFigusAlbum() {
 		 JTextField cantidadDeFigusAlbum = new JTextField();
 		 cantidadDeFigusAlbum.setBounds(615, 100, 140, 25);
 		 return cantidadDeFigusAlbum;
 	 }
 	 
+	 public static JLabel setupTextoFigusPorPaquete() {
+		 JLabel cantidadDeFigusAlbum = new JLabel("Figuritas por Paquete", SwingConstants.CENTER);
+		 cantidadDeFigusAlbum.setBounds(615, 125, 140, 35);
+		 return cantidadDeFigusAlbum;
+	 }
+	 
 	 public static JTextField setupFigusPorPaquete() {
 		 JTextField cantidadDeFigusAlbum = new JTextField();
 		 cantidadDeFigusAlbum.setBounds(615, 150, 140, 25);
+		 return cantidadDeFigusAlbum;
+	 }
+	 
+	 public static JLabel setupTextoUsuarios() {
+		 JLabel cantidadDeFigusAlbum = new JLabel("Usuarios", SwingConstants.CENTER);
+		 cantidadDeFigusAlbum.setBounds(615, 175, 140, 35);
 		 return cantidadDeFigusAlbum;
 	 }
 
