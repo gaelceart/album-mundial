@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class Recurso {
@@ -50,27 +51,6 @@ public class Recurso {
 		 return userContainer;
 	 }
 	 
-	 public static JComboBox setupBtnEscenarios() {
-			JComboBox menuEscenarios = new JComboBox();
-			menuEscenarios.setBounds(615, 294, 140, 25);
-			menuEscenarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			menuEscenarios.setToolTipText("Escenarios");
-			String [] escenarios = setupEscenarios();
-			DefaultComboBoxModel model = new DefaultComboBoxModel(escenarios);
-			menuEscenarios.setModel(model);
-			menuEscenarios.setSelectedIndex(0);
-			return menuEscenarios;
-	 }
-	 
-	 private static String[] setupEscenarios() {
-		String[] ret = new String[4];
-		ret[0] = "Elija un escenario";
-		ret[1] = "Individual";
-		ret[2] = "Todos Donan";
-		ret[3] = "Todos Intercambian";
-		return ret;
-	}
-	 
 	 public static JLabel setupAlbumImage() {
 		 JLabel albumImagen = new JLabel();
 		 albumImagen.setSize(575, 400);
@@ -97,10 +77,51 @@ public class Recurso {
 		 statisticsImagen.setIcon(icono);
 		 return statisticsImagen;
 	 }
+	 
+	 public static JTextField setupCantidadDeFigusAlbum() {
+		 JTextField cantidadDeFigusAlbum = new JTextField();
+		 cantidadDeFigusAlbum.setBounds(615, 100, 140, 25);
+		 return cantidadDeFigusAlbum;
+	 }
+	 
+	 public static JTextField setupFigusPorPaquete() {
+		 JTextField cantidadDeFigusAlbum = new JTextField();
+		 cantidadDeFigusAlbum.setBounds(615, 150, 140, 25);
+		 return cantidadDeFigusAlbum;
+	 }
 
-	public static JButton setupBtnIniciar() {
-		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.setBounds(615, 260, 140, 25);
-		return btnIniciar;
+	 public static JTextField setupUsuarios() {
+		 JTextField cantidadDeFigusAlbum = new JTextField();
+		 cantidadDeFigusAlbum.setBounds(615, 200, 140, 25);
+		 return cantidadDeFigusAlbum;
+	 }
+	 
+	 public static JButton setupBtnIniciar() {
+			JButton btnIniciar = new JButton("Iniciar");
+			btnIniciar.setBounds(615, 260, 140, 25);
+			return btnIniciar;
+	 }
+	 
+	 public static JComboBox setupBtnEscenarios() {
+			JComboBox menuEscenarios = new JComboBox();
+			menuEscenarios.setBounds(615, 294, 140, 25);
+			menuEscenarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			menuEscenarios.setToolTipText("Escenarios");
+			String [] escenarios = setupEscenarios();
+			DefaultComboBoxModel model = new DefaultComboBoxModel(escenarios);
+			menuEscenarios.setModel(model);
+			menuEscenarios.setSelectedIndex(0);
+			return menuEscenarios;
+	 }
+	 
+	 private static String[] setupEscenarios() {
+		String[] ret = new String[4];
+		ret[0] = "Elija un escenario";
+		ret[1] = "Individual";
+		ret[2] = "Todos Donan";
+		ret[3] = "Todos Intercambian";
+		return ret;
 	}
+
+
 }

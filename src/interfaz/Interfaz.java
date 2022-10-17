@@ -1,22 +1,20 @@
 package interfaz;
+import simulacion.Simulacion;
 
 import java.awt.EventQueue;
 
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
-import java.awt.Cursor;
-import java.awt.event.MouseMotionAdapter;
+
 
 @SuppressWarnings("rawtypes")
 public class Interfaz {
@@ -25,9 +23,11 @@ public class Interfaz {
 	private JPanel _albumContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
-	private JComboBox _escenarios;
+	private JTextField _figusPorAlbum;
+	private JTextField _figusPorPaquete;
+	private JTextField _usuarios;
 	private JButton _iniciar;
-	
+	private JComboBox _escenarios;
 	
 	/**
 	 * Launch the application.
@@ -90,12 +90,18 @@ public class Interfaz {
 		_userContainer = Recurso.setupUserContainer();
 		_iniciar = Recurso.setupBtnIniciar();
 		_escenarios = Recurso.setupBtnEscenarios();
+		_figusPorAlbum = Recurso.setupCantidadDeFigusAlbum();
+		_figusPorPaquete = Recurso.setupFigusPorPaquete();
+		_usuarios = Recurso.setupUsuarios();
 		
 		desactivarBtnIniciar();
 		setupEventosDeUsuario();
 		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
+		_userContainer.add(_figusPorAlbum);
+		_userContainer.add(_figusPorPaquete);
+		_userContainer.add(_usuarios);
 		
 		frame.getContentPane().add(_userContainer);
 	}
@@ -125,9 +131,15 @@ public class Interfaz {
 					desactivarBtnIniciar();
 				}
 				if (_escenarios.getSelectedIndex() == 1) {
-					
+					//setear enum
+					activarBtnIniciar();
 				}
-				else {
+				if (_escenarios.getSelectedIndex() == 2) {
+					//setear enum
+					activarBtnIniciar();
+				}
+				if (_escenarios.getSelectedIndex() == 3){
+					//setear enum
 					activarBtnIniciar();
 				}
 				
