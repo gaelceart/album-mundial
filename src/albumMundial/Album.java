@@ -21,6 +21,20 @@ public class Album {
 		agregarFigusRaras();
 	}
 
+	public void pegarFigurita(int n) {
+		_figuritas[n] = true;
+		if (checkEsCompleto())
+			_completo = true;
+	}
+
+	public boolean esFiguRara(int figurita) {
+		return _figuritasRaras.contains(figurita);
+	}
+
+	public boolean esFiguritaRepetida(int n) {
+		return _figuritas[n];
+	}
+
 	private void agregarFigusRaras() {
 		// cada 15 figuritas 1 es rara.
 		_figuritasRaras = new ArrayList<>();
@@ -37,22 +51,12 @@ public class Album {
 		}
 	}
 
-	public void pegarFigurita(int n) {
-		_figuritas[n] = true;
-		if (checkEsCompleto())
-			_completo = true;
-	}
-
 	private boolean checkEsCompleto() {
 		for (int i = 0; i < _cantidadFiguritas; i++) {
 			if (!_figuritas[i])
 				return false;
 		}
 		return true;
-	}
-
-	public boolean esFiguritaRepetida(int n) {
-		return _figuritas[n];
 	}
 
 	public int getCantidadFiguritas() {
