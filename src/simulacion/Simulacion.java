@@ -3,6 +3,9 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import albumMundial.Album;
+import albumMundial.Paquete;
+
 
 public class Simulacion implements Runnable {
 	private Usuario[] _users;
@@ -43,6 +46,9 @@ public class Simulacion implements Runnable {
 	// cantFigusAlbum, int cantFigusPorPaquete, double costoPaquete, tipoEscenario
 	// e) {
 	public static void main(String[] args) throws InterruptedException {
+		Album.crearGeneradorAleatorio();
+		Paquete.crearGeneradorAleatorio();
+		
 		int cantSimulaciones = 2;
 		int cantUsuarios = 2;
 		int cantFigusAlbum = 638;
