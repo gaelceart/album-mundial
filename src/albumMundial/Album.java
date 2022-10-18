@@ -1,6 +1,7 @@
 package albumMundial;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Album {
 	private int _cantidadFiguritas;
@@ -21,6 +22,10 @@ public class Album {
 
 	public static void setGenerador(Generador generador) {
 		_random = generador;
+	}
+
+	public static void crearGeneradorAleatorio() {
+		setGenerador(new GeneradorRandom(new Random()));
 	}
 
 	public void pegarFigurita(int n) {
@@ -73,4 +78,5 @@ public class Album {
 	public ArrayList<Integer> getFiguritasRaras() {
 		return _figuritasRaras;
 	}
+
 }

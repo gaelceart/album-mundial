@@ -2,6 +2,7 @@ package albumMundial;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Paquete {
 	private static Generador _random;
@@ -9,6 +10,10 @@ public class Paquete {
 	// setter para el generador
 	public static void setGenerador(Generador generador) {
 		_random = generador;
+	}
+
+	public static void crearGeneradorAleatorio() {
+		setGenerador(new GeneradorRandom(new Random()));
 	}
 
 	public static Integer[] comprarPaquete(int cantFigus, Album album) {
