@@ -26,7 +26,7 @@ public class Paquete {
 		}
 	}
 
-	private static boolean esFiguRara(int figurita, Album album) {
+	public static boolean esFiguRara(int figurita, Album album) {
 		return album.getFiguritasRaras().contains(figurita);
 	}
 
