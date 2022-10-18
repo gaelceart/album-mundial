@@ -29,13 +29,5 @@ public class Paquete {
 			paquete.add(figuritaSeleccionada);
 		}
 	}
-
-<<<<<<< HEAD
-=======
-	@Override
-	public String toString() {
-		return "\nPaquete de "+ _cantidadFiguritas + "\n[" + " figuritas =\n" + _figuritas + "]";
-	}
     
->>>>>>> sr_b
 }
