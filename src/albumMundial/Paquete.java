@@ -30,4 +30,12 @@ public class Paquete {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public String toString() {
+		return "\nPaquete de "+ _cantidadFiguritas + "\n[" + " figuritas =\n" + _figuritas + "]";
+	}
+    
+>>>>>>> sr_b
 }

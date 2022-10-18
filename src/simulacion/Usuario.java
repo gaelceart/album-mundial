@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import albumMundial.*;
 
 public class Usuario {
+	
 	private Album _album;
 	private int _paquetesComprados;
 	private ArrayList<Integer> _figuritasRepetidas;
