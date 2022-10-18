@@ -1,7 +1,5 @@
 package interfaz;
-import simulacion.Simulacion;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 
 
@@ -33,6 +31,9 @@ public class Interfaz {
 	private JTextField _usuarios;
 	private JButton _iniciar;
 	private JComboBox _escenarios;
+	private JLabel _costoPromedio;
+	private JTextField _costoTotal;
+	
 	
 	/**
 	 * Launch the application.
@@ -62,37 +63,14 @@ public class Interfaz {
 	 */
 	private void initialize() {
 		setupFrame();
-		setupContainers();
-		updateFrame();
 		
-	}
-
-	private void setupContainers() {
-		setupPanelDeAlbum();
-		setupPanelDeEstadisticas();
-		setupPanelDeUsuario();
-	}
-
-	private void setupPanelDeAlbum() {
+		_userContainer = Recurso.setupUserContainer();
 		_albumContainer = Recurso.setupAlbumContainer();
+		_statisticsContainer = Recurso.setupStatisticsContainer();
+		
+		_statisticsContainer.add(Recurso.setupStatisticsImage());
 		_albumContainer.add(Recurso.setupAlbumImage());
 		
-		setupEventosDeAlbum();
-		
-		frame.getContentPane().add(_albumContainer);
-	}
-
-	private void setupPanelDeEstadisticas() {
-		_statisticsContainer = Recurso.setupStatisticsContainer();
-		_statisticsContainer.add(Recurso.setupStatisticsImage());
-		
-		setupEventosDeEstadisticas();
-	
-		frame.getContentPane().add(_statisticsContainer);
-	}
-	
-	private void setupPanelDeUsuario() {
-		_userContainer = Recurso.setupUserContainer();
 		_iniciar = Recurso.setupBtnIniciar();
 		_escenarios = Recurso.setupBtnEscenarios();
 		_figusPorAlbum = Recurso.setupCantidadDeFigusAlbum();
@@ -101,9 +79,8 @@ public class Interfaz {
 		_textoFigusPorAlbum = Recurso.setupTextoFigusPorAlbum();
 		_textoFigusPorPaquete = Recurso.setupTextoFigusPorPaquete();
 		_textoUsuarios = Recurso.setupTextoUsuarios();
-		
-		desactivarBtnIniciar();
-		setupEventosDeUsuario();
+		_costoPromedio = Recurso.setupCostoPromedio();
+		_costoTotal = Recurso.setupCostoTotal();
 		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
@@ -113,8 +90,18 @@ public class Interfaz {
 		_userContainer.add(_textoFigusPorAlbum);
 		_userContainer.add(_textoFigusPorPaquete);
 		_userContainer.add(_textoUsuarios);
+		_statisticsContainer.add(_costoPromedio);
+		_statisticsContainer.add(_costoTotal);
 		
-		frame.getContentPane().add(_userContainer);
+		
+		frame.getContentPane().add(_costoPromedio);
+		frame.add(_statisticsContainer);
+		frame.add(_albumContainer);
+		frame.add(_userContainer);
+		
+		
+		updateFrame();
+		
 	}
 
 	private void setupEventosDeAlbum() {
@@ -179,7 +166,6 @@ public class Interfaz {
 	}
 	
 	public void updateFrame() {
-		//_userContainer.setBackground(new Color(141,27,61));
 		SwingUtilities.updateComponentTreeUI(frame);
 		frame.setVisible(true);
 		frame.toFront();

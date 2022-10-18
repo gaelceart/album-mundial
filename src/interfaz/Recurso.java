@@ -1,9 +1,12 @@
 package interfaz;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.DefaultComboBoxModel;
@@ -88,6 +91,7 @@ public class Recurso {
 		 JLabel cantidadDeFigusAlbum = new JLabel("Figuritas por Álbum", SwingConstants.CENTER);
 		 cantidadDeFigusAlbum.setBounds(615, 75, 140, 35);
 		 cantidadDeFigusAlbum.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		 cantidadDeFigusAlbum.setForeground(Color.WHITE);
 		 return cantidadDeFigusAlbum;
 	 }
 	 
@@ -101,6 +105,7 @@ public class Recurso {
 		 JLabel cantidadDeFigusPaquete = new JLabel("Figuritas por Paquete", SwingConstants.CENTER);
 		 cantidadDeFigusPaquete.setBounds(615, 125, 140, 35);
 		 cantidadDeFigusPaquete.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		 cantidadDeFigusPaquete.setForeground(Color.WHITE);
 		 return cantidadDeFigusPaquete;
 	 }
 	 
@@ -114,6 +119,7 @@ public class Recurso {
 		 JLabel usuarios = new JLabel("Usuarios", SwingConstants.CENTER);
 		 usuarios.setBounds(615, 175, 140, 35);
 		 usuarios.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		 usuarios.setForeground(Color.WHITE);
 		 return usuarios;
 	 }
 
@@ -124,10 +130,11 @@ public class Recurso {
 	 }
 	 
 	 public static JButton setupBtnIniciar() {
-			JButton btnIniciar = new JButton("Iniciar");
-			btnIniciar.setBounds(615, 255, 140, 25);
-			btnIniciar.setFont(new Font("Arial Black", Font.PLAIN, 12));
-			return btnIniciar;
+		JButton btnIniciar = new JButton("Iniciar");
+		btnIniciar.setBounds(615, 255, 140, 25);
+		btnIniciar.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		btnIniciar.setEnabled(false);
+		return btnIniciar;
 	 }
 	 
 	 public static JComboBox setupBtnEscenarios() {
@@ -152,4 +159,21 @@ public class Recurso {
 		return ret;
 	}
 
+	 public static JTextField setupCostoTotal() {
+		 JTextField costoTotal = new JTextField("COSTO TOTAL");
+		 costoTotal.setBounds(200, 100, 140, 25);
+		 costoTotal.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		 costoTotal.setForeground(Color.WHITE);
+		 return costoTotal;
+	 }
+	 
+	 public static JLabel setupCostoPromedio() {
+		 JLabel costoPromedio = new JLabel("COSTO Promedio");
+		 costoPromedio.setBounds(200, 400, 150, 100);
+		 costoPromedio.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		 costoPromedio.setForeground(Color.WHITE);
+		 return costoPromedio;
+	 }
+	 
+	 
 }
