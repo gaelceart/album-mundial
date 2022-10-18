@@ -11,7 +11,7 @@ public class GeneradorRandom implements Generador {
 
 	@Override
 	public int nextInt(int rango) {
-		return _random.nextInt();
+		return _random.nextInt(rango);
 	}
 
 }

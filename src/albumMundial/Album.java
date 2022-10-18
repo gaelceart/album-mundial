@@ -1,7 +1,6 @@
 package albumMundial;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Album {
 	private int _cantidadFiguritas;
