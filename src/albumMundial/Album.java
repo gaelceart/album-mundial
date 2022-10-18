@@ -8,17 +8,20 @@ public class Album {
 	private boolean[] _figuritas;
 	private boolean _completo;
 	private ArrayList<Integer> _figuritasRaras;
-	private Random _random;
+	private static Generador _random;
 
 	public Album(int cantidadFiguritas) {
 		if (cantidadFiguritas <= 0) {
 			throw new IllegalArgumentException(
 					"Un Album no puede contener tener 0 o menos figuritas: " + cantidadFiguritas);
 		}
-		_random = new Random();
 		_cantidadFiguritas = cantidadFiguritas;
 		_figuritas = new boolean[cantidadFiguritas];
 		agregarFigusRaras();
+	}
+
+	public static void setGenerador(Generador generador) {
+		_random = generador;
 	}
 
 	public void pegarFigurita(int n) {
@@ -39,6 +42,7 @@ public class Album {
 		// cada 15 figuritas 1 es rara.
 		_figuritasRaras = new ArrayList<>();
 		int cantFigusRaras = _cantidadFiguritas / 15;
+		System.out.println(cantFigusRaras);
 		generarFiguritasRaras(cantFigusRaras);
 	}
 
