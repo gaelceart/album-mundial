@@ -4,7 +4,7 @@ import albumMundial.Album;
 import albumMundial.Paquete;
 
 public class Model {
-	
+
 	// public double simular(int cantSimulaciones, int cantUsuarios, int
 	// cantFigusAlbum, int cantFigusPorPaquete, double costoPaquete, tipoEscenario
 	// e) {
@@ -18,7 +18,7 @@ public class Model {
 
 	private Simulacion[] _s;
 	private Thread[] _t;
-	
+
 	public Model() {
 		_cantSimulaciones = 0;
 		_cantUsuarios = 0;
@@ -48,13 +48,13 @@ public class Model {
 	public void setCostoPaquete(double c) {
 		_costoPaquete = c;
 	}
-	
+
 	public void setTipoEscenario(tipoEscenario e) {
 		_escenario = e;
 	}
-	
+
 	double simular() {
-		
+
 		initSimulaciones();
 		initThreads();
 		startThreads();
@@ -66,13 +66,13 @@ public class Model {
 		double costoPromedio = _costoTotal / _cantSimulaciones;
 		System.out.println("COSTO TOTAL: " + _costoTotal);
 		System.out.println("COSTO PROMEDIO: " + costoPromedio);
-		
+
 		return costoPromedio;
 	}
 
 	private void initSimulaciones() {
 		_s = new Simulacion[_cantSimulaciones];
-		for (int i = 0; i < _cantSimulaciones; i++) 
+		for (int i = 0; i < _cantSimulaciones; i++)
 			_s[i] = new Simulacion(_cantUsuarios, _cantFigusAlbum, _cantFigusPaquete, _escenario);
 	}
 
@@ -86,7 +86,7 @@ public class Model {
 		for (int i = 0; i < _cantSimulaciones; i++)
 			_t[i].start();
 	}
-	
+
 	private void stopThreads() {
 		for (int i = 0; i < _cantSimulaciones; i++) {
 			tryJoinThread(i);

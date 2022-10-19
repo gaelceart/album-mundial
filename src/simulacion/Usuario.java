@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import albumMundial.*;
 
 public class Usuario {
-	
+
 	private Album _album;
 	private int _paquetesComprados;
 	private ArrayList<Integer> _figuritasRepetidas;
 	private int _cantidadFigusRepetidasTotal;
-	
+
 	public Usuario(int cantFigusAlbum) {
 		_album = new Album(cantFigusAlbum);
 		_figuritasRepetidas = new ArrayList<>();
@@ -26,19 +26,19 @@ public class Usuario {
 	public void pegarFigurita(int f) {
 		_album.pegarFigurita(f);
 	}
-	
+
 	public boolean tieneAlbumCompleto() {
 		return _album.isCompleto();
 	}
-	
+
 	public int getCantidadPaquetesComprados() {
 		return _paquetesComprados;
 	}
-	
+
 	public ArrayList<Integer> getFiguritasRepetidas() {
 		return _figuritasRepetidas;
 	}
-	
+
 	public boolean esFiguritaRepetida(int n) {
 		return _album.esFiguritaRepetida(n);
 	}
@@ -48,8 +48,7 @@ public class Usuario {
 			if (_album.esFiguritaRepetida(paquete[i])) {
 				_figuritasRepetidas.add(paquete[i]);
 				_cantidadFigusRepetidasTotal = getCantidadFigusRepetidasTotal() + 1;
-			}
-			else {
+			} else {
 				pegarFigurita(paquete[i]);
 			}
 		}
@@ -58,5 +57,5 @@ public class Usuario {
 	public int getCantidadFigusRepetidasTotal() {
 		return _cantidadFigusRepetidasTotal;
 	}
-	
+
 }

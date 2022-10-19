@@ -2,7 +2,6 @@ package interfaz;
 
 import java.awt.EventQueue;
 
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +18,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
-
 
 @SuppressWarnings("rawtypes")
 public class Interfaz {
@@ -38,8 +36,7 @@ public class Interfaz {
 	private JComboBox _escenarios;
 	private JLabel _costoPromedio;
 	private JTextField _costoTotal;
-	
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -58,6 +55,7 @@ public class Interfaz {
 
 	/**
 	 * Create the application.
+	 * 
 	 * @wbp.parser.entryPoint
 	 */
 	public Interfaz() {
@@ -115,13 +113,13 @@ public class Interfaz {
 	}
 
 	private void setupEventosDeAlbum() {
-		
+
 	}
-	
+
 	private void setupEventosDeEstadisticas() {
-		
+
 	}
-	
+
 	private void setupEventosDeUsuario() {
 		_figusPorAlbum.addKeyListener(new KeyAdapter() {
 			@Override
@@ -136,7 +134,7 @@ public class Interfaz {
 				_presenter.eventoTeclado(ke, _figusPorPaquete);
 			}
 		});
-		
+
 		_usuarios.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent ke) {
@@ -158,11 +156,11 @@ public class Interfaz {
 				_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _usuarios);
 			}
 		});
-		
+
 	}
-	
+
 	public void setBtnIniciar(boolean value) {
-		_iniciar.setEnabled(value);	
+		_iniciar.setEnabled(value);
 		updateFrame();
 	}
 
@@ -178,7 +176,7 @@ public class Interfaz {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void updateFrame() {
 		SwingUtilities.updateComponentTreeUI(frame);
 		frame.setVisible(true);
@@ -186,7 +184,7 @@ public class Interfaz {
 		frame.requestFocus();
 	}
 
-	public void setInteracciones(boolean value) {	
-		//desactivar o activar todos los botones y cosas
+	public void setInteracciones(boolean value) {
+		// desactivar o activar todos los botones y cosas
 	}
 }

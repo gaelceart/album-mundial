@@ -34,7 +34,6 @@ public class Simulacion implements Runnable {
 		return ret;
 	}
 
-
 	@Override
 	public void run() {
 		long startTime = System.currentTimeMillis();

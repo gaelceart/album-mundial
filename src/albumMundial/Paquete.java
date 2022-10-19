@@ -34,5 +34,5 @@ public class Paquete {
 			paquete.add(figuritaSeleccionada);
 		}
 	}
-    
+
 }
