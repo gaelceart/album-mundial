@@ -67,14 +67,33 @@ public class Interfaz {
 		_presenter = new Presenter(this);
 		
 		setupFrame();
+		setupUserContainer();
+		setupAlbumContainer();
+		setupStatsContainer();
+
+		setupEventosDeUsuario();
 		
-		_userContainer = Recurso.setupUserContainer();
-		_albumContainer = Recurso.setupAlbumContainer();
+		frame.getContentPane().add(_statisticsContainer);
+		frame.getContentPane().add(_albumContainer);
+		frame.getContentPane().add(_userContainer);
+		updateFrame();
+		
+	}
+
+	private void setupStatsContainer() {
 		_statisticsContainer = Recurso.setupStatisticsContainer();
-		
 		_statisticsContainer.add(Recurso.setupStatisticsImage());
+		_statisticsContainer.add(_costoPromedio);
+		_statisticsContainer.add(_costoTotal);
+	}
+
+	private void setupAlbumContainer() {
+		_albumContainer = Recurso.setupAlbumContainer();
 		_albumContainer.add(Recurso.setupAlbumImage());
-		
+	}
+
+	private void setupUserContainer() {
+		_userContainer = Recurso.setupUserContainer();
 		_iniciar = Recurso.setupBtnIniciar();
 		_escenarios = Recurso.setupBtnEscenarios();
 		_figusPorAlbum = Recurso.setupCantidadDeFigusAlbum();
@@ -85,7 +104,6 @@ public class Interfaz {
 		_textoUsuarios = Recurso.setupTextoUsuarios();
 		_costoPromedio = Recurso.setupCostoPromedio();
 		_costoTotal = Recurso.setupCostoTotal();
-		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
 		_userContainer.add(_figusPorAlbum);
@@ -94,18 +112,6 @@ public class Interfaz {
 		_userContainer.add(_textoFigusPorAlbum);
 		_userContainer.add(_textoFigusPorPaquete);
 		_userContainer.add(_textoUsuarios);
-		_statisticsContainer.add(_costoPromedio);
-		_statisticsContainer.add(_costoTotal);
-		
-		
-		frame.getContentPane().add(_costoPromedio);
-		frame.getContentPane().add(_statisticsContainer);
-		frame.getContentPane().add(_albumContainer);
-		frame.getContentPane().add(_userContainer);
-		
-		
-		updateFrame();
-		
 	}
 
 	private void setupEventosDeAlbum() {
@@ -136,6 +142,7 @@ public class Interfaz {
 	
 	public void setBtnIniciar(boolean value) {
 		_iniciar.setEnabled(value);	
+		updateFrame();
 	}
 
 	private void setupFrame() {
