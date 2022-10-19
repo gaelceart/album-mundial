@@ -26,7 +26,7 @@ public class Model {
 		_cantFigusPaquete = 0;
 		_costoPaquete = 0;
 		_costoTotal = 0;
-		_escenario = tipoEscenario.donacion;
+		_escenario = tipoEscenario.individual;
 	}
 
 	public void setCantSimulaciones(int n) {

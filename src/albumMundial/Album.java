@@ -46,7 +46,7 @@ public class Album {
 		// cada 15 figuritas 1 es rara.
 		_figuritasRaras = new ArrayList<>();
 		int cantFigusRaras = _cantidadFiguritas / 15;
-		System.out.println(cantFigusRaras);
+		System.out.println("Cant figus raras :" + cantFigusRaras);
 		generarFiguritasRaras(cantFigusRaras);
 	}
 
