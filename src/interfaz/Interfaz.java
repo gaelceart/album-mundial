@@ -69,19 +69,12 @@ public class Interfaz {
 	 */
 	private void initialize() {
 		_presenter = new Presenter(this);
-		
 		setupFrame();
 		setupUserContainer();
 		setupAlbumContainer();
 		setupStatsContainer();
-
 		setupEventosDeUsuario();
-		
-		frame.getContentPane().add(_statisticsContainer);
-		frame.getContentPane().add(_albumContainer);
-		frame.getContentPane().add(_userContainer);
 		updateFrame();
-		
 	}
 
 	private void setupStatsContainer() {
@@ -89,11 +82,13 @@ public class Interfaz {
 		_statisticsContainer.add(Recurso.setupStatisticsImage());
 		_statisticsContainer.add(_costoPromedio);
 		_statisticsContainer.add(_costoTotal);
+		frame.getContentPane().add(_statisticsContainer);
 	}
 
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();
 		_albumContainer.add(Recurso.setupAlbumImage());
+		frame.getContentPane().add(_albumContainer);
 	}
 
 	private void setupUserContainer() {
@@ -116,6 +111,7 @@ public class Interfaz {
 		_userContainer.add(_textoFigusPorAlbum);
 		_userContainer.add(_textoFigusPorPaquete);
 		_userContainer.add(_textoUsuarios);
+		frame.getContentPane().add(_userContainer);
 	}
 
 	private void setupEventosDeAlbum() {
