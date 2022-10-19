@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -14,6 +15,8 @@ import javax.swing.UIManager;
 import presenter.Presenter;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -55,6 +58,7 @@ public class Interfaz {
 
 	/**
 	 * Create the application.
+	 * @wbp.parser.entryPoint
 	 */
 	public Interfaz() {
 		initialize();
@@ -123,19 +127,40 @@ public class Interfaz {
 	}
 	
 	private void setupEventosDeUsuario() {
-		_iniciar.addActionListener(new ActionListener() {
+		_figusPorAlbum.addKeyListener(new KeyAdapter() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				_presenter.eventoIniciar();
+			public void keyPressed(KeyEvent ke) {
+				_presenter.eventoTeclado(ke, _figusPorAlbum);
+			}
+		});
+
+		_figusPorPaquete.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent ke) {
+				_presenter.eventoTeclado(ke, _figusPorPaquete);
 			}
 		});
 		
+		_usuarios.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent ke) {
+				_presenter.eventoTeclado(ke, _usuarios);
+			}
+		});
+
 		_escenarios.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				_presenter.eventoElegirEscenario(e, _escenarios);
+			public void actionPerformed(ActionEvent ae) {
+				_presenter.eventoElegirEscenario(_escenarios);
 			}
 
+		});
+
+		_iniciar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				_presenter.eventoIniciar();
+			}
 		});
 		
 	}
@@ -145,6 +170,9 @@ public class Interfaz {
 		updateFrame();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	private void setupFrame() {
 		frame = Recurso.setupFrame();
 

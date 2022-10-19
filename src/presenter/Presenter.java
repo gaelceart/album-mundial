@@ -1,8 +1,12 @@
 package presenter;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+
 import interfaz.Interfaz;
 import simulacion.Model;
 import simulacion.tipoEscenario;
@@ -18,7 +22,7 @@ public class Presenter {
 		_model = new Model();
 	}
 
-	public void eventoElegirEscenario(ActionEvent e, JComboBox _escenarios) {
+	public void eventoElegirEscenario(JComboBox _escenarios) {
 			if (_escenarios.getSelectedIndex() == 0) {
 				_gui.setBtnIniciar(false);
 				return;
@@ -38,6 +42,15 @@ public class Presenter {
 	public void eventoIniciar() {
 		_gui.setInteracciones(false);
 		_model.iniciarSimulacion();
+	}
+
+	public void eventoTeclado(KeyEvent ke, JTextField textField) {
+		if (ke.getKeyChar() == 8 || ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
+		   textField.setEditable(true);
+		} else {
+		   textField.setEditable(false);
+		}
+		
 	}	
 	
 	
