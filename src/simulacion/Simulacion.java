@@ -3,10 +3,6 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import albumMundial.Album;
-import albumMundial.Paquete;
-
-
 public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;
@@ -15,10 +11,6 @@ public class Simulacion implements Runnable {
 	private int _cantidadFigusAlbum;
 	private int _cantidadFigusDonadas;
 	private int _cantIntercambiosRealizados;
-
-	private enum tipoEscenario {
-		individual, donacion, intercambio
-	};
 
 	private tipoEscenario _escenario;
 	private int _figusRepetidasSobrantes;
@@ -42,42 +34,6 @@ public class Simulacion implements Runnable {
 		return ret;
 	}
 
-	// public double simular(int cantSimulaciones, int cantUsuarios, int
-	// cantFigusAlbum, int cantFigusPorPaquete, double costoPaquete, tipoEscenario
-	// e) {
-	public static void main(String[] args) throws InterruptedException {
-		Album.crearGeneradorAleatorio();
-		Paquete.crearGeneradorAleatorio();
-		
-		int cantSimulaciones = 2;
-		int cantUsuarios = 2;
-		int cantFigusAlbum = 638;
-		int cantFigusPorPaquete = 5;
-		tipoEscenario e = tipoEscenario.donacion;
-
-		double costoPaquete = 150.0;
-		double costoTotal = 0.0;
-		double costoPromedio = 0.0;
-
-		Simulacion[] s = new Simulacion[cantSimulaciones];
-		Thread[] t = new Thread[cantSimulaciones];
-
-		for (int i = 0; i < cantSimulaciones; i++) {
-			s[i] = new Simulacion(cantUsuarios, cantFigusAlbum, cantFigusPorPaquete, e);
-			t[i] = new Thread(s[i]);
-			t[i].start();
-		}
-
-		System.out.println("CARGANDO...\n");
-
-		for (int i = 0; i < cantSimulaciones; i++) {
-			t[i].join();
-			costoTotal += s[i]._paquetesTotalesComprados * costoPaquete / cantUsuarios;
-		}
-		costoPromedio = costoTotal / cantSimulaciones;
-		System.out.println("COSTO TOTAL: " + costoTotal);
-		System.out.println("COSTO PROMEDIO: " + costoPromedio);
-	}
 
 	@Override
 	public void run() {
@@ -202,6 +158,10 @@ public class Simulacion implements Runnable {
 				return false;
 		}
 		return true;
+	}
+
+	public double getPaquetesTotalesComprados() {
+		return _paquetesTotalesComprados;
 	}
 
 }

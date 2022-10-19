@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import presenter.Presenter;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -18,7 +20,7 @@ import javax.swing.JComboBox;
 
 @SuppressWarnings("rawtypes")
 public class Interfaz {
-
+	private Presenter _presenter;
 	private JFrame frame;
 	private JPanel _albumContainer;
 	private JPanel _statisticsContainer;
@@ -62,6 +64,8 @@ public class Interfaz {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		_presenter = new Presenter(this);
+		
 		setupFrame();
 		
 		_userContainer = Recurso.setupUserContainer();
@@ -95,9 +99,9 @@ public class Interfaz {
 		
 		
 		frame.getContentPane().add(_costoPromedio);
-		frame.add(_statisticsContainer);
-		frame.add(_albumContainer);
-		frame.add(_userContainer);
+		frame.getContentPane().add(_statisticsContainer);
+		frame.getContentPane().add(_albumContainer);
+		frame.getContentPane().add(_userContainer);
 		
 		
 		updateFrame();
@@ -114,45 +118,24 @@ public class Interfaz {
 	
 	private void setupEventosDeUsuario() {
 		_iniciar.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				_presenter.eventoIniciar();
 			}
 		});
 		
 		_escenarios.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (_escenarios.getSelectedIndex() == 0) {
-					desactivarBtnIniciar();
-				}
-				if (_escenarios.getSelectedIndex() == 1) {
-					//setear enum
-					activarBtnIniciar();
-				}
-				if (_escenarios.getSelectedIndex() == 2) {
-					//setear enum
-					activarBtnIniciar();
-				}
-				if (_escenarios.getSelectedIndex() == 3){
-					//setear enum
-					activarBtnIniciar();
-				}
-				
+				_presenter.eventoElegirEscenario(e, _escenarios);
 			}
 
 		});
 		
 	}
 	
-	private void desactivarBtnIniciar() {
-		_iniciar.setEnabled(false);
-	}
-	
-	private void activarBtnIniciar() {
-		_iniciar.setEnabled(true);	
+	public void setBtnIniciar(boolean value) {
+		_iniciar.setEnabled(value);	
 	}
 
 	private void setupFrame() {
@@ -170,5 +153,9 @@ public class Interfaz {
 		frame.setVisible(true);
 		frame.toFront();
 		frame.requestFocus();
+	}
+
+	public void setInteracciones(boolean value) {	
+		//desactivar o activar todos los botones y cosas
 	}
 }
