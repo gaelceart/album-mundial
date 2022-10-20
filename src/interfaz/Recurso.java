@@ -87,10 +87,10 @@ public class Recurso {
 		statisticsImagen.setIcon(icono);
 		return statisticsImagen;
 	}
-
+	
 	public static JLabel setupTextoFigusPorAlbum() {
 		JLabel cantidadDeFigusAlbum = new JLabel("Figuritas por Álbum", SwingConstants.CENTER);
-		cantidadDeFigusAlbum.setBounds(40, 75, 140, 35);
+		cantidadDeFigusAlbum.setBounds(40, 25, 140, 35);
 		cantidadDeFigusAlbum.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		cantidadDeFigusAlbum.setForeground(Color.WHITE);
 		return cantidadDeFigusAlbum;
@@ -98,13 +98,13 @@ public class Recurso {
 
 	public static JTextField setupCantidadDeFigusAlbum() {
 		JTextField cantidadDeFigusAlbum = new JTextField();
-		cantidadDeFigusAlbum.setBounds(40, 100, 140, 25);
+		cantidadDeFigusAlbum.setBounds(40, 50, 140, 25);
 		return cantidadDeFigusAlbum;
 	}
 
 	public static JLabel setupTextoFigusPorPaquete() {
 		JLabel cantidadDeFigusPaquete = new JLabel("Figuritas por Paquete", SwingConstants.CENTER);
-		cantidadDeFigusPaquete.setBounds(40, 125, 140, 35);
+		cantidadDeFigusPaquete.setBounds(40, 75, 140, 35);
 		cantidadDeFigusPaquete.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		cantidadDeFigusPaquete.setForeground(Color.WHITE);
 		return cantidadDeFigusPaquete;
@@ -112,10 +112,24 @@ public class Recurso {
 
 	public static JTextField setupFigusPorPaquete() {
 		JTextField cantidadDeFigusPaquete = new JTextField();
-		cantidadDeFigusPaquete.setBounds(40, 150, 140, 25);
+		cantidadDeFigusPaquete.setBounds(40, 100, 140, 25);
 		return cantidadDeFigusPaquete;
 	}
+	
+	public static JLabel setupTextoFigusRaras() {
+		JLabel usuarios = new JLabel("Figuritas Raras", SwingConstants.CENTER);
+		usuarios.setBounds(40, 125, 140, 35);
+		usuarios.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		usuarios.setForeground(Color.WHITE);
+		return usuarios;
+	}
 
+	public static JTextField setupFigusRaras() {
+		JTextField usuarios = new JTextField();
+		usuarios.setBounds(40, 150, 140, 25);
+		return usuarios;
+	}
+	
 	public static JLabel setupTextoUsuarios() {
 		JLabel usuarios = new JLabel("Usuarios", SwingConstants.CENTER);
 		usuarios.setBounds(40, 175, 140, 35);

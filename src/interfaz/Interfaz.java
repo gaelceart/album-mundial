@@ -26,16 +26,14 @@ public class Interfaz {
 	private JPanel _albumContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
-	private JLabel _textoFigusPorAlbum;
-	private JLabel _textoFigusPorPaquete;
-	private JLabel _textoUsuarios;
 	private JTextField _figusPorAlbum;
 	private JTextField _figusPorPaquete;
 	private JTextField _usuarios;
+	private JTextField _costoTotal;
+	private JTextField _figusRaras;
 	private JButton _iniciar;
 	private JComboBox _escenarios;
-	private JLabel _costoPromedio;
-	private JTextField _costoTotal;
+	
 
 	/**
 	 * Launch the application.
@@ -85,9 +83,8 @@ public class Interfaz {
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();
 		_albumContainer.add(Recurso.setupAlbumImage());
-		_costoPromedio = Recurso.setupCostoPromedio();
 		_costoTotal = Recurso.setupCostoTotal();
-		_albumContainer.add(_costoPromedio);
+		_albumContainer.add(Recurso.setupCostoPromedio());
 		_albumContainer.add(_costoTotal);
 		frame.getContentPane().add(_albumContainer);
 	}
@@ -98,19 +95,19 @@ public class Interfaz {
 		_escenarios = Recurso.setupBtnEscenarios();
 		_figusPorAlbum = Recurso.setupCantidadDeFigusAlbum();
 		_figusPorPaquete = Recurso.setupFigusPorPaquete();
+		_figusRaras = Recurso.setupFigusRaras();
 		_usuarios = Recurso.setupUsuarios();
-		_textoFigusPorAlbum = Recurso.setupTextoFigusPorAlbum();
-		_textoFigusPorPaquete = Recurso.setupTextoFigusPorPaquete();
-		_textoUsuarios = Recurso.setupTextoUsuarios();
 		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
 		_userContainer.add(_figusPorAlbum);
 		_userContainer.add(_figusPorPaquete);
 		_userContainer.add(_usuarios);
-		_userContainer.add(_textoFigusPorAlbum);
-		_userContainer.add(_textoFigusPorPaquete);
-		_userContainer.add(_textoUsuarios);
+		_userContainer.add(_figusRaras);
+		_userContainer.add(Recurso.setupTextoFigusPorAlbum());
+		_userContainer.add(Recurso.setupTextoFigusPorPaquete());
+		_userContainer.add(Recurso.setupTextoUsuarios());
+		_userContainer.add(Recurso.setupTextoFigusRaras());
 		frame.getContentPane().add(_userContainer);
 	}
 
