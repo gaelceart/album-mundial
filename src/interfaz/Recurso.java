@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 public class Recurso {
@@ -78,9 +79,21 @@ public class Recurso {
 		return userImagen;
 	}
 
+	public static JLabel setupUserLogoPanini() {
+		JLabel logoImagen = new JLabel();
+		logoImagen.setBounds(0, 370, 210, 215);
+		//logoImagen.setSize(150, 150);
+		ImageIcon imagen = new ImageIcon("src/panini.png");
+		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoImagen.getWidth(),logoImagen.getHeight(), 
+				Image.SCALE_DEFAULT));
+		logoImagen.setIcon(icono);
+		return logoImagen;
+	}
+	
 	public static JLabel setupStatisticsImage() {
 		JLabel statisticsImagen = new JLabel();
-		statisticsImagen.setSize(150, 160);
+		statisticsImagen.setBounds(-25, 0, 150, 160);
+		//statisticsImagen.setSize(150, 160);
 		ImageIcon imagen = new ImageIcon("src/copa.png");
 		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(statisticsImagen.getWidth(),statisticsImagen.getHeight(), 
 				Image.SCALE_DEFAULT));
@@ -146,7 +159,7 @@ public class Recurso {
 
 	public static JButton setupBtnIniciar() {
 		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.setBounds(40, 255, 140, 25);
+		btnIniciar.setBounds(40, /*255*/330, 140, 25);
 		btnIniciar.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		btnIniciar.setEnabled(false);
 		return btnIniciar;
@@ -175,67 +188,83 @@ public class Recurso {
 	}
 
 	public static JLabel setupTextoCostoPromedio() {
-		JLabel costoPromedio = new JLabel("COSTO PROMEDIO", SwingConstants.CENTER);
-		costoPromedio.setBounds(160, 20, 140, 25);
+		JLabel costoPromedio = new JLabel("Costo Promedio", SwingConstants.LEFT);
+		costoPromedio.setBounds(110, 25, 125, 30);
 		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
 		costoPromedio.setForeground(Color.WHITE);
 		return costoPromedio;
 	}
 	
 	public static JTextField setupCostoPromedio() {
-		JTextField costoTotal = new JTextField("");
-		costoTotal.setBounds(160, 45, 140, 25);
-		costoTotal.setFont(new Font("Arial", Font.PLAIN, 12));
-		costoTotal.setForeground(Color.WHITE);
-		return costoTotal;
-	}
-
-	public static JLabel setupTextoEscenario() {
-		JLabel texto = new JLabel("Escenario Actual", SwingConstants.CENTER);
-		texto.setBounds(310, 20, 140, 25);
-		texto.setFont(new Font("Arial", Font.PLAIN, 12));
-		texto.setForeground(Color.WHITE);
-		return texto;
-	}
-	
-	public static JTextField setupEscenario() {
-		JTextField cajaDeTexto = new JTextField("");
-		cajaDeTexto.setBounds(310, 45, 140, 25);
-		cajaDeTexto.setFont(new Font("Arial", Font.PLAIN, 12));
-		cajaDeTexto.setForeground(Color.WHITE);
-		return cajaDeTexto;
+		JTextField costoPromedio = new JTextField("");
+		costoPromedio.setBounds(240, 25, 125, 25);
+		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
+		costoPromedio.setForeground(Color.WHITE);
+		return costoPromedio;
 	}
 	
 	public static JLabel setupTextoFiguritasRepetidas() {
-		JLabel texto = new JLabel("Figuritas Repetidas", SwingConstants.CENTER);
-		texto.setBounds(160, 70, 140, 25);
-		texto.setFont(new Font("Arial", Font.PLAIN, 12));
-		texto.setForeground(Color.WHITE);
-		return texto;
+		JLabel figuRepetida = new JLabel("Figuritas Repetidas", SwingConstants.LEFT);
+		figuRepetida.setBounds(110, 60, 125, 30);
+		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
+		figuRepetida.setForeground(Color.WHITE);
+		return figuRepetida;
 	}
 	
 	public static JTextField setupFiguritasRepetidas() {
-		JTextField cajaDeTexto = new JTextField("");
-		cajaDeTexto.setBounds(160, 95, 140, 25);
-		cajaDeTexto.setFont(new Font("Arial", Font.PLAIN, 12));
-		cajaDeTexto.setForeground(Color.WHITE);
-		return cajaDeTexto;
+		JTextField figuRepetida = new JTextField("");
+		figuRepetida.setBounds(240, 60, 125, 25);
+		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
+		figuRepetida.setForeground(Color.WHITE);
+		return figuRepetida;
+	}
+	
+	public static JLabel setupTextoEscenario() {
+		JLabel textoEscenario = new JLabel("Escenario Actual", SwingConstants.LEFT);
+		textoEscenario.setBounds(110, 95, 125, 30);
+		textoEscenario.setFont(new Font("Arial", Font.PLAIN, 12));
+		textoEscenario.setForeground(Color.WHITE);
+		return textoEscenario;
+	}
+	
+	public static JTextField setupEscenario() {
+		JTextField escenario = new JTextField("");
+		escenario.setBounds(240, 95, 125, 25);
+		escenario.setFont(new Font("Arial", Font.PLAIN, 12));
+		escenario.setForeground(Color.WHITE);
+		return escenario;
 	}
 	
 	public static JLabel setupTextoPaquetesComprados() {
-		JLabel texto = new JLabel("Paquetes Comprados", SwingConstants.CENTER);
-		texto.setBounds(310, 70, 140, 25);
-		texto.setFont(new Font("Arial", Font.PLAIN, 12));
-		texto.setForeground(Color.WHITE);
-		return texto;
+		JLabel textoPaquetes = new JLabel("Paquetes Comprados", SwingConstants.LEFT);
+		textoPaquetes.setBounds(110, 130, 125, 30);
+		textoPaquetes.setFont(new Font("Arial", Font.PLAIN, 12));
+		textoPaquetes.setForeground(Color.WHITE);
+		return textoPaquetes;
 	}
 
 	public static JTextField setupPaquetesComprados() {
-		JTextField cajaDeTexto = new JTextField("");
-		cajaDeTexto.setBounds(310, 95, 140, 25);
-		cajaDeTexto.setFont(new Font("Arial", Font.PLAIN, 12));
-		cajaDeTexto.setForeground(Color.WHITE);
-		return cajaDeTexto;
+		JTextField paquetes = new JTextField("");
+		paquetes.setBounds(240, 130, 125, 25);
+		paquetes.setFont(new Font("Arial", Font.PLAIN, 12));
+		paquetes.setForeground(Color.WHITE);
+		return paquetes;
 	}
 	
+	public static JLabel setupTextoUsuario0() {
+		JLabel textoUsuario0 = new JLabel("Usuario 0", SwingConstants.CENTER);
+		textoUsuario0.setBounds(415, 0, 125, 30);
+		textoUsuario0.setFont(new Font("Arial Black", Font.PLAIN, 16));
+		textoUsuario0.setForeground(Color.yellow);
+		return textoUsuario0;
+	}
+	
+	public static JTextPane setupPanelUsuario0() {
+		JTextPane panelUsuario0 = new JTextPane();
+		panelUsuario0.setEditable(true);
+		panelUsuario0.setFont(new Font("Arial", Font.PLAIN, 12));
+		panelUsuario0.setBackground(new Color(230, 230, 230));
+		panelUsuario0.setBounds(417, 25, 120, 128);
+		return panelUsuario0;
+	}
 }

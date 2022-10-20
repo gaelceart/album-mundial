@@ -93,7 +93,9 @@ public class Interfaz {
 		_statisticsContainer.add(Recurso.setupTextoCostoPromedio());
 		_statisticsContainer.add(Recurso.setupTextoFiguritasRepetidas());
 		_statisticsContainer.add(Recurso.setupTextoPaquetesComprados());
-
+		_statisticsContainer.add(Recurso.setupTextoUsuario0());
+		_statisticsContainer.add(Recurso.setupPanelUsuario0());
+		
 		_statisticsContainer.add(Recurso.setupStatisticsImage());
 		
 		frame.getContentPane().add(_statisticsContainer);
@@ -125,6 +127,7 @@ public class Interfaz {
 		_userContainer.add(Recurso.setupTextoFigusPorPaquete());
 		_userContainer.add(Recurso.setupTextoUsuarios());
 		_userContainer.add(Recurso.setupTextoFigusRaras());
+		_userContainer.add(Recurso.setupUserLogoPanini());
 		frame.getContentPane().add(_userContainer);
 	}
 
