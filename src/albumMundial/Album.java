@@ -44,12 +44,19 @@ public class Album {
 	}
 
 	public void pegarFigurita(int n) {
-		if (n < 0) {
+		excepcionFueraDeRango(n);
+		_figuritas[n] = true;
+	}
+
+	public boolean figuritaPegada(int n) {
+		excepcionFueraDeRango(n);
+		return _figuritas[n];
+	}
+
+	private void excepcionFueraDeRango(int n) {
+		if (n < 0 || n >= _figuritas.length) {
 			throw new IndexOutOfBoundsException("Fuera de rango: " + n);
 		}
-		_figuritas[n] = true;
-		if (checkEsCompleto())
-			_completo = true;
 	}
 
 	public boolean esFiguRara(int figurita) {
@@ -62,13 +69,6 @@ public class Album {
 
 	public int tamano() {
 		return _figuritas.length;
-	}
-
-	public boolean figuritaPegada(int n) {
-		if (n < 0) {
-			throw new IndexOutOfBoundsException("Fuera de rango: " + n);
-		}
-		return _figuritas[n];
 	}
 
 	public boolean checkEsCompleto() {
