@@ -26,13 +26,18 @@ public class Interfaz {
 	private JPanel _albumContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
+	
 	private JTextField _figusPorAlbum;
 	private JTextField _figusPorPaquete;
 	private JTextField _usuarios;
-	private JTextField _costoTotal;
 	private JTextField _figusRaras;
 	private JButton _iniciar;
 	private JComboBox _escenarios;
+	
+	private JTextField _costoPromedio;
+	private JTextField _tipoDeEscenario;
+	private JTextField _paquetesComprados;
+	private JTextField _figuritasRepetidas;
 	
 
 	/**
@@ -75,6 +80,20 @@ public class Interfaz {
 
 	private void setupStatsContainer() {
 		_statisticsContainer = Recurso.setupStatisticsContainer();
+		_tipoDeEscenario = Recurso.setupEscenario();
+		_costoPromedio = Recurso.setupCostoPromedio();
+		_figuritasRepetidas = Recurso.setupFiguritasRepetidas();
+		_paquetesComprados = Recurso.setupPaquetesComprados();
+		
+		_statisticsContainer.add(_costoPromedio);
+		_statisticsContainer.add(_tipoDeEscenario);
+		_statisticsContainer.add(_figuritasRepetidas);
+		_statisticsContainer.add(_paquetesComprados);
+		_statisticsContainer.add(Recurso.setupTextoEscenario());
+		_statisticsContainer.add(Recurso.setupTextoCostoPromedio());
+		_statisticsContainer.add(Recurso.setupTextoFiguritasRepetidas());
+		_statisticsContainer.add(Recurso.setupTextoPaquetesComprados());
+
 		_statisticsContainer.add(Recurso.setupStatisticsImage());
 		
 		frame.getContentPane().add(_statisticsContainer);
@@ -83,9 +102,7 @@ public class Interfaz {
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();
 		_albumContainer.add(Recurso.setupAlbumImage());
-		_costoTotal = Recurso.setupCostoTotal();
-		_albumContainer.add(Recurso.setupCostoPromedio());
-		_albumContainer.add(_costoTotal);
+		
 		frame.getContentPane().add(_albumContainer);
 	}
 

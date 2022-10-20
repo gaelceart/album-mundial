@@ -82,8 +82,8 @@ public class Recurso {
 		JLabel statisticsImagen = new JLabel();
 		statisticsImagen.setSize(150, 160);
 		ImageIcon imagen = new ImageIcon("src/copa.png");
-		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(statisticsImagen.getWidth(),
-				statisticsImagen.getHeight(), Image.SCALE_DEFAULT));
+		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(statisticsImagen.getWidth(),statisticsImagen.getHeight(), 
+				Image.SCALE_DEFAULT));
 		statisticsImagen.setIcon(icono);
 		return statisticsImagen;
 	}
@@ -174,36 +174,68 @@ public class Recurso {
 		return ret;
 	}
 
-	public static JTextField setupCostoTotal() {
-		JTextField costoTotal = new JTextField("COSTO TOTAL");
-		costoTotal.setBounds(0, 50, 140, 25);
-		costoTotal.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		costoTotal.setForeground(Color.WHITE);
-		return costoTotal;
-	}
-
-	public static JLabel setupCostoPromedio() {
-		JLabel costoPromedio = new JLabel("COSTO Promedio");
-		costoPromedio.setBounds(0, 0, 140, 25);
-		costoPromedio.setFont(new Font("Arial Black", Font.PLAIN, 12));
+	public static JLabel setupTextoCostoPromedio() {
+		JLabel costoPromedio = new JLabel("COSTO PROMEDIO", SwingConstants.CENTER);
+		costoPromedio.setBounds(160, 20, 140, 25);
+		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
 		costoPromedio.setForeground(Color.WHITE);
 		return costoPromedio;
 	}
 	
-	public static JTextField setupTextoCaja() {
-		JTextField cajaDeTexto = new JTextField("textoCaja");
-		cajaDeTexto.setBounds(0, 50, 140, 25);
-		cajaDeTexto.setFont(new Font("Arial Black", Font.PLAIN, 12));
+	public static JTextField setupCostoPromedio() {
+		JTextField costoTotal = new JTextField("");
+		costoTotal.setBounds(160, 45, 140, 25);
+		costoTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+		costoTotal.setForeground(Color.WHITE);
+		return costoTotal;
+	}
+
+	public static JLabel setupTextoEscenario() {
+		JLabel texto = new JLabel("Escenario Actual", SwingConstants.CENTER);
+		texto.setBounds(310, 20, 140, 25);
+		texto.setFont(new Font("Arial", Font.PLAIN, 12));
+		texto.setForeground(Color.WHITE);
+		return texto;
+	}
+	
+	public static JTextField setupEscenario() {
+		JTextField cajaDeTexto = new JTextField("");
+		cajaDeTexto.setBounds(310, 45, 140, 25);
+		cajaDeTexto.setFont(new Font("Arial", Font.PLAIN, 12));
 		cajaDeTexto.setForeground(Color.WHITE);
 		return cajaDeTexto;
 	}
-
-	public static JLabel setupTexto() {
-		JLabel texto = new JLabel("texto");
-		texto.setBounds(0, 0, 140, 25);
-		texto.setFont(new Font("Arial Black", Font.PLAIN, 12));
+	
+	public static JLabel setupTextoFiguritasRepetidas() {
+		JLabel texto = new JLabel("Figuritas Repetidas", SwingConstants.CENTER);
+		texto.setBounds(160, 70, 140, 25);
+		texto.setFont(new Font("Arial", Font.PLAIN, 12));
+		texto.setForeground(Color.WHITE);
+		return texto;
+	}
+	
+	public static JTextField setupFiguritasRepetidas() {
+		JTextField cajaDeTexto = new JTextField("");
+		cajaDeTexto.setBounds(160, 95, 140, 25);
+		cajaDeTexto.setFont(new Font("Arial", Font.PLAIN, 12));
+		cajaDeTexto.setForeground(Color.WHITE);
+		return cajaDeTexto;
+	}
+	
+	public static JLabel setupTextoPaquetesComprados() {
+		JLabel texto = new JLabel("Paquetes Comprados", SwingConstants.CENTER);
+		texto.setBounds(310, 70, 140, 25);
+		texto.setFont(new Font("Arial", Font.PLAIN, 12));
 		texto.setForeground(Color.WHITE);
 		return texto;
 	}
 
+	public static JTextField setupPaquetesComprados() {
+		JTextField cajaDeTexto = new JTextField("");
+		cajaDeTexto.setBounds(310, 95, 140, 25);
+		cajaDeTexto.setFont(new Font("Arial", Font.PLAIN, 12));
+		cajaDeTexto.setForeground(Color.WHITE);
+		return cajaDeTexto;
+	}
+	
 }
