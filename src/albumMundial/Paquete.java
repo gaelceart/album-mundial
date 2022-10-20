@@ -12,10 +12,6 @@ public class Paquete {
 		_random = generador;
 	}
 
-	public static void crearGeneradorAleatorio() {
-		setGenerador(new GeneradorRandom(new Random()));
-	}
-
 	public static Integer[] comprarPaquete(int cantFigus, Album album) {
 		List<Integer> paquete = new ArrayList<>();
 		while (paquete.size() < cantFigus) {

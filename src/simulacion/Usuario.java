@@ -11,8 +11,8 @@ public class Usuario {
 	private ArrayList<Integer> _figuritasRepetidas;
 	private int _cantidadFigusRepetidasTotal;
 
-	public Usuario(int cantFigusAlbum) {
-		_album = new Album(cantFigusAlbum);
+	public Usuario(int cantFigusAlbum, int cantRarasAlbum) {
+		_album = new Album(cantFigusAlbum, cantRarasAlbum);
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
 		_cantidadFigusRepetidasTotal = 0;
