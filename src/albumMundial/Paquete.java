@@ -2,7 +2,6 @@ package albumMundial;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Paquete {
 	private static Generador _random;
@@ -13,6 +12,7 @@ public class Paquete {
 	}
 
 	public static Integer[] comprarPaquete(int cantFigus, Album album) {
+		excepcionesComprarPaquete(cantFigus, album);
 		List<Integer> paquete = new ArrayList<>();
 		while (paquete.size() < cantFigus) {
 			int figuritaSeleccionada = _random.nextInt(album.getCantidadFiguritas());
@@ -30,5 +30,13 @@ public class Paquete {
 		}
 	}
 
+	private static void excepcionesComprarPaquete(int cantFigus, Album album) {
+		if (cantFigus > album.getCantidadFiguritas()) {
+			throw new IllegalArgumentException("Un paquete no puede contener mas figuritas que un album: " + cantFigus);
+		}
+		if (cantFigus <= 0) {
+			throw new IllegalArgumentException("Un paquete no puede contener 0 o menos figuritas: " + cantFigus);
+		}
+	}
 
 }
