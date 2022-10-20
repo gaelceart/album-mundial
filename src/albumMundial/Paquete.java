@@ -27,12 +27,12 @@ public class Paquete {
 
 	private static void agregarFigurita(Album album, List<Integer> paquete, int figuritaSeleccionada) {
 		boolean esRara = album.esFiguRara(figuritaSeleccionada);
-		// las cartas raras tienen 20% de posibilidades de ser agregada al paquete.
-		if (!paquete.contains(figuritaSeleccionada) && esRara && _random.nextInt(10) < 2) {
+		if (!paquete.contains(figuritaSeleccionada) && esRara && _random.nextBoolean()) {
 			paquete.add(figuritaSeleccionada);
 		} else if (!paquete.contains(figuritaSeleccionada) && !esRara) {
 			paquete.add(figuritaSeleccionada);
 		}
 	}
+
 
 }

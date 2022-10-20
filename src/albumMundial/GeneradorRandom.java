@@ -14,4 +14,9 @@ public class GeneradorRandom implements Generador {
 		return _random.nextInt(rango);
 	}
 
+	@Override
+	public boolean nextBoolean() {
+		return _random.nextBoolean();
+	}
+
 }

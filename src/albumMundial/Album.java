@@ -5,19 +5,39 @@ import java.util.Random;
 
 public class Album {
 	private int _cantidadFiguritas;
-	private boolean[] _figuritas;
-	private boolean _completo;
+	private int _cantidadFiguritasRaras;
+
 	private ArrayList<Integer> _figuritasRaras;
+	private boolean[] _figuritas;
+
+	private boolean _completo;
+
 	private static Generador _random;
 
-	public Album(int cantidadFiguritas) {
+	public Album(int cantidadFiguritas, int cantidadFigusRaras) {
+		irep(cantidadFiguritas, cantidadFigusRaras);
+
+		_cantidadFiguritas = cantidadFiguritas;
+		_cantidadFiguritasRaras = cantidadFigusRaras;
+		_figuritas = new boolean[cantidadFiguritas];
+		_figuritasRaras = new ArrayList<>();
+		seleccionFigusRaras();
+	}
+
+	private void irep(int cantidadFiguritas, int cantidadFigusRaras) {
 		if (cantidadFiguritas <= 0) {
 			throw new IllegalArgumentException(
 					"Un Album no puede contener tener 0 o menos figuritas: " + cantidadFiguritas);
 		}
-		_cantidadFiguritas = cantidadFiguritas;
-		_figuritas = new boolean[cantidadFiguritas];
-		agregarFigusRaras();
+		if (cantidadFigusRaras < 0) {
+			throw new IllegalArgumentException(
+					"Un Album no puede contener una cantidad de figuritas raras menores a 0: " + cantidadFigusRaras);
+		}
+		if (cantidadFigusRaras > cantidadFiguritas) {
+			throw new IllegalArgumentException(
+					"Un Album no puede tener mas figuritas raras que cantidad de figuritas en total: " + "FigusALbum: "
+							+ cantidadFiguritas + "/ CantidadRaras: " + cantidadFigusRaras);
+		}
 	}
 
 	public static void setGenerador(Generador generador) {
@@ -42,19 +62,11 @@ public class Album {
 		return _figuritas[n];
 	}
 
-	private void agregarFigusRaras() {
-		// cada 15 figuritas 1 es rara.
-		_figuritasRaras = new ArrayList<>();
-		int cantFigusRaras = _cantidadFiguritas / 15;
-		System.out.println("Cant figus raras :" + cantFigusRaras);
-		generarFiguritasRaras(cantFigusRaras);
-	}
-
-	private void generarFiguritasRaras(int cantFigusRaras) {
-		while (_figuritasRaras.size() != cantFigusRaras) {
-			int figuRara = _random.nextInt(_cantidadFiguritas);
-			if (!_figuritasRaras.contains(figuRara)) {
-				_figuritasRaras.add(figuRara);
+	private void seleccionFigusRaras() {
+		while (_figuritasRaras.size() < _cantidadFiguritasRaras) {
+			int figuritaSelecccionada = _random.nextInt(_cantidadFiguritas);
+			if (!_figuritasRaras.contains(figuritaSelecccionada)) {
+				_figuritasRaras.add(figuritaSelecccionada);
 			}
 		}
 	}
