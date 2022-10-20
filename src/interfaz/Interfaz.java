@@ -160,6 +160,13 @@ public class Interfaz {
 				_presenter.eventoTeclado(ke, _usuarios);
 			}
 		});
+		
+		_figusRaras.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent ke) {
+				_presenter.eventoTeclado(ke, _figusRaras);
+			}
+		});
 
 		_escenarios.addActionListener(new ActionListener() {
 			@Override
