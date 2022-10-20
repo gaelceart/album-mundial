@@ -29,6 +29,7 @@ public class Recurso {
 		Image miIcono = miPantalla.getImage("src/icono.jpg");
 		frame.setIconImage(miIcono);
 		frame.setBounds(0, 0, 800, 600);
+		frame.setLayout(null);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		return frame;
@@ -89,7 +90,7 @@ public class Recurso {
 
 	public static JLabel setupTextoFigusPorAlbum() {
 		JLabel cantidadDeFigusAlbum = new JLabel("Figuritas por Álbum", SwingConstants.CENTER);
-		cantidadDeFigusAlbum.setBounds(615, 75, 140, 35);
+		cantidadDeFigusAlbum.setBounds(40, 75, 140, 35);
 		cantidadDeFigusAlbum.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		cantidadDeFigusAlbum.setForeground(Color.WHITE);
 		return cantidadDeFigusAlbum;
@@ -97,13 +98,13 @@ public class Recurso {
 
 	public static JTextField setupCantidadDeFigusAlbum() {
 		JTextField cantidadDeFigusAlbum = new JTextField();
-		cantidadDeFigusAlbum.setBounds(615, 100, 140, 25);
+		cantidadDeFigusAlbum.setBounds(40, 100, 140, 25);
 		return cantidadDeFigusAlbum;
 	}
 
 	public static JLabel setupTextoFigusPorPaquete() {
 		JLabel cantidadDeFigusPaquete = new JLabel("Figuritas por Paquete", SwingConstants.CENTER);
-		cantidadDeFigusPaquete.setBounds(615, 125, 140, 35);
+		cantidadDeFigusPaquete.setBounds(40, 125, 140, 35);
 		cantidadDeFigusPaquete.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		cantidadDeFigusPaquete.setForeground(Color.WHITE);
 		return cantidadDeFigusPaquete;
@@ -111,13 +112,13 @@ public class Recurso {
 
 	public static JTextField setupFigusPorPaquete() {
 		JTextField cantidadDeFigusPaquete = new JTextField();
-		cantidadDeFigusPaquete.setBounds(615, 150, 140, 25);
+		cantidadDeFigusPaquete.setBounds(40, 150, 140, 25);
 		return cantidadDeFigusPaquete;
 	}
 
 	public static JLabel setupTextoUsuarios() {
 		JLabel usuarios = new JLabel("Usuarios", SwingConstants.CENTER);
-		usuarios.setBounds(615, 175, 140, 35);
+		usuarios.setBounds(40, 175, 140, 35);
 		usuarios.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		usuarios.setForeground(Color.WHITE);
 		return usuarios;
@@ -125,13 +126,13 @@ public class Recurso {
 
 	public static JTextField setupUsuarios() {
 		JTextField usuarios = new JTextField();
-		usuarios.setBounds(615, 200, 140, 25);
+		usuarios.setBounds(40, 200, 140, 25);
 		return usuarios;
 	}
 
 	public static JButton setupBtnIniciar() {
 		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.setBounds(615, 255, 140, 25);
+		btnIniciar.setBounds(40, 255, 140, 25);
 		btnIniciar.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		btnIniciar.setEnabled(false);
 		return btnIniciar;
@@ -139,7 +140,7 @@ public class Recurso {
 
 	public static JComboBox setupBtnEscenarios() {
 		JComboBox menuEscenarios = new JComboBox();
-		menuEscenarios.setBounds(610, 286, 150, 25);
+		menuEscenarios.setBounds(35, 286, 150, 25);
 		menuEscenarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		menuEscenarios.setToolTipText("Escenarios");
 		String[] escenarios = setupEscenarios();
@@ -161,7 +162,7 @@ public class Recurso {
 
 	public static JTextField setupCostoTotal() {
 		JTextField costoTotal = new JTextField("COSTO TOTAL");
-		costoTotal.setBounds(200, 100, 140, 25);
+		costoTotal.setBounds(0, 50, 140, 25);
 		costoTotal.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		costoTotal.setForeground(Color.WHITE);
 		return costoTotal;
@@ -169,10 +170,26 @@ public class Recurso {
 
 	public static JLabel setupCostoPromedio() {
 		JLabel costoPromedio = new JLabel("COSTO Promedio");
-		costoPromedio.setBounds(200, 400, 150, 100);
+		costoPromedio.setBounds(0, 0, 140, 25);
 		costoPromedio.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		costoPromedio.setForeground(Color.WHITE);
 		return costoPromedio;
+	}
+	
+	public static JTextField setupTextoCaja() {
+		JTextField cajaDeTexto = new JTextField("textoCaja");
+		cajaDeTexto.setBounds(0, 50, 140, 25);
+		cajaDeTexto.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		cajaDeTexto.setForeground(Color.WHITE);
+		return cajaDeTexto;
+	}
+
+	public static JLabel setupTexto() {
+		JLabel texto = new JLabel("texto");
+		texto.setBounds(0, 0, 140, 25);
+		texto.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		texto.setForeground(Color.WHITE);
+		return texto;
 	}
 
 }

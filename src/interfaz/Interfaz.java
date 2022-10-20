@@ -78,14 +78,17 @@ public class Interfaz {
 	private void setupStatsContainer() {
 		_statisticsContainer = Recurso.setupStatisticsContainer();
 		_statisticsContainer.add(Recurso.setupStatisticsImage());
-		_statisticsContainer.add(_costoPromedio);
-		_statisticsContainer.add(_costoTotal);
+		
 		frame.getContentPane().add(_statisticsContainer);
 	}
 
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();
 		_albumContainer.add(Recurso.setupAlbumImage());
+		_costoPromedio = Recurso.setupCostoPromedio();
+		_costoTotal = Recurso.setupCostoTotal();
+		_albumContainer.add(_costoPromedio);
+		_albumContainer.add(_costoTotal);
 		frame.getContentPane().add(_albumContainer);
 	}
 
@@ -99,8 +102,7 @@ public class Interfaz {
 		_textoFigusPorAlbum = Recurso.setupTextoFigusPorAlbum();
 		_textoFigusPorPaquete = Recurso.setupTextoFigusPorPaquete();
 		_textoUsuarios = Recurso.setupTextoUsuarios();
-		_costoPromedio = Recurso.setupCostoPromedio();
-		_costoTotal = Recurso.setupCostoTotal();
+		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
 		_userContainer.add(_figusPorAlbum);
