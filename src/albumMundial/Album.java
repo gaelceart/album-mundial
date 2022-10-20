@@ -45,10 +45,13 @@ public class Album {
 	}
 
 	public static void crearGeneradorAleatorio() {
-		setGenerador(new GeneradorRandom(new Random()));
+		setGenerador(new GeneradorRandom());
 	}
 
 	public void pegarFigurita(int n) {
+		if (n < 0) {
+			throw new IndexOutOfBoundsException("Fuera de rango: " + n);
+		}
 		_figuritas[n] = true;
 		if (checkEsCompleto())
 			_completo = true;
@@ -62,6 +65,25 @@ public class Album {
 		return _figuritas[n];
 	}
 
+	public int tamano() {
+		return _figuritas.length;
+	}
+
+	public boolean figuritaPegada(int n) {
+		if (n < 0) {
+			throw new IndexOutOfBoundsException("Fuera de rango: " + n);
+		}
+		return _figuritas[n];
+	}
+
+	public boolean checkEsCompleto() {
+		for (int i = 0; i < _cantidadFiguritas; i++) {
+			if (!_figuritas[i])
+				return false;
+		}
+		return true;
+	}
+
 	private void seleccionFigusRaras() {
 		while (_figuritasRaras.size() < _cantidadFiguritasRaras) {
 			int figuritaSelecccionada = _random.nextInt(_cantidadFiguritas);
@@ -69,14 +91,6 @@ public class Album {
 				_figuritasRaras.add(figuritaSelecccionada);
 			}
 		}
-	}
-
-	private boolean checkEsCompleto() {
-		for (int i = 0; i < _cantidadFiguritas; i++) {
-			if (!_figuritas[i])
-				return false;
-		}
-		return true;
 	}
 
 	public int getCantidadFiguritas() {
@@ -89,6 +103,10 @@ public class Album {
 
 	public ArrayList<Integer> getFiguritasRaras() {
 		return _figuritasRaras;
+	}
+
+	public int getCantidadFiguritasRaras() {
+		return _cantidadFiguritasRaras;
 	}
 
 }

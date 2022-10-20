@@ -3,10 +3,10 @@ package albumMundial;
 import java.util.Random;
 
 public class GeneradorRandom implements Generador {
-	private Random _random = new Random();
+	private Random _random;
 
-	public GeneradorRandom(Random random) {
-		_random = random;
+	public GeneradorRandom() {
+		_random = new Random();
 	}
 
 	@Override
