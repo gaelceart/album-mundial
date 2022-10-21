@@ -37,12 +37,12 @@ public class Presenter {
 		_gui.setBtnIniciar(true);
 	}
 
-	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField cantUser) {
+	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField cantUser, JTextField simulaciones) {
 		_gui.setInteracciones(false);
 		_model.setCantFigusAlbum(Integer.parseInt(figuAlbum.getText()));
 		_model.setCantFigusPaquete(Integer.parseInt(figuPaquete.getText()));
 		_model.setCantUsuarios(Integer.parseInt(cantUser.getText()));
-		_model.setCantSimulaciones(2);
+		_model.setCantSimulaciones(Integer.parseInt(simulaciones.getText()));
 		_model.iniciarSimulacion();
 	}
 
