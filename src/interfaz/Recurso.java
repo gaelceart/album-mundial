@@ -1,6 +1,7 @@
 package interfaz;
-
+import selecciones.*;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -55,7 +56,7 @@ public class Recurso {
 		JPanel userContainer = new JPanel();
 		userContainer.setBounds(575, 0, 225, 600);
 		userContainer.setLayout(null);
-		userContainer.setBackground(new Color(141, 27, 61));
+		userContainer.setBackground(new Color(90, 15, 40)/*(141, 27, 61)*/);
 		return userContainer;
 	}
 
@@ -93,7 +94,6 @@ public class Recurso {
 	public static JLabel setupStatisticsImage() {
 		JLabel statisticsImagen = new JLabel();
 		statisticsImagen.setBounds(-25, 0, 150, 160);
-		//statisticsImagen.setSize(150, 160);
 		ImageIcon imagen = new ImageIcon("src/copa.png");
 		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(statisticsImagen.getWidth(),statisticsImagen.getHeight(), 
 				Image.SCALE_DEFAULT));
@@ -253,7 +253,7 @@ public class Recurso {
 	
 	public static JLabel setupTextoUsuario0() {
 		JLabel textoUsuario0 = new JLabel("Usuario 0", SwingConstants.CENTER);
-		textoUsuario0.setBounds(415, 0, 125, 30);
+		textoUsuario0.setBounds(415, -5, 125, 30);
 		textoUsuario0.setFont(new Font("Arial Black", Font.PLAIN, 16));
 		textoUsuario0.setForeground(Color.yellow);
 		return textoUsuario0;
@@ -266,5 +266,13 @@ public class Recurso {
 		panelUsuario0.setBackground(new Color(230, 230, 230));
 		panelUsuario0.setBounds(417, 25, 120, 128);
 		return panelUsuario0;
+	}
+
+	public static JPanel setupMundial() {
+		JPanel mundial = new JPanel();
+		mundial.setBounds(25, 25, 525, 350);
+		mundial.setLayout(null);
+		mundial.setBackground(new Color(50, 14, 30));
+		return mundial;
 	}
 }

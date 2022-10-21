@@ -103,6 +103,9 @@ public class Interfaz {
 
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();
+		_albumContainer.add(Recurso.setupMundial());
+		
+		
 		_albumContainer.add(Recurso.setupAlbumImage());
 		
 		frame.getContentPane().add(_albumContainer);
