@@ -1,10 +1,8 @@
 package presenter;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComboBox;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 import interfaz.Interfaz;
@@ -37,10 +35,11 @@ public class Presenter {
 		_gui.setBtnIniciar(true);
 	}
 
-	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField cantUser) {
+	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField cantUser) {
 		_gui.setInteracciones(false);
 		_model.setCantFigusAlbum(Integer.parseInt(figuAlbum.getText()));
 		_model.setCantFigusPaquete(Integer.parseInt(figuPaquete.getText()));
+		_model.setCantFigusRaras(Integer.parseInt(figusRaras.getText()));
 		_model.setCantUsuarios(Integer.parseInt(cantUser.getText()));
 		_model.setCantSimulaciones(2);
 		_model.iniciarSimulacion();

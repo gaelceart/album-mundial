@@ -2,6 +2,8 @@ package albumMundial;
 
 import java.util.ArrayList;
 
+import generador.Generador;
+
 public class Album {
 	private int _cantidadFiguritas;
 	private int _cantidadFiguritasRaras;
@@ -11,7 +13,7 @@ public class Album {
 
 	private boolean _completo;
 
-	private static Generador _random;
+	public static Generador _random;
 
 	public Album(int cantidadFiguritas, int cantidadFigusRaras) {
 		irep(cantidadFiguritas, cantidadFigusRaras);
@@ -73,9 +75,12 @@ public class Album {
 
 	public boolean checkEsCompleto() {
 		for (int i = 0; i < _cantidadFiguritas; i++) {
-			if (!_figuritas[i])
+			if (!_figuritas[i]) {
+				_completo = false;
 				return false;
+			}
 		}
+		_completo = true;
 		return true;
 	}
 

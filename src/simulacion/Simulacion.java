@@ -3,9 +3,12 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import albumMundial.Album;
+
 public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;
+	private int _cantRarasAlbum;
 	private int _paquetesTotalesComprados;
 	private int _figusTotalesRepetidas;
 	private int _cantidadFigusAlbum;
@@ -15,8 +18,9 @@ public class Simulacion implements Runnable {
 	private tipoEscenario _escenario;
 	private int _figusRepetidasSobrantes;
 
-	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusPorPaquete, tipoEscenario e) {
+	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusRaras,int cantFigusPorPaquete, tipoEscenario e) {
 		_cantidadFigusAlbum = cantFigusAlbum;
+		_cantRarasAlbum = cantFigusRaras;
 		_cantidadFigusPorPaquete = cantFigusPorPaquete;
 		_users = inicializarUsers(cantUsuarios);
 		_paquetesTotalesComprados = 0;
@@ -30,7 +34,7 @@ public class Simulacion implements Runnable {
 	private Usuario[] inicializarUsers(int cantUsuarios) {
 		Usuario[] ret = new Usuario[cantUsuarios];
 		for (int i = 0; i < cantUsuarios; i++)
-			ret[i] = new Usuario(_cantidadFigusAlbum, 5);
+			ret[i] = new Usuario(_cantidadFigusAlbum, _cantRarasAlbum);
 		return ret;
 	}
 

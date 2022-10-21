@@ -182,7 +182,7 @@ public class Interfaz {
 		_iniciar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _usuarios);
+				_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _usuarios);
 			}
 		});
 

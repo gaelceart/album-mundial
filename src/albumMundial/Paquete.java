@@ -3,6 +3,8 @@ package albumMundial;
 import java.util.ArrayList;
 import java.util.List;
 
+import generador.Generador;
+
 public class Paquete {
 	private static Generador _random;
 

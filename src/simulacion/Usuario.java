@@ -18,7 +18,7 @@ public class Usuario {
 		_paquetesComprados = 0;
 		_cantidadFigusRepetidasTotal = 0;
 	}
-
+	
 	public Integer[] comprarPaquete(int cantFigus) {
 		_paquetesComprados++;
 		return Paquete.comprarPaquete(cantFigus, _album);
@@ -26,6 +26,7 @@ public class Usuario {
 
 	public void pegarFigurita(int f) {
 		_album.pegarFigurita(f);
+		_album.checkEsCompleto();
 	}
 
 	public boolean tieneAlbumCompleto() {
@@ -51,6 +52,7 @@ public class Usuario {
 				_cantidadFigusRepetidasTotal = getCantidadFigusRepetidasTotal() + 1;
 			} else {
 				pegarFigurita(paquete[i]);
+				System.out.println("PEGUÉ figu " + paquete[i]);
 			}
 		}
 	}

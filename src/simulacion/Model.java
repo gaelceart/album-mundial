@@ -1,9 +1,9 @@
 package simulacion;
 
 import albumMundial.Album;
-import albumMundial.Generador;
-import albumMundial.GeneradorRandom;
 import albumMundial.Paquete;
+import generador.Generador;
+import generador.GeneradorRandom;
 
 public class Model {
 
@@ -13,6 +13,7 @@ public class Model {
 	private int _cantSimulaciones;
 	private int _cantUsuarios;
 	private int _cantFigusAlbum;
+	private int _cantFigusRaras;
 	private int _cantFigusPaquete;
 	private double _costoPaquete;
 	private double _costoTotal;
@@ -25,6 +26,7 @@ public class Model {
 		_cantSimulaciones = 0;
 		_cantUsuarios = 0;
 		_cantFigusAlbum = 0;
+		_cantFigusRaras = 0;
 		_cantFigusPaquete = 0;
 		_costoPaquete = 0;
 		_costoTotal = 0;
@@ -41,6 +43,10 @@ public class Model {
 
 	public void setCantFigusAlbum(int n) {
 		_cantFigusAlbum = n;
+	}
+
+	public void setCantFigusRaras(int n) {
+		_cantFigusRaras = n;
 	}
 
 	public void setCantFigusPaquete(int n) {
@@ -75,7 +81,7 @@ public class Model {
 	private void initSimulaciones() {
 		_s = new Simulacion[_cantSimulaciones];
 		for (int i = 0; i < _cantSimulaciones; i++)
-			_s[i] = new Simulacion(_cantUsuarios, _cantFigusAlbum, _cantFigusPaquete, _escenario);
+			_s[i] = new Simulacion(_cantUsuarios, _cantFigusAlbum, _cantFigusRaras,_cantFigusPaquete, _escenario);
 	}
 
 	private void initThreads() {
