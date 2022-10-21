@@ -25,16 +25,19 @@ public class Interfaz {
 	private JPanel _albumContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
-	private JLabel _textoFigusPorAlbum;
-	private JLabel _textoFigusPorPaquete;
-	private JLabel _textoUsuarios;
+	
 	private JTextField _figusPorAlbum;
 	private JTextField _figusPorPaquete;
 	private JTextField _usuarios;
+	private JTextField _figusRaras;
 	private JButton _iniciar;
 	private JComboBox _escenarios;
-	private JLabel _costoPromedio;
-	private JTextField _costoTotal;
+	
+	private JTextField _costoPromedio;
+	private JTextField _tipoDeEscenario;
+	private JTextField _paquetesComprados;
+	private JTextField _figuritasRepetidas;
+	
 
 	/**
 	 * Launch the application.
@@ -76,15 +79,34 @@ public class Interfaz {
 
 	private void setupStatsContainer() {
 		_statisticsContainer = Recurso.setupStatisticsContainer();
-		_statisticsContainer.add(Recurso.setupStatisticsImage());
+		_tipoDeEscenario = Recurso.setupEscenario();
+		_costoPromedio = Recurso.setupCostoPromedio();
+		_figuritasRepetidas = Recurso.setupFiguritasRepetidas();
+		_paquetesComprados = Recurso.setupPaquetesComprados();
+		
 		_statisticsContainer.add(_costoPromedio);
-		_statisticsContainer.add(_costoTotal);
+		_statisticsContainer.add(_tipoDeEscenario);
+		_statisticsContainer.add(_figuritasRepetidas);
+		_statisticsContainer.add(_paquetesComprados);
+		_statisticsContainer.add(Recurso.setupTextoEscenario());
+		_statisticsContainer.add(Recurso.setupTextoCostoPromedio());
+		_statisticsContainer.add(Recurso.setupTextoFiguritasRepetidas());
+		_statisticsContainer.add(Recurso.setupTextoPaquetesComprados());
+		_statisticsContainer.add(Recurso.setupTextoUsuario0());
+		_statisticsContainer.add(Recurso.setupPanelUsuario0());
+		
+		_statisticsContainer.add(Recurso.setupStatisticsImage());
+		
 		frame.getContentPane().add(_statisticsContainer);
 	}
 
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();
+		_albumContainer.add(Recurso.setupMundial());
+		
+		
 		_albumContainer.add(Recurso.setupAlbumImage());
+		
 		frame.getContentPane().add(_albumContainer);
 	}
 
@@ -94,20 +116,20 @@ public class Interfaz {
 		_escenarios = Recurso.setupBtnEscenarios();
 		_figusPorAlbum = Recurso.setupCantidadDeFigusAlbum();
 		_figusPorPaquete = Recurso.setupFigusPorPaquete();
+		_figusRaras = Recurso.setupFigusRaras();
 		_usuarios = Recurso.setupUsuarios();
-		_textoFigusPorAlbum = Recurso.setupTextoFigusPorAlbum();
-		_textoFigusPorPaquete = Recurso.setupTextoFigusPorPaquete();
-		_textoUsuarios = Recurso.setupTextoUsuarios();
-		_costoPromedio = Recurso.setupCostoPromedio();
-		_costoTotal = Recurso.setupCostoTotal();
+		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
 		_userContainer.add(_figusPorAlbum);
 		_userContainer.add(_figusPorPaquete);
 		_userContainer.add(_usuarios);
-		_userContainer.add(_textoFigusPorAlbum);
-		_userContainer.add(_textoFigusPorPaquete);
-		_userContainer.add(_textoUsuarios);
+		_userContainer.add(_figusRaras);
+		_userContainer.add(Recurso.setupTextoFigusPorAlbum());
+		_userContainer.add(Recurso.setupTextoFigusPorPaquete());
+		_userContainer.add(Recurso.setupTextoUsuarios());
+		_userContainer.add(Recurso.setupTextoFigusRaras());
+		_userContainer.add(Recurso.setupUserLogoPanini());
 		frame.getContentPane().add(_userContainer);
 	}
 
@@ -138,6 +160,13 @@ public class Interfaz {
 			@Override
 			public void keyPressed(KeyEvent ke) {
 				_presenter.eventoTeclado(ke, _usuarios);
+			}
+		});
+		
+		_figusRaras.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent ke) {
+				_presenter.eventoTeclado(ke, _figusRaras);
 			}
 		});
 
