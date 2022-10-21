@@ -299,9 +299,9 @@ public class Recurso {
 
 	public static JPanel setupDivision() {
 		JPanel division = new JPanel();
-		division.setBounds(0, 270, 225, 9);
+		division.setBounds(0, 272, 225, 5);
 		division.setLayout(null);
-		division.setBackground(Color.black);
+		division.setBackground(Color.LIGHT_GRAY);
 		return division;
 	}
 }
