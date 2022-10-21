@@ -56,12 +56,17 @@ public class Model {
 	}
 
 	double simular() {
-
+		System.out.println("paso1");
 		initSimulaciones();
+		System.out.println("paso2");
 		initThreads();
+		System.out.println("paso3");
 		startThreads();
+		System.out.println("paso4");
 		stopThreads();
+		System.out.println("paso5");
 		calcCostoTotal();
+		System.out.println("paso6");
 
 		System.out.println("CARGANDO...\n");
 
@@ -74,9 +79,12 @@ public class Model {
 
 	private void initSimulaciones() {
 		_s = new Simulacion[_cantSimulaciones];
-		for (int i = 0; i < _cantSimulaciones; i++)
+		for (int i = 0; i < _cantSimulaciones; i++) {
 			_s[i] = new Simulacion(_cantUsuarios, _cantFigusAlbum, _cantFigusPaquete, _escenario);
+			
+		}
 	}
+		
 
 	private void initThreads() {
 		_t = new Thread[_cantSimulaciones];

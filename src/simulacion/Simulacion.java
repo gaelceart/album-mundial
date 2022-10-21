@@ -3,6 +3,9 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import albumMundial.Album;
+import generadores.*;
+
 public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;
@@ -43,8 +46,10 @@ public class Simulacion implements Runnable {
 
 			// Fase 2 Pegar figuritas
 			for (int i = 0; i < _users.length; i++)
-				if (paquetes.containsKey(i))
+				if (paquetes.containsKey(i)) {
 					_users[i].pegarFiguritas(paquetes.get(i));
+					_users[i].tieneAlbumCompleto();
+				}
 
 			// Fase 3 Donar y pegar donadas
 			if (_escenario == tipoEscenario.donacion) {
@@ -103,7 +108,9 @@ public class Simulacion implements Runnable {
 		}
 
 		_calcularPaquetesTotales();
+
 		_calcularFigusRepetidasTotales();
+
 		_calcularFigusRepetidasSobrantes();
 		System.out.println("CANT USERS:" + _users.length);
 		System.out.println("CANTIDAD FIGUS ALBUM: " + _cantidadFigusAlbum);
@@ -119,6 +126,7 @@ public class Simulacion implements Runnable {
 				"Figuritas repetidas del usuario final: " + _users[_users.length - 1].getCantidadFigusRepetidasTotal());
 		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
 		System.out.println("Figuritas intercambiadas: " + _cantIntercambiosRealizados);
+
 		long endTime = System.currentTimeMillis();
 		System.out.println("TIEMPO TRANSCURRIDO: " + (endTime - startTime) + "ms\n");
 

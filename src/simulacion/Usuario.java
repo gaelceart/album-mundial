@@ -14,13 +14,11 @@ public class Usuario {
 	private int _cantidadFigusRepetidasTotal;
 
 	public Usuario(int cantFigusAlbum, int cantRarasAlbum) {
-		Album.setGenerador(new GeneradorRandom());
 		_album = new Album(cantFigusAlbum, cantRarasAlbum);
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
 		_cantidadFigusRepetidasTotal = 0;
 	}
-
 	public Integer[] comprarPaquete(int cantFigus) {
 		_paquetesComprados++;
 		return Paquete.comprarPaquete(cantFigus, _album);
@@ -31,6 +29,7 @@ public class Usuario {
 	}
 
 	public boolean tieneAlbumCompleto() {
+		_album.checkEsCompleto();
 		return _album.isCompleto();
 	}
 
