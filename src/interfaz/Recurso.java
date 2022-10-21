@@ -82,8 +82,18 @@ public class Recurso {
 
 	public static JLabel setupUserLogoPanini() {
 		JLabel logoImagen = new JLabel();
-		logoImagen.setBounds(0, 370, 210, 215);
+		logoImagen.setBounds(0, 340, 210, 215);
 		ImageIcon imagen = new ImageIcon("src/panini.png");
+		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoImagen.getWidth(),logoImagen.getHeight(), 
+				Image.SCALE_DEFAULT));
+		logoImagen.setIcon(icono);
+		return logoImagen;
+	}
+	
+	public static JLabel setupUserLogoUngs() {
+		JLabel logoImagen = new JLabel();
+		logoImagen.setBounds(-10, 440, 230, 140);
+		ImageIcon imagen = new ImageIcon("src/ungs.png");
 		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoImagen.getWidth(),logoImagen.getHeight(), 
 				Image.SCALE_DEFAULT));
 		logoImagen.setIcon(icono);

@@ -141,6 +141,7 @@ public class Interfaz {
 		_userContainer.add(Recurso.setupTextoSimulaciones());
 		
 		_userContainer.add(Recurso.setupUserLogoPanini());
+		_userContainer.add(Recurso.setupUserLogoUngs());
 		frame.getContentPane().add(_userContainer);
 	}
 
