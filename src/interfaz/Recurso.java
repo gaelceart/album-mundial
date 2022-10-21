@@ -83,7 +83,6 @@ public class Recurso {
 	public static JLabel setupUserLogoPanini() {
 		JLabel logoImagen = new JLabel();
 		logoImagen.setBounds(0, 370, 210, 215);
-		//logoImagen.setSize(150, 150);
 		ImageIcon imagen = new ImageIcon("src/panini.png");
 		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoImagen.getWidth(),logoImagen.getHeight(), 
 				Image.SCALE_DEFAULT));
@@ -298,11 +297,11 @@ public class Recurso {
 		return panelUsuario0;
 	}
 
-	public static JPanel setupMundial() {
-		JPanel mundial = new JPanel();
-		mundial.setBounds(25, 25, 525, 350);
-		mundial.setLayout(null);
-		mundial.setBackground(new Color(50, 14, 30));
-		return mundial;
+	public static JPanel setupDivision() {
+		JPanel division = new JPanel();
+		division.setBounds(0, 270, 225, 9);
+		division.setLayout(null);
+		division.setBackground(Color.black);
+		return division;
 	}
 }
