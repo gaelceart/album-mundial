@@ -1,9 +1,5 @@
-<<<<<<<< HEAD:src/generadores/GeneradorRandom.java
-package generadores;
-========
-package generador;
->>>>>>>> pre-main:src/generador/GeneradorRandom.java
 
+package generadores;
 import java.util.Random;
 
 public class GeneradorRandom implements Generador {
