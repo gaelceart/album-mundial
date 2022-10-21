@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import albumMundial.*;
+import generadores.*;
 
 public class Usuario {
 
@@ -13,6 +14,7 @@ public class Usuario {
 	private int _cantidadFigusRepetidasTotal;
 
 	public Usuario(int cantFigusAlbum, int cantRarasAlbum) {
+		Album.setGenerador(new GeneradorRandom());
 		_album = new Album(cantFigusAlbum, cantRarasAlbum);
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;

@@ -1,4 +1,4 @@
-package albumMundial;
+package generadores;
 
 public interface Generador {
 	public int nextInt(int rango);

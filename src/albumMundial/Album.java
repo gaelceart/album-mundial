@@ -2,6 +2,8 @@ package albumMundial;
 
 import java.util.ArrayList;
 
+import generadores.Generador;
+
 public class Album {
 	private int _cantidadFiguritas;
 	private int _cantidadFiguritasRaras;

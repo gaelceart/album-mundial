@@ -1,4 +1,4 @@
-package albumMundial;
+package generadores;
 
 import java.util.Random;
 

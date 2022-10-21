@@ -3,6 +3,8 @@ package albumMundial;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import generadores.Generador;
+
 public class AlbumTest {
 	private Album _album;
 	@Test(expected = NullPointerException.class)

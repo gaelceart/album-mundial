@@ -1,9 +1,9 @@
 package simulacion;
 
 import albumMundial.Album;
-import albumMundial.Generador;
-import albumMundial.GeneradorRandom;
 import albumMundial.Paquete;
+import generadores.Generador;
+import generadores.GeneradorRandom;
 
 public class Model {
 

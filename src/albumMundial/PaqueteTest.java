@@ -6,6 +6,8 @@ import java.util.Random;
 
 import org.junit.Test;
 
+import generadores.Generador;
+
 public class PaqueteTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void paqueteContieneMasQueAlbumTest() {
