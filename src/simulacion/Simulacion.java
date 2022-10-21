@@ -30,7 +30,7 @@ public class Simulacion implements Runnable {
 	private Usuario[] inicializarUsers(int cantUsuarios) {
 		Usuario[] ret = new Usuario[cantUsuarios];
 		for (int i = 0; i < cantUsuarios; i++)
-			ret[i] = new Usuario(_cantidadFigusAlbum);
+			ret[i] = new Usuario(_cantidadFigusAlbum, 5);
 		return ret;
 	}
 

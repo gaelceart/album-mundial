@@ -1,37 +1,62 @@
 package albumMundial;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Album {
 	private int _cantidadFiguritas;
-	private boolean[] _figuritas;
-	private boolean _completo;
+	private int _cantidadFiguritasRaras;
+
 	private ArrayList<Integer> _figuritasRaras;
+	private boolean[] _figuritas;
+
+	private boolean _completo;
+
 	private static Generador _random;
 
-	public Album(int cantidadFiguritas) {
+	public Album(int cantidadFiguritas, int cantidadFigusRaras) {
+		irep(cantidadFiguritas, cantidadFigusRaras);
+
+		_cantidadFiguritas = cantidadFiguritas;
+		_cantidadFiguritasRaras = cantidadFigusRaras;
+		_figuritas = new boolean[cantidadFiguritas];
+		_figuritasRaras = new ArrayList<>();
+		seleccionFigusRaras();
+	}
+
+	private void irep(int cantidadFiguritas, int cantidadFigusRaras) {
 		if (cantidadFiguritas <= 0) {
 			throw new IllegalArgumentException(
 					"Un Album no puede contener tener 0 o menos figuritas: " + cantidadFiguritas);
 		}
-		_cantidadFiguritas = cantidadFiguritas;
-		_figuritas = new boolean[cantidadFiguritas];
-		agregarFigusRaras();
+		if (cantidadFigusRaras < 0) {
+			throw new IllegalArgumentException(
+					"Un Album no puede contener una cantidad de figuritas raras menores a 0: " + cantidadFigusRaras);
+		}
+		if (cantidadFigusRaras > cantidadFiguritas) {
+			throw new IllegalArgumentException(
+					"Un Album no puede tener mas figuritas raras que cantidad de figuritas en total: " + "FigusALbum: "
+							+ cantidadFiguritas + "/ CantidadRaras: " + cantidadFigusRaras);
+		}
 	}
 
 	public static void setGenerador(Generador generador) {
 		_random = generador;
 	}
 
-	public static void crearGeneradorAleatorio() {
-		setGenerador(new GeneradorRandom(new Random()));
+	public void pegarFigurita(int n) {
+		excepcionFueraDeRango(n);
+		_figuritas[n] = true;
 	}
 
-	public void pegarFigurita(int n) {
-		_figuritas[n] = true;
-		if (checkEsCompleto())
-			_completo = true;
+	public boolean figuritaPegada(int n) {
+		excepcionFueraDeRango(n);
+		return _figuritas[n];
+	}
+
+	private void excepcionFueraDeRango(int n) {
+		if (n < 0 || n >= _figuritas.length) {
+			throw new IndexOutOfBoundsException("Fuera de rango: " + n);
+		}
 	}
 
 	public boolean esFiguRara(int figurita) {
@@ -42,29 +67,25 @@ public class Album {
 		return _figuritas[n];
 	}
 
-	private void agregarFigusRaras() {
-		// cada 15 figuritas 1 es rara.
-		_figuritasRaras = new ArrayList<>();
-		int cantFigusRaras = _cantidadFiguritas / 15;
-		System.out.println("Cant figus raras :" + cantFigusRaras);
-		generarFiguritasRaras(cantFigusRaras);
+	public int tamano() {
+		return _figuritas.length;
 	}
 
-	private void generarFiguritasRaras(int cantFigusRaras) {
-		while (_figuritasRaras.size() != cantFigusRaras) {
-			int figuRara = _random.nextInt(_cantidadFiguritas);
-			if (!_figuritasRaras.contains(figuRara)) {
-				_figuritasRaras.add(figuRara);
-			}
-		}
-	}
-
-	private boolean checkEsCompleto() {
+	public boolean checkEsCompleto() {
 		for (int i = 0; i < _cantidadFiguritas; i++) {
 			if (!_figuritas[i])
 				return false;
 		}
 		return true;
+	}
+
+	private void seleccionFigusRaras() {
+		while (_figuritasRaras.size() < _cantidadFiguritasRaras) {
+			int figuritaSelecccionada = _random.nextInt(_cantidadFiguritas);
+			if (!_figuritasRaras.contains(figuritaSelecccionada)) {
+				_figuritasRaras.add(figuritaSelecccionada);
+			}
+		}
 	}
 
 	public int getCantidadFiguritas() {
@@ -77,6 +98,10 @@ public class Album {
 
 	public ArrayList<Integer> getFiguritasRaras() {
 		return _figuritasRaras;
+	}
+
+	public int getCantidadFiguritasRaras() {
+		return _cantidadFiguritasRaras;
 	}
 
 }
