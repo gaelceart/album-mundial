@@ -2,15 +2,16 @@ package albumMundial;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-
 import generadores.Generador;
 
 public class AlbumTest {
 	private Album _album;
+
 	@Test(expected = NullPointerException.class)
 	public void albumNullTest() {
 		_album.isCompleto();
 	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void figuritasNegativasTest() {
 		_album = new Album(-10, 0);
