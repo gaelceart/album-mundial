@@ -186,10 +186,27 @@ public class Recurso {
 		ret[3] = "Todos Intercambian";
 		return ret;
 	}
-
+	
+	public static JLabel setupTextoEscenario() {
+		JLabel textoEscenario = new JLabel("Escenario Actual", SwingConstants.LEFT);
+		textoEscenario.setBounds(110, 25, 125, 30);
+		textoEscenario.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		textoEscenario.setForeground(Color.yellow);
+		return textoEscenario;
+	}
+	
+	public static JTextField setupEscenario() {
+		JTextField escenario = new JTextField("");
+		escenario.setBounds(240, 25, 125, 25);
+		escenario.setEditable(true);
+		escenario.setFont(new Font("Arial", Font.PLAIN, 12));
+		escenario.setForeground(Color.magenta);
+		return escenario;
+	}
+	
 	public static JLabel setupTextoCostoPromedio() {
 		JLabel costoPromedio = new JLabel("Costo Promedio", SwingConstants.LEFT);
-		costoPromedio.setBounds(110, 25, 125, 30);
+		costoPromedio.setBounds(110, 60, 125, 30);
 		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
 		costoPromedio.setForeground(Color.WHITE);
 		return costoPromedio;
@@ -197,47 +214,15 @@ public class Recurso {
 	
 	public static JTextField setupCostoPromedio() {
 		JTextField costoPromedio = new JTextField("");
-		costoPromedio.setBounds(240, 25, 125, 25);
+		costoPromedio.setBounds(240, 60, 125, 25);
 		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
-		costoPromedio.setForeground(Color.WHITE);
+		costoPromedio.setForeground(Color.black);
 		return costoPromedio;
-	}
-	
-	public static JLabel setupTextoFiguritasRepetidas() {
-		JLabel figuRepetida = new JLabel("Figuritas Repetidas", SwingConstants.LEFT);
-		figuRepetida.setBounds(110, 60, 125, 30);
-		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
-		figuRepetida.setForeground(Color.WHITE);
-		return figuRepetida;
-	}
-	
-	public static JTextField setupFiguritasRepetidas() {
-		JTextField figuRepetida = new JTextField("");
-		figuRepetida.setBounds(240, 60, 125, 25);
-		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
-		figuRepetida.setForeground(Color.WHITE);
-		return figuRepetida;
-	}
-	
-	public static JLabel setupTextoEscenario() {
-		JLabel textoEscenario = new JLabel("Escenario Actual", SwingConstants.LEFT);
-		textoEscenario.setBounds(110, 95, 125, 30);
-		textoEscenario.setFont(new Font("Arial", Font.PLAIN, 12));
-		textoEscenario.setForeground(Color.WHITE);
-		return textoEscenario;
-	}
-	
-	public static JTextField setupEscenario() {
-		JTextField escenario = new JTextField("");
-		escenario.setBounds(240, 95, 125, 25);
-		escenario.setFont(new Font("Arial", Font.PLAIN, 12));
-		escenario.setForeground(Color.WHITE);
-		return escenario;
 	}
 	
 	public static JLabel setupTextoPaquetesComprados() {
 		JLabel textoPaquetes = new JLabel("Paquetes Comprados", SwingConstants.LEFT);
-		textoPaquetes.setBounds(110, 130, 125, 30);
+		textoPaquetes.setBounds(110, 95, 125, 30);
 		textoPaquetes.setFont(new Font("Arial", Font.PLAIN, 12));
 		textoPaquetes.setForeground(Color.WHITE);
 		return textoPaquetes;
@@ -245,10 +230,26 @@ public class Recurso {
 
 	public static JTextField setupPaquetesComprados() {
 		JTextField paquetes = new JTextField("");
-		paquetes.setBounds(240, 130, 125, 25);
+		paquetes.setBounds(240, 95, 125, 25);
 		paquetes.setFont(new Font("Arial", Font.PLAIN, 12));
-		paquetes.setForeground(Color.WHITE);
+		paquetes.setForeground(Color.black);
 		return paquetes;
+	}
+	
+	public static JLabel setupTextoFiguritasRepetidas() {
+		JLabel figuRepetida = new JLabel("Figuritas Repetidas", SwingConstants.LEFT);
+		figuRepetida.setBounds(110, 130, 125, 30);
+		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
+		figuRepetida.setForeground(Color.WHITE);
+		return figuRepetida;
+	}
+	
+	public static JTextField setupFiguritasRepetidas() {
+		JTextField figuRepetida = new JTextField("");
+		figuRepetida.setBounds(240, 130, 125, 25);
+		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
+		figuRepetida.setForeground(Color.black);
+		return figuRepetida;
 	}
 	
 	public static JLabel setupTextoUsuario0() {
