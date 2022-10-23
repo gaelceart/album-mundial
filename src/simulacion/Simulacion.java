@@ -3,9 +3,6 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import albumMundial.Album;
-import generadores.*;
-
 public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;
@@ -19,7 +16,8 @@ public class Simulacion implements Runnable {
 	private tipoEscenario _escenario;
 	private int _figusRepetidasSobrantes;
 
-	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusRaras,int cantFigusPorPaquete, tipoEscenario e) {
+	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusRaras, int cantFigusPorPaquete,
+			tipoEscenario e) {
 		_cantidadFigusAlbum = cantFigusAlbum;
 		_cantRarasAlbum = cantFigusRaras;
 		_cantidadFigusPorPaquete = cantFigusPorPaquete;
@@ -35,103 +33,101 @@ public class Simulacion implements Runnable {
 	private Usuario[] inicializarUsers(int cantUsuarios) {
 		Usuario[] ret = new Usuario[cantUsuarios];
 		for (int i = 0; i < cantUsuarios; i++)
-			ret[i] = new Usuario(_cantidadFigusAlbum, _cantRarasAlbum);
+			ret[i] = new Usuario();
 		return ret;
+	}
+	
+	private void comprarAlbumes(int cantFigusAlbum, int cantFigusRaras) {
+		for (int i = 0; i < _users.length; i++)
+			_users[i].comprarAlbum(cantFigusAlbum, cantFigusRaras);
 	}
 
 	@Override
 	public void run() {
 		long startTime = System.currentTimeMillis();
+		comprarAlbumes(_cantidadFigusAlbum, _cantRarasAlbum);
+		
 		while (!albumesCompletos()) {
 			// Fase 1 Comprar paquetes
 			HashMap<Integer, Integer[]> paquetes = comprarPaquetes(_cantidadFigusPorPaquete);
 
 			// Fase 2 Pegar figuritas
-			for (int i = 0; i < _users.length; i++)
-				if (paquetes.containsKey(i)) {
-					_users[i].pegarFiguritas(paquetes.get(i));
-					_users[i].tieneAlbumCompleto();
-				}
+			pegarFiguritas(paquetes);
 
 			// Fase 3 Donar y pegar donadas
-			if (_escenario == tipoEscenario.donacion) {
-				// donar
-				for (int donante = 0; donante < _users.length; donante++) {
-					// recorro figus
-					Iterator<Integer> it = _users[donante].getFiguritasRepetidas().iterator();
-					while (it.hasNext()) {
-						Integer figu = it.next();
-						for (int destino = donante + 1; destino < _users.length; destino++) {
-							if (!_users[destino].esFiguritaRepetida(figu)) {
-								_users[destino].pegarFigurita(figu);
-								it.remove();
-								_cantidadFigusDonadas++;
+			donarFiguritas();
+
+			// Fase 3 Intercambiar
+			intercambiarFiguritas();
+		}
+
+		_calcularPaquetesTotales();
+		_calcularFigusRepetidasTotales();
+		_calcularFigusRepetidasSobrantes();
+		mostrarResultados(startTime);
+	}
+
+	private void pegarFiguritas(HashMap<Integer, Integer[]> paquetes) {
+		for (int i = 0; i < _users.length; i++)
+			if (paquetes.containsKey(i))
+				_users[i].pegarFiguritas(paquetes.get(i));
+	}
+
+	private void donarFiguritas() {
+		if (_escenario != tipoEscenario.donacion)
+			return;
+		// donar
+		for (int donante = 0; donante < _users.length; donante++) {
+			// recorro figus
+			Iterator<Integer> it = _users[donante].getFiguritasRepetidas().iterator();
+			while (it.hasNext()) {
+				Integer figu = it.next();
+				for (int destino = donante + 1; destino < _users.length; destino++) {
+					if (!_users[destino].esFiguritaRepetida(figu)) {
+						_users[destino].pegarFigurita(figu);
+						it.remove();
+						_cantidadFigusDonadas++;
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	private void intercambiarFiguritas() {
+		if (_escenario != tipoEscenario.intercambio)
+			return;
+		// intercambiar
+		for (int trader = 0; trader < _users.length; trader++) {
+			if (_users[trader].tieneAlbumCompleto())
+				continue;
+			// recorro figus
+			Iterator<Integer> itA = _users[trader].getFiguritasRepetidas().iterator();
+			while (itA.hasNext()) {
+				Integer figuTrader = itA.next();
+				for (int destino = trader + 1; destino < _users.length; destino++) {
+					if (!_users[destino].esFiguritaRepetida(figuTrader)) {
+						boolean seIntercambio = false;
+						Iterator<Integer> itB = _users[destino].getFiguritasRepetidas().iterator();
+						while (itB.hasNext()) {
+							Integer figuB = itB.next();
+							if (!_users[trader].esFiguritaRepetida(figuB)) {
+								_users[trader].pegarFigurita(figuB);
+								_users[destino].pegarFigurita(figuTrader);
+								seIntercambio = true;
+								_cantIntercambiosRealizados++;
+								break;
+							}
+							itB.remove();
+							if (seIntercambio) {
+								itA.remove();
 								break;
 							}
 						}
 					}
 				}
 			}
-
-			// Fase 3 Intercambiar
-			if (_escenario == tipoEscenario.intercambio) {
-				for (int trader = 0; trader < _users.length; trader++) {
-					if (_users[trader].tieneAlbumCompleto())
-						continue;
-					// recorro figus
-					Iterator<Integer> itA = _users[trader].getFiguritasRepetidas().iterator();
-					while (itA.hasNext()) {
-						Integer figuTrader = itA.next();
-						for (int destino = trader + 1; destino < _users.length; destino++) {
-							if (!_users[destino].esFiguritaRepetida(figuTrader)) {
-								boolean seIntercambio = false;
-								Iterator<Integer> itB = _users[destino].getFiguritasRepetidas().iterator();
-								while (itB.hasNext()) {
-									Integer figuB = itB.next();
-									if (!_users[trader].esFiguritaRepetida(figuB)) {
-										_users[trader].pegarFigurita(figuB);
-										_users[destino].pegarFigurita(figuTrader);
-										seIntercambio = true;
-										_cantIntercambiosRealizados++;
-										break;
-									}
-									itB.remove();
-									if (seIntercambio) {
-										itA.remove();
-										break;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-
 		}
-
-		_calcularPaquetesTotales();
-
-		_calcularFigusRepetidasTotales();
-
-		_calcularFigusRepetidasSobrantes();
-		System.out.println("CANT USERS:" + _users.length);
-		System.out.println("CANTIDAD FIGUS ALBUM: " + _cantidadFigusAlbum);
-		System.out.println("CANTIDAD FIGUS PAQUETE: " + _cantidadFigusPorPaquete);
-		System.out.println("Paquetes totales: " + _paquetesTotalesComprados);
-		System.out.println("Paquetes comprados por el usuario 0: " + _users[0].getCantidadPaquetesComprados());
-		System.out.println(
-				"Paquetes comprados por el usuario final: " + _users[_users.length - 1].getCantidadPaquetesComprados());
-		System.out.println("Figuritas repetidas totales: " + _figusTotalesRepetidas);
-		System.out.println("Figuritas repetidas sobrantes: " + _figusRepetidasSobrantes);
-		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getCantidadFigusRepetidasTotal());
-		System.out.println(
-				"Figuritas repetidas del usuario final: " + _users[_users.length - 1].getCantidadFigusRepetidasTotal());
-		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
-		System.out.println("Figuritas intercambiadas: " + _cantIntercambiosRealizados);
-
-		long endTime = System.currentTimeMillis();
-		System.out.println("TIEMPO TRANSCURRIDO: " + (endTime - startTime) + "ms\n");
-
 	}
 
 	private void _calcularFigusRepetidasTotales() {
@@ -171,6 +167,25 @@ public class Simulacion implements Runnable {
 
 	public double getPaquetesTotalesComprados() {
 		return _paquetesTotalesComprados;
+	}
+
+	private void mostrarResultados(long startTime) {
+		System.out.println("CANT USERS:" + _users.length);
+		System.out.println("CANTIDAD FIGUS ALBUM: " + _cantidadFigusAlbum);
+		System.out.println("CANTIDAD FIGUS PAQUETE: " + _cantidadFigusPorPaquete);
+		System.out.println("Paquetes totales: " + _paquetesTotalesComprados);
+		System.out.println("Paquetes comprados por el usuario 0: " + _users[0].getCantidadPaquetesComprados());
+		System.out.println(
+				"Paquetes comprados por el usuario final: " + _users[_users.length - 1].getCantidadPaquetesComprados());
+		System.out.println("Figuritas repetidas totales: " + _figusTotalesRepetidas);
+		System.out.println("Figuritas repetidas sobrantes: " + _figusRepetidasSobrantes);
+		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getCantidadFigusRepetidasTotal());
+		System.out.println(
+				"Figuritas repetidas del usuario final: " + _users[_users.length - 1].getCantidadFigusRepetidasTotal());
+		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
+		System.out.println("Figuritas intercambiadas: " + _cantIntercambiosRealizados);
+		long endTime = System.currentTimeMillis();
+		System.out.println("TIEMPO TRANSCURRIDO: " + (endTime - startTime) + "ms\n");
 	}
 
 }
