@@ -3,8 +3,6 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import albumMundial.Album;
-
 public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;

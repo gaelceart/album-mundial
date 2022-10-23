@@ -1,5 +1,5 @@
-package generador;
 
+package generadores;
 import java.util.Random;
 
 public class GeneradorRandom implements Generador {

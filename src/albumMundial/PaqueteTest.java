@@ -6,7 +6,7 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import generador.Generador;
+import generadores.Generador;
 
 public class PaqueteTest {
 	@Test(expected = IllegalArgumentException.class)

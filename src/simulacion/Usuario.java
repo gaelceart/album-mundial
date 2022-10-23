@@ -1,8 +1,6 @@
 package simulacion;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import albumMundial.*;
 
 public class Usuario {
@@ -17,11 +15,15 @@ public class Usuario {
 		_paquetesComprados = 0;
 		_cantidadFigusRepetidasTotal = 0;
 	}
+<<<<<<< HEAD
 	
 	public void comprarAlbum(int cantFigusAlbum, int cantFigusRaras) {
 		_album = new Album(cantFigusAlbum, cantFigusRaras);
 	}
 	
+=======
+
+>>>>>>> fr_b
 	public Integer[] comprarPaquete(int cantFigus) {
 		_paquetesComprados++;
 		return Paquete.comprarPaquete(cantFigus, _album);
@@ -33,6 +35,7 @@ public class Usuario {
 	}
 
 	public boolean tieneAlbumCompleto() {
+		_album.checkEsCompleto();
 		return _album.isCompleto();
 	}
 
