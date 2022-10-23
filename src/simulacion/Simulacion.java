@@ -157,7 +157,7 @@ public class Simulacion implements Runnable {
 		return ret;
 	}
 
-	private boolean albumesCompletos() {
+	public boolean albumesCompletos() {
 		for (Usuario u : _users) {
 			if (!u.tieneAlbumCompleto())
 				return false;

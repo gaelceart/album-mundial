@@ -125,16 +125,16 @@ public class Model {
 	}
 
 	public void iniciarSimulacion() {
-		Generador generador = GeneradorPrefijado();
-		Album.setGenerador(generador);
-		Paquete.setGenerador(generador);
+		Album.setGenerador(generadorPrefijado());
+		Paquete.setGenerador(generadorPrefijado());
 		double costoPromedio = simular();
 	}
-	public Generador GeneradorPrefijado() {
+	private Generador generadorPrefijado() {
 		Generador generador = new Generador() {
 			int count = 0;
 			@Override
 			public int nextInt(int rango) {
+				
 				return count < rango? count++:rango;
 			}
 			
