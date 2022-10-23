@@ -61,12 +61,12 @@ public class Simulacion implements Runnable {
 
 			// Fase 3 Intercambiar
 			intercambiarFiguritas();
-
-			_calcularPaquetesTotales();
-			_calcularFigusRepetidasTotales();
-			_calcularFigusRepetidasSobrantes();
-			mostrarResultados(startTime);
 		}
+
+		_calcularPaquetesTotales();
+		_calcularFigusRepetidasTotales();
+		_calcularFigusRepetidasSobrantes();
+		mostrarResultados(startTime);
 	}
 
 	private void pegarFiguritas(HashMap<Integer, Integer[]> paquetes) {
