@@ -35,13 +35,20 @@ public class Simulacion implements Runnable {
 	private Usuario[] inicializarUsers(int cantUsuarios) {
 		Usuario[] ret = new Usuario[cantUsuarios];
 		for (int i = 0; i < cantUsuarios; i++)
-			ret[i] = new Usuario(_cantidadFigusAlbum, _cantRarasAlbum);
+			ret[i] = new Usuario();
 		return ret;
+	}
+	
+	private void comprarAlbumes(int cantFigusAlbum, int cantFigusRaras) {
+		for (int i = 0; i < _users.length; i++)
+			_users[i].comprarAlbum(cantFigusAlbum, cantFigusRaras);
 	}
 
 	@Override
 	public void run() {
 		long startTime = System.currentTimeMillis();
+		comprarAlbumes(_cantidadFigusAlbum, _cantRarasAlbum);
+		
 		while (!albumesCompletos()) {
 			// Fase 1 Comprar paquetes
 			HashMap<Integer, Integer[]> paquetes = comprarPaquetes(_cantidadFigusPorPaquete);

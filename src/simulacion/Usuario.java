@@ -12,11 +12,14 @@ public class Usuario {
 	private ArrayList<Integer> _figuritasRepetidas;
 	private int _cantidadFigusRepetidasTotal;
 
-	public Usuario(int cantFigusAlbum, int cantRarasAlbum) {
-		_album = new Album(cantFigusAlbum, cantRarasAlbum);
+	public Usuario() {
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
 		_cantidadFigusRepetidasTotal = 0;
+	}
+	
+	public void comprarAlbum(int cantFigusAlbum, int cantFigusRaras) {
+		_album = new Album(cantFigusAlbum, cantFigusRaras);
 	}
 	
 	public Integer[] comprarPaquete(int cantFigus) {
