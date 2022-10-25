@@ -86,11 +86,8 @@ public class Album {
 	}
 
 	private void seleccionFigusRaras() {
-		while (_figuritasRaras.size() < _cantidadFiguritasRaras) {
-			int figuritaSelecccionada = _random.nextInt(_cantidadFiguritas);
-			if (!_figuritasRaras.contains(figuritaSelecccionada)) {
-				_figuritasRaras.add(figuritaSelecccionada);
-			}
+		for (int i = 0; i < _cantidadFiguritasRaras; i++) {
+			_figuritasRaras.add(i);
 		}
 	}
 
