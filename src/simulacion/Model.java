@@ -1,9 +1,7 @@
 package simulacion;
 
-import albumMundial.Album;
 import albumMundial.Paquete;
 import generadores.Generador;
-import generadores.GeneradorRandom;
 
 public class Model {
 
@@ -125,7 +123,6 @@ public class Model {
 	}
 
 	public void iniciarSimulacion() {
-		Album.setGenerador(generadorPrefijado());
 		Paquete.setGenerador(generadorPrefijado());
 		double costoPromedio = simular();
 	}

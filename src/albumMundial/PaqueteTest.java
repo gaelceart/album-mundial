@@ -11,28 +11,24 @@ import generadores.Generador;
 public class PaqueteTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void paqueteContieneMasQueAlbumTest() {
-		Album.setGenerador(generadorPrefijadoTrue());
 		Paquete.setGenerador(generadorPrefijadoTrue());
 		Paquete.comprarPaquete(101, new Album(100, 5));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void paqueteConCeroFiguritasTest() {
-		Album.setGenerador(generadorPrefijadoTrue());
 		Paquete.setGenerador(generadorPrefijadoTrue());
 		Paquete.comprarPaquete(0, new Album(100, 5));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void paqueteConFiguritasNegativasTest() {
-		Album.setGenerador(generadorPrefijadoTrue());
 		Paquete.setGenerador(generadorPrefijadoTrue());
 		Paquete.comprarPaquete(-1, new Album(100, 5));
 	}
 
 	@Test
 	public void paqueteTodasRarasTest() {
-		Album.setGenerador(generadorPrefijadoTrue());
 		Paquete.setGenerador(generadorPrefijadoTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		Integer[] paqueteEsperado = { 0, 1, 2, 3, 4 };
@@ -41,7 +37,6 @@ public class PaqueteTest {
 
 	@Test
 	public void paqueteSinRarasTest() {
-		Album.setGenerador(generadorPrefijadoFalse());
 		Paquete.setGenerador(generadorPrefijadoFalse());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		Integer[] paqueteRaras = { 0, 1, 2, 3, 4 };
@@ -57,7 +52,6 @@ public class PaqueteTest {
 
 	@Test
 	public void paqueteConUnaRaraTest() {
-		Album.setGenerador(generadorPrefijadoUnaVezTrue());
 		Paquete.setGenerador(generadorPrefijadoUnaVezTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		Integer[] paqueteEsperado = { 0, 5, 6, 7, 8 };
@@ -67,7 +61,6 @@ public class PaqueteTest {
 
 	@Test
 	public void paqueteConUnaComunTest() {
-		Album.setGenerador(generadorPrefijado4VecesTrue());
 		Paquete.setGenerador(generadorPrefijado4VecesTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		Integer[] paqueteEsperado = { 0, 1, 2, 3, 5 };
@@ -77,7 +70,6 @@ public class PaqueteTest {
 
 	@Test
 	public void paqueteSinRepetidasTest() {
-		Album.setGenerador(generadorPrefijadoRepetitivo());
 		Paquete.setGenerador(generadorPrefijadoRepetitivo());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		boolean ret = false;

@@ -2,9 +2,6 @@ package albumMundial;
 
 import java.util.ArrayList;
 
-import generadores.Generador;
-
-
 public class Album {
 	private int _cantidadFiguritas;
 	private int _cantidadFiguritasRaras;
@@ -13,8 +10,6 @@ public class Album {
 	private boolean[] _figuritas;
 
 	private boolean _completo;
-
-	public static Generador _random;
 
 	public Album(int cantidadFiguritas, int cantidadFigusRaras) {
 		irep(cantidadFiguritas, cantidadFigusRaras);
@@ -40,10 +35,6 @@ public class Album {
 					"Un Album no puede tener mas figuritas raras que cantidad de figuritas en total: " + "FigusALbum: "
 							+ cantidadFiguritas + "/ CantidadRaras: " + cantidadFigusRaras);
 		}
-	}
-
-	public static void setGenerador(Generador generador) {
-		_random = generador;
 	}
 
 	public void pegarFigurita(int n) {

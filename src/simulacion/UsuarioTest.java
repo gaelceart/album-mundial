@@ -4,8 +4,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import albumMundial.Album;
 import albumMundial.Paquete;
 import generadores.GeneradorRandom;
 
@@ -13,7 +11,6 @@ public class UsuarioTest {
 
 	@Test
 	public void compraUnPaqueteTest() {
-		Album.setGenerador(new GeneradorRandom());
 		Paquete.setGenerador(new GeneradorRandom());
 		Usuario usuario = new Usuario();
 		usuario.comprarAlbum(5, 1);
@@ -23,7 +20,6 @@ public class UsuarioTest {
 
 	@Test
 	public void comprarCienPaquetesTest() {
-		Album.setGenerador(new GeneradorRandom());
 		Paquete.setGenerador(new GeneradorRandom());
 		Usuario usuario = new Usuario();
 		usuario.comprarAlbum(5, 1);

@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import albumMundial.Album;
 import albumMundial.Paquete;
 import generadores.Generador;
 
@@ -12,7 +11,6 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void comprarPaquetesJustosTest() {
-		Album.setGenerador(generadorPrefijado());
 		Paquete.setGenerador(generadorPrefijado());
 		Simulacion simulacion = new Simulacion(1, 100, 5, 5, tipoEscenario.individual);
 		simulacion.run();
@@ -21,7 +19,6 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void dobleDePaquetesCompradosTest() {
-		Album.setGenerador(generadorPrefijado());
 		Paquete.setGenerador(generadorPaquetesDobles());
 		Simulacion simulacion = new Simulacion(1, 100, 5, 5, tipoEscenario.individual);
 		simulacion.run();
@@ -30,32 +27,33 @@ public class SimulacionIndividualTest {
 	}
 
 	private Generador generadorPaquetesDobles() {
-			Generador generador = new Generador() {
-				int cont = 0;
-				int limite = 4;
-				boolean repetir = true;
-				@Override
-				public int nextInt(int rango) {
-					if (cont < limite) {
-						return cont++;
-					}
-					if (repetir) {
-						cont = 0;
-						repetir = false;
-						return cont++;
-					}
-					limite += 5;
-					repetir = true;
+		Generador generador = new Generador() {
+			int cont = 0;
+			int limite = 4;
+			boolean repetir = true;
+
+			@Override
+			public int nextInt(int rango) {
+				if (cont < limite) {
 					return cont++;
 				}
-
-				@Override
-				public boolean nextBoolean() {
-					// TODO Auto-generated method stub
-					return false;
+				if (repetir) {
+					cont = 0;
+					repetir = false;
+					return cont++;
 				}
-				
-			};
+				limite += 5;
+				repetir = true;
+				return cont++;
+			}
+
+			@Override
+			public boolean nextBoolean() {
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+		};
 		return null;
 	}
 

@@ -2,7 +2,6 @@ package albumMundial;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import generadores.Generador;
 
 public class AlbumTest {
 	private Album _album;
@@ -34,15 +33,12 @@ public class AlbumTest {
 
 	@Test
 	public void todasFiguritasRarasTest() {
-		Generador generador = generadorPrefijado();
-		Album.setGenerador(generador);
 		_album = new Album(50, 50);
 		assertEquals(_album.tamano(), _album.getFiguritasRaras().size());
 	}
 
 	@Test
 	public void solaUnaFiguritaRaraTest() {
-		Album.setGenerador(generadorPrefijado());
 		_album = new Album(100, 1);
 		assertEquals(1, _album.getCantidadFiguritasRaras());
 	}
@@ -74,14 +70,12 @@ public class AlbumTest {
 
 	@Test
 	public void esFiguritaRaraTest() {
-		Album.setGenerador(generadorPrefijado());
 		_album = new Album(10, 1);
 		assertTrue(_album.esFiguRara(0));
 	}
 
 	@Test
 	public void noEsFiguritaRaraTest() {
-		Album.setGenerador(generadorPrefijado());
 		_album = new Album(10, 1);
 		assertFalse(_album.esFiguRara(1));
 	}
@@ -98,24 +92,6 @@ public class AlbumTest {
 		_album = new Album(5, 0);
 		_album.pegarFigurita(0);
 		assertFalse(_album.checkEsCompleto());
-	}
-
-	private Generador generadorPrefijado() {
-		Generador generador = new Generador() {
-			int count = 0;
-
-			@Override
-			public int nextInt(int rango) {
-				return count < rango ? count++ : rango;
-			}
-
-			@Override
-			public boolean nextBoolean() {
-				return false;
-			}
-
-		};
-		return generador;
 	}
 
 }
