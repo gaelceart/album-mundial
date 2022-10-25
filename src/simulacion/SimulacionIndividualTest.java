@@ -17,7 +17,7 @@ public class SimulacionIndividualTest {
 		assertTrue(simulacion.albumesCompletos());
 	}
 
-	@Test(expected =  IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void completarAlbumNuloTest() {
 		Paquete.setGenerador(generadorPrefijado());
 		Simulacion simulacion = new Simulacion(1, 0, 0, 0, tipoEscenario.individual);
@@ -28,7 +28,7 @@ public class SimulacionIndividualTest {
 	@Test
 	public void comprarPaqueteConUnaFiguritaTest() {
 		Paquete.setGenerador(generadorPrefijado());
-		Simulacion simulacion = new Simulacion(1,100,1,1,tipoEscenario.individual);
+		Simulacion simulacion = new Simulacion(1, 100, 1, 1, tipoEscenario.individual);
 		simulacion.run();
 		assertEquals(100, simulacion.getPaquetesTotalesComprados());
 	}
@@ -48,6 +48,14 @@ public class SimulacionIndividualTest {
 		simulacion.run();
 		assertEquals(19, simulacion.getPaquetesTotalesComprados());
 
+	}
+
+	@Test
+	public void completarAlbumSinSobrantesTest() {
+		Paquete.setGenerador(generadorPrefijado());
+		Simulacion simulacion = new Simulacion(1,20,20,20, tipoEscenario.individual);
+		simulacion.run();
+		assertEquals(0, simulacion.getFiguritasSobrantes());
 	}
 
 	@Test
