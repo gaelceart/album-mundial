@@ -165,8 +165,12 @@ public class Simulacion implements Runnable {
 		return true;
 	}
 
-	public double getPaquetesTotalesComprados() {
+	public int getPaquetesTotalesComprados() {
 		return _paquetesTotalesComprados;
+	}
+	
+	public int getFiguritasSobrantes() {
+		return _figusTotalesRepetidas;
 	}
 
 	private void mostrarResultados(long startTime) {

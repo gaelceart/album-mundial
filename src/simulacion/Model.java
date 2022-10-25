@@ -1,8 +1,5 @@
 package simulacion;
 
-import albumMundial.Paquete;
-import generadores.Generador;
-
 public class Model {
 
 	// public double simular(int cantSimulaciones, int cantUsuarios, int
@@ -123,23 +120,7 @@ public class Model {
 	}
 
 	public void iniciarSimulacion() {
-		Paquete.setGenerador(generadorPrefijado());
 		double costoPromedio = simular();
 	}
-	private Generador generadorPrefijado() {
-		Generador generador = new Generador() {
-			int count = 0;
-			@Override
-			public int nextInt(int rango) {
-				
-				return count < rango? count++:rango;
-			}
-			
-			@Override
-			public boolean nextBoolean() {
-				return true;
-			}
-		};
-		return generador;
-	}
+
 }

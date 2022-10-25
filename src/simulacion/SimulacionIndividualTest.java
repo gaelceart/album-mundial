@@ -10,26 +10,59 @@ import generadores.Generador;
 public class SimulacionIndividualTest {
 
 	@Test
+	public void completarAlbumTest() {
+		Paquete.setGenerador(generadorPrefijado());
+		Simulacion simulacion = new Simulacion(1, 100, 5, 5, tipoEscenario.individual);
+		simulacion.run();
+		assertTrue(simulacion.albumesCompletos());
+	}
+
+	@Test(expected =  IllegalArgumentException.class)
+	public void completarAlbumNuloTest() {
+		Paquete.setGenerador(generadorPrefijado());
+		Simulacion simulacion = new Simulacion(1, 0, 0, 0, tipoEscenario.individual);
+		simulacion.run();
+		assertTrue(simulacion.albumesCompletos());
+	}
+
+	@Test
+	public void comprarPaqueteConUnaFiguritaTest() {
+		Paquete.setGenerador(generadorPrefijado());
+		Simulacion simulacion = new Simulacion(1,100,1,1,tipoEscenario.individual);
+		simulacion.run();
+		assertEquals(100, simulacion.getPaquetesTotalesComprados());
+	}
+
+	@Test
 	public void comprarPaquetesJustosTest() {
 		Paquete.setGenerador(generadorPrefijado());
 		Simulacion simulacion = new Simulacion(1, 100, 5, 5, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(20, simulacion.getPaquetesTotalesComprados(), 0);
+		assertEquals(20, simulacion.getPaquetesTotalesComprados());
 	}
 
 	@Test
-	public void dobleDePaquetesCompradosTest() {
-		Paquete.setGenerador(generadorPaquetesDobles());
-		Simulacion simulacion = new Simulacion(1, 100, 5, 5, tipoEscenario.individual);
+	public void paquetesRepetidosTest() {
+		Paquete.setGenerador(generadorRepetidor());
+		Simulacion simulacion = new Simulacion(1, 20, 2, 2, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(40, simulacion.getPaquetesTotalesComprados(), 0);
+		assertEquals(19, simulacion.getPaquetesTotalesComprados());
 
 	}
 
-	private Generador generadorPaquetesDobles() {
+	@Test
+	public void figuritasSobrantesTest() {
+		Paquete.setGenerador(generadorRepetidor());
+		Simulacion simulacion = new Simulacion(1, 20, 2, 2, tipoEscenario.individual);
+		simulacion.run();
+		assertEquals(18, simulacion.getFiguritasSobrantes());
+	}
+
+	private Generador generadorRepetidor() {
 		Generador generador = new Generador() {
 			int cont = 0;
-			int limite = 4;
+			int inicioAux = 0;
+			int limite = 1;
 			boolean repetir = true;
 
 			@Override
@@ -38,23 +71,24 @@ public class SimulacionIndividualTest {
 					return cont++;
 				}
 				if (repetir) {
-					cont = 0;
+					cont = inicioAux;
 					repetir = false;
 					return cont++;
 				}
-				limite += 5;
+				limite += 2;
+				inicioAux = cont;
 				repetir = true;
 				return cont++;
+
 			}
 
 			@Override
 			public boolean nextBoolean() {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 
 		};
-		return null;
+		return generador;
 	}
 
 	private Generador generadorPrefijado() {

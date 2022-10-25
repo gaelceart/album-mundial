@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
+import albumMundial.Paquete;
+import generadores.GeneradorRandom;
 import interfaz.Interfaz;
 import simulacion.Model;
 import simulacion.tipoEscenario;
@@ -36,6 +38,7 @@ public class Presenter {
 	}
 
 	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField cantUser) {
+		Paquete.setGenerador(new GeneradorRandom());
 		_gui.setInteracciones(false);
 		_model.setCantFigusAlbum(Integer.parseInt(figuAlbum.getText()));
 		_model.setCantFigusPaquete(Integer.parseInt(figuPaquete.getText()));
