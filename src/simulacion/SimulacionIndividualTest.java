@@ -8,14 +8,14 @@ import albumMundial.Paquete;
 import generadores.Generador;
 import generadores.GeneradorCuadruplePaquetes;
 import generadores.GeneradorPaquetesDobles;
-import generadores.GeneradorPaquetesEnOrden;
+import generadores.GeneradorPaquetesEnOrdenTrue;
 import generadores.GeneradorRandom;
 
 public class SimulacionIndividualTest {
 
 	@Test
 	public void completarAlbumTest() {
-		Paquete.setGenerador(new GeneradorPaquetesEnOrden());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 5, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
@@ -31,7 +31,7 @@ public class SimulacionIndividualTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void completarAlbumNuloTest() {
-		Paquete.setGenerador(new GeneradorPaquetesEnOrden());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 0, 0, 0, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
@@ -39,7 +39,7 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void completarAlbumSinUsuariosTest() {
-		Paquete.setGenerador(new GeneradorPaquetesEnOrden());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(0, 10, 0, 1, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
@@ -64,7 +64,7 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void comprarPaqueteConUnaFiguritaTest() {
-		Paquete.setGenerador(new GeneradorPaquetesEnOrden());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 1, tipoEscenario.individual);
 		simulacion.run();
 		assertEquals(100, simulacion.getPaquetesTotalesComprados());
@@ -72,7 +72,7 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void comprarPaquetesJustosTest() {
-		Paquete.setGenerador(new GeneradorPaquetesEnOrden());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 5, tipoEscenario.individual);
 		simulacion.run();
 		assertEquals(20, simulacion.getPaquetesTotalesComprados());
@@ -89,7 +89,7 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void completarAlbumSinSobrantesTest() {
-		Paquete.setGenerador(new GeneradorPaquetesEnOrden());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 20, 20, 20, tipoEscenario.individual);
 		simulacion.run();
 		assertEquals(0, simulacion.getFiguritasSobrantes());

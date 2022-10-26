@@ -1,6 +1,6 @@
 package generadores;
 
-public class GeneradorPaquetesEnOrden implements Generador {
+public class GeneradorPaquetesEnOrdenTrue implements Generador {
 	int count = 0;
 
 	@Override
