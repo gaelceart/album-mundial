@@ -2,11 +2,8 @@ package albumMundial;
 
 import static org.junit.Assert.*;
 
-import java.util.Random;
-
 import org.junit.Test;
 
-import generadores.Generador;
 import generadores.GeneradorEnOrdenUnaVezTrue;
 import generadores.GeneradorPaqueteEnOrden4VecesTrue;
 import generadores.GeneradorPaquetesEnOrdenTrue;
