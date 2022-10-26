@@ -5,7 +5,6 @@ public class GeneradoresPaquetesEnOrdenFalse implements Generador {
 
 	@Override
 	public int nextInt(int rango) {
-		System.out.println(count);
 		return count < rango ? count++ : rango;
 	}
 
