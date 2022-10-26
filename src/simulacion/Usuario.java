@@ -54,7 +54,6 @@ public class Usuario {
 				_cantidadFigusRepetidasTotal = getCantidadFigusRepetidasTotal() + 1;
 			} else {
 				pegarFigurita(paquete[i]);
-				System.out.println("PEGUÉ figu " + paquete[i]);
 			}
 		}
 	}

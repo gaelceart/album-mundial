@@ -22,6 +22,12 @@ public class SimulacionIndividualTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
+	public void simularConCeroUsuarios() {
+		Simulacion simulacion = new Simulacion(0, 1, 1, 1, tipoEscenario.individual);
+		simulacion.getFiguritasSobrantes();
+	}
+
+	@Test(expected = IllegalArgumentException.class)
 	public void completarAlbumNuloTest() {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 0, 0, 0, tipoEscenario.individual);

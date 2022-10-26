@@ -18,6 +18,9 @@ public class Simulacion implements Runnable {
 
 	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusRaras, int cantFigusPorPaquete,
 			tipoEscenario e) {
+		if (cantUsuarios <= 0) {
+			throw new IllegalArgumentException("No puede existir una simulacion con 0 o menos usuarios. cantUsuarios: "+ cantUsuarios);
+		}
 		_cantidadFigusAlbum = cantFigusAlbum;
 		_cantRarasAlbum = cantFigusRaras;
 		_cantidadFigusPorPaquete = cantFigusPorPaquete;
@@ -36,7 +39,7 @@ public class Simulacion implements Runnable {
 			ret[i] = new Usuario();
 		return ret;
 	}
-	
+
 	private void comprarAlbumes(int cantFigusAlbum, int cantFigusRaras) {
 		for (int i = 0; i < _users.length; i++)
 			_users[i].comprarAlbum(cantFigusAlbum, cantFigusRaras);
@@ -46,7 +49,7 @@ public class Simulacion implements Runnable {
 	public void run() {
 		long startTime = System.currentTimeMillis();
 		comprarAlbumes(_cantidadFigusAlbum, _cantRarasAlbum);
-		
+
 		while (!albumesCompletos()) {
 			// Fase 1 Comprar paquetes
 			HashMap<Integer, Integer[]> paquetes = comprarPaquetes(_cantidadFigusPorPaquete);
@@ -64,7 +67,6 @@ public class Simulacion implements Runnable {
 		_calcularPaquetesTotales();
 		_calcularFigusRepetidasTotales();
 		_calcularFigusRepetidasSobrantes();
-		mostrarResultados(startTime);
 	}
 
 	private void pegarFiguritas(HashMap<Integer, Integer[]> paquetes) {
@@ -168,13 +170,9 @@ public class Simulacion implements Runnable {
 	public int getPaquetesTotalesComprados() {
 		return _paquetesTotalesComprados;
 	}
-	
+
 	public int getFiguritasSobrantes() {
 		return _figusTotalesRepetidas;
-	}
-
-	private void mostrarResultados(long startTime) {
-
 	}
 
 }
