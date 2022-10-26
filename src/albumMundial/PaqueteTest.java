@@ -7,36 +7,40 @@ import java.util.Random;
 import org.junit.Test;
 
 import generadores.Generador;
+import generadores.GeneradorEnOrdenUnaVezTrue;
+import generadores.GeneradorPaqueteEnOrden4VecesTrue;
+import generadores.GeneradorPaquetesEnOrdenTrue;
+import generadores.GeneradoresPaquetesEnOrdenFalse;
 
 public class PaqueteTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void paqueteContieneMasQueAlbumTest() {
-		Paquete.setGenerador(generadorPrefijadoTrue());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Paquete.comprarPaquete(101, new Album(100, 5));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void paqueteConCeroFiguritasTest() {
-		Paquete.setGenerador(generadorPrefijadoTrue());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Paquete.comprarPaquete(0, new Album(100, 5));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void paqueteConFiguritasNegativasTest() {
-		Paquete.setGenerador(generadorPrefijadoTrue());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Paquete.comprarPaquete(-1, new Album(100, 5));
 	}
 
 	@Test
 	public void cantidadDeFigusPorPaqueteTest() {
-		Paquete.setGenerador(generadorPrefijadoTrue());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		assertEquals(5, paquete.length);
 	}
 
 	@Test
 	public void paqueteTodasRarasTest() {
-		Paquete.setGenerador(generadorPrefijadoTrue());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		Integer[] paqueteEsperado = { 0, 1, 2, 3, 4 };
 		assertArrayEquals(paqueteEsperado, paquete);
@@ -44,7 +48,7 @@ public class PaqueteTest {
 
 	@Test
 	public void paqueteSinRarasTest() {
-		Paquete.setGenerador(generadorPrefijadoFalse());
+		Paquete.setGenerador(new GeneradoresPaquetesEnOrdenFalse());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		Integer[] paqueteRaras = { 0, 1, 2, 3, 4 };
 
@@ -59,7 +63,7 @@ public class PaqueteTest {
 
 	@Test
 	public void paqueteConUnaRaraTest() {
-		Paquete.setGenerador(generadorPrefijadoUnaVezTrue());
+		Paquete.setGenerador(new GeneradorEnOrdenUnaVezTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		Integer[] paqueteEsperado = { 0, 5, 6, 7, 8 };
 		assertArrayEquals(paqueteEsperado, paquete);
@@ -68,7 +72,7 @@ public class PaqueteTest {
 
 	@Test
 	public void paqueteConUnaComunTest() {
-		Paquete.setGenerador(generadorPrefijado4VecesTrue());
+		Paquete.setGenerador(new GeneradorPaqueteEnOrden4VecesTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		Integer[] paqueteEsperado = { 0, 1, 2, 3, 5 };
 		assertArrayEquals(paqueteEsperado, paquete);
@@ -77,7 +81,7 @@ public class PaqueteTest {
 
 	@Test
 	public void paqueteSinRepetidasTest() {
-		Paquete.setGenerador(generadorPrefijadoRepetitivo());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
 		boolean ret = false;
 		for (int i = 0; i < paquete.length; i++) {
@@ -88,110 +92,4 @@ public class PaqueteTest {
 		assertFalse(ret);
 	}
 
-	private Generador generadorPrefijado4VecesTrue() {
-		Generador generador = new Generador() {
-			int count = 0;
-
-			@Override
-			public int nextInt(int rango) {
-				return count < rango ? count++ : rango;
-			}
-
-			int contadorTrue = 0;
-
-			@Override
-			public boolean nextBoolean() {
-				if (contadorTrue++ < 4) {
-					return true;
-				}
-				return false;
-			}
-		};
-		return generador;
-	}
-
-	private Generador generadorPrefijadoUnaVezTrue() {
-		Generador generador = new Generador() {
-			int count = 0;
-
-			@Override
-			public int nextInt(int rango) {
-				return count < rango ? count++ : rango;
-			}
-
-			boolean aux = true;
-
-			@Override
-			public boolean nextBoolean() {
-				if (aux) {
-					aux = false;
-					return true;
-				}
-				return false;
-			}
-		};
-		return generador;
-	}
-
-	private Generador generadorPrefijadoRepetitivo() {
-		Generador generador = new Generador() {
-			Random random = new Random();
-			int count = 0;
-			int repeticiones = 1;
-
-			@Override
-			public int nextInt(int rango) {
-				if (count == rango) {
-					return rango;
-				}
-				if (repeticiones >= 1) {
-					repeticiones--;
-					return count;
-				}
-				repeticiones++;
-				return count++;
-			}
-
-			@Override
-			public boolean nextBoolean() {
-				return random.nextBoolean();
-			}
-		};
-		return generador;
-	}
-
-	private Generador generadorPrefijadoFalse() {
-		Generador generador = new Generador() {
-			int count = 0;
-
-			@Override
-			public int nextInt(int rango) {
-				return count < rango ? count++ : rango;
-			}
-
-			@Override
-			public boolean nextBoolean() {
-				return false;
-			}
-		};
-		return generador;
-	}
-
-	private Generador generadorPrefijadoTrue() {
-		Generador generador = new Generador() {
-			int count = 0;
-
-			@Override
-			public int nextInt(int rango) {
-				return count < rango ? count++ : rango;
-			}
-
-			@Override
-			public boolean nextBoolean() {
-				return true;
-			}
-
-		};
-		return generador;
-	}
 }
