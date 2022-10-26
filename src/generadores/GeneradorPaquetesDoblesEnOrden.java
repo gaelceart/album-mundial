@@ -1,6 +1,6 @@
 package generadores;
 
-public class GeneradorPaquetesDobles implements Generador {
+public class GeneradorPaquetesDoblesEnOrden implements Generador {
 	int cont = 0;
 	int inicioAux = 0;
 	int limite = 1;

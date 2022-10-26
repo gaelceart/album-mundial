@@ -7,7 +7,7 @@ import org.junit.Test;
 import albumMundial.Paquete;
 import generadores.Generador;
 import generadores.GeneradorCuadruplePaquetes;
-import generadores.GeneradorPaquetesDobles;
+import generadores.GeneradorPaquetesDoblesEnOrden;
 import generadores.GeneradorPaquetesEnOrdenTrue;
 import generadores.GeneradorRandom;
 
@@ -17,14 +17,6 @@ public class SimulacionIndividualTest {
 	public void completarAlbumTest() {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 5, tipoEscenario.individual);
-		simulacion.run();
-		assertTrue(simulacion.albumesCompletos());
-	}
-
-	@Test
-	public void dosUsuariosCompletarAlbum() {
-		Paquete.setGenerador(new GeneradorPaquetesDobles());
-		Simulacion simulacion = new Simulacion(2, 10, 2, 2, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
 	}
@@ -47,22 +39,6 @@ public class SimulacionIndividualTest {
 	}
 
 	@Test
-	public void paquetesRepetidosDosUsuariosTest() {
-		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
-		Simulacion simulacion = new Simulacion(2, 20, 0, 2, tipoEscenario.individual);
-		simulacion.run();
-		assertEquals(38, simulacion.getPaquetesTotalesComprados());
-	}
-
-	@Test
-	public void figuritasRepetidasDosUsuariosTest() {
-		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
-		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.individual);
-		simulacion.run();
-		assertEquals(16, simulacion.getFiguritasSobrantes());
-	}
-
-	@Test
 	public void comprarPaqueteConUnaFiguritaTest() {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 1, tipoEscenario.individual);
@@ -80,7 +56,7 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void paquetesRepetidosTest() {
-		Paquete.setGenerador(new GeneradorPaquetesDobles());
+		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
 		Simulacion simulacion = new Simulacion(1, 20, 0, 2, tipoEscenario.individual);
 		simulacion.run();
 		assertEquals(19, simulacion.getPaquetesTotalesComprados());
@@ -97,11 +73,10 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void figuritasSobrantesTest() {
-		Paquete.setGenerador(new GeneradorPaquetesDobles());
+		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
 		Simulacion simulacion = new Simulacion(1, 20, 0, 2, tipoEscenario.individual);
 		simulacion.run();
 		assertEquals(18, simulacion.getFiguritasSobrantes());
 	}
-
 
 }
