@@ -236,9 +236,10 @@ public class Recurso {
 	public static JTextField setupEscenario() {
 		JTextField escenario = new JTextField("");
 		escenario.setBounds(240, 25, 125, 25);
-		escenario.setEditable(true);
+		escenario.setEditable(false);
 		escenario.setFont(new Font("Arial", Font.PLAIN, 12));
 		escenario.setForeground(Color.magenta);
+		escenario.setText("");
 		return escenario;
 	}
 	
@@ -253,8 +254,10 @@ public class Recurso {
 	public static JTextField setupCostoPromedio() {
 		JTextField costoPromedio = new JTextField("");
 		costoPromedio.setBounds(240, 60, 125, 25);
+		costoPromedio.setEditable(false);
 		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
 		costoPromedio.setForeground(Color.black);
+		costoPromedio.setText("");
 		return costoPromedio;
 	}
 	
@@ -269,8 +272,10 @@ public class Recurso {
 	public static JTextField setupPaquetesComprados() {
 		JTextField paquetes = new JTextField("");
 		paquetes.setBounds(240, 95, 125, 25);
+		paquetes.setEditable(false);
 		paquetes.setFont(new Font("Arial", Font.PLAIN, 12));
 		paquetes.setForeground(Color.black);
+		paquetes.setText("");
 		return paquetes;
 	}
 	
@@ -285,8 +290,10 @@ public class Recurso {
 	public static JTextField setupFiguritasRepetidas() {
 		JTextField figuRepetida = new JTextField("");
 		figuRepetida.setBounds(240, 130, 125, 25);
+		figuRepetida.setEditable(false);
 		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
 		figuRepetida.setForeground(Color.black);
+		figuRepetida.setText("");
 		return figuRepetida;
 	}
 	
