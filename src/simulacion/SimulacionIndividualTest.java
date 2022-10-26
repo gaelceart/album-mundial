@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import albumMundial.Paquete;
 import generadores.Generador;
+import generadores.GeneradorRandom;
 
 public class SimulacionIndividualTest {
 
@@ -16,13 +17,38 @@ public class SimulacionIndividualTest {
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
 	}
-	
+
+	@Test
+	public void dosUsuariosCompletarAlbum() {
+		Paquete.setGenerador(generadorRepetidor());
+		Simulacion simulacion = new Simulacion(2, 10, 2, 2, tipoEscenario.individual);
+		simulacion.run();
+		assertTrue(simulacion.albumesCompletos());
+	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void completarAlbumNuloTest() {
 		Paquete.setGenerador(generadorPrefijado());
 		Simulacion simulacion = new Simulacion(1, 0, 0, 0, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
+	}
+
+	@Test
+	public void completarAlbumSinUsuariosTest() {
+		Paquete.setGenerador(generadorPrefijado());
+		Simulacion simulacion = new Simulacion(0, 10, 1, 1, tipoEscenario.individual);
+		simulacion.run();
+		assertTrue(simulacion.albumesCompletos());
+
+	}
+
+	@Test
+	public void paquetesRepetidosDosUsuariosTest() {
+		Paquete.setGenerador(generadorCuatroPaquetesIguales());
+		Simulacion simulacion = new Simulacion(2, 20, 2, 2, tipoEscenario.individual);
+		simulacion.run();
+		assertEquals(38, simulacion.getPaquetesTotalesComprados());
 	}
 
 	@Test
@@ -53,7 +79,7 @@ public class SimulacionIndividualTest {
 	@Test
 	public void completarAlbumSinSobrantesTest() {
 		Paquete.setGenerador(generadorPrefijado());
-		Simulacion simulacion = new Simulacion(1,20,20,20, tipoEscenario.individual);
+		Simulacion simulacion = new Simulacion(1, 20, 20, 20, tipoEscenario.individual);
 		simulacion.run();
 		assertEquals(0, simulacion.getFiguritasSobrantes());
 	}
@@ -75,7 +101,7 @@ public class SimulacionIndividualTest {
 
 			@Override
 			public int nextInt(int rango) {
-				if (cont < limite) {
+				if (cont <= limite) {
 					return cont++;
 				}
 				if (repetir) {
@@ -83,9 +109,42 @@ public class SimulacionIndividualTest {
 					repetir = false;
 					return cont++;
 				}
-				limite += 2;
-				inicioAux = cont;
 				repetir = true;
+				inicioAux = cont;
+				limite += 2;
+				return cont++;
+
+			}
+
+			@Override
+			public boolean nextBoolean() {
+				return true;
+			}
+
+		};
+		return generador;
+	}
+
+	private Generador generadorCuatroPaquetesIguales() {
+		Generador generador = new Generador() {
+			int cont = 0;
+			int inicioAux = 0;
+			int limite = 1;
+			int repetir = 3;
+
+			@Override
+			public int nextInt(int rango) {
+				if (cont <= limite) {
+					return cont++;
+				}
+				if (repetir > 0) {
+					cont = inicioAux;
+					repetir--;
+					return cont++;
+				}
+				repetir = 3;
+				inicioAux = cont;
+				limite += 2;
 				return cont++;
 
 			}
@@ -105,7 +164,7 @@ public class SimulacionIndividualTest {
 
 			@Override
 			public int nextInt(int rango) {
-
+				System.out.println(count);
 				return count < rango ? count++ : rango;
 			}
 

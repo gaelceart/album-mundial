@@ -174,22 +174,7 @@ public class Simulacion implements Runnable {
 	}
 
 	private void mostrarResultados(long startTime) {
-		System.out.println("CANT USERS:" + _users.length);
-		System.out.println("CANTIDAD FIGUS ALBUM: " + _cantidadFigusAlbum);
-		System.out.println("CANTIDAD FIGUS PAQUETE: " + _cantidadFigusPorPaquete);
-		System.out.println("Paquetes totales: " + _paquetesTotalesComprados);
-		System.out.println("Paquetes comprados por el usuario 0: " + _users[0].getCantidadPaquetesComprados());
-		System.out.println(
-				"Paquetes comprados por el usuario final: " + _users[_users.length - 1].getCantidadPaquetesComprados());
-		System.out.println("Figuritas repetidas totales: " + _figusTotalesRepetidas);
-		System.out.println("Figuritas repetidas sobrantes: " + _figusRepetidasSobrantes);
-		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getCantidadFigusRepetidasTotal());
-		System.out.println(
-				"Figuritas repetidas del usuario final: " + _users[_users.length - 1].getCantidadFigusRepetidasTotal());
-		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
-		System.out.println("Figuritas intercambiadas: " + _cantIntercambiosRealizados);
-		long endTime = System.currentTimeMillis();
-		System.out.println("TIEMPO TRANSCURRIDO: " + (endTime - startTime) + "ms\n");
+
 	}
 
 }
