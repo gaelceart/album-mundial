@@ -47,7 +47,7 @@ public class SimulacionIndividualTest {
 	}
 
 	@Test
-	public void comprarPaquetesJustosTest() {
+	public void comprarPaquetesExactosTest() {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 5, tipoEscenario.individual);
 		simulacion.run();
@@ -79,4 +79,13 @@ public class SimulacionIndividualTest {
 		assertEquals(18, simulacion.getFiguritasSobrantes());
 	}
 
+	@Test
+	public void costoPaquetesExactosTest() {
+
+	}
+
+	@Test
+	public void costoPaquetesDoblesTest() {
+
+	}
 }
