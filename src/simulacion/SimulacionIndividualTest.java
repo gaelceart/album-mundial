@@ -16,7 +16,7 @@ public class SimulacionIndividualTest {
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
 	}
-
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void completarAlbumNuloTest() {
 		Paquete.setGenerador(generadorPrefijado());

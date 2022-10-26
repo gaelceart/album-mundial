@@ -28,6 +28,13 @@ public class PaqueteTest {
 	}
 
 	@Test
+	public void cantidadDeFigusPorPaqueteTest() {
+		Paquete.setGenerador(generadorPrefijadoTrue());
+		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
+		assertEquals(5, paquete.length);
+	}
+
+	@Test
 	public void paqueteTodasRarasTest() {
 		Paquete.setGenerador(generadorPrefijadoTrue());
 		Integer[] paquete = Paquete.comprarPaquete(5, new Album(100, 5));
