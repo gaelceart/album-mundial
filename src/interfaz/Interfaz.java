@@ -15,6 +15,7 @@ import presenter.Presenter;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -28,15 +29,18 @@ public class Interfaz {
 	
 	private JTextField _figusPorAlbum;
 	private JTextField _figusPorPaquete;
-	private JTextField _usuarios;
 	private JTextField _figusRaras;
-	private JButton _iniciar;
+	private JTextField _precioPaquete;
+	private JTextField _usuarios;
 	private JComboBox _escenarios;
-	
+	private JTextField _simulaciones;
+	private JButton _iniciar;
+
 	private JTextField _costoPromedio;
 	private JTextField _tipoDeEscenario;
 	private JTextField _paquetesComprados;
 	private JTextField _figuritasRepetidas;
+	
 	
 
 	/**
@@ -101,9 +105,7 @@ public class Interfaz {
 	}
 
 	private void setupAlbumContainer() {
-		_albumContainer = Recurso.setupAlbumContainer();
-		_albumContainer.add(Recurso.setupMundial());
-		
+		_albumContainer = Recurso.setupAlbumContainer();	
 		
 		_albumContainer.add(Recurso.setupAlbumImage());
 		
@@ -118,6 +120,8 @@ public class Interfaz {
 		_figusPorPaquete = Recurso.setupFigusPorPaquete();
 		_figusRaras = Recurso.setupFigusRaras();
 		_usuarios = Recurso.setupUsuarios();
+		_simulaciones = Recurso.setupSimulaciones();
+		_precioPaquete = Recurso.setupPrecioPaquete();
 		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
@@ -125,11 +129,18 @@ public class Interfaz {
 		_userContainer.add(_figusPorPaquete);
 		_userContainer.add(_usuarios);
 		_userContainer.add(_figusRaras);
+		_userContainer.add(_simulaciones);
+		_userContainer.add(_precioPaquete);
 		_userContainer.add(Recurso.setupTextoFigusPorAlbum());
 		_userContainer.add(Recurso.setupTextoFigusPorPaquete());
-		_userContainer.add(Recurso.setupTextoUsuarios());
 		_userContainer.add(Recurso.setupTextoFigusRaras());
+		_userContainer.add(Recurso.setupTextoPrecioPaquete());
+		_userContainer.add(Recurso.setupTextoUsuarios());
+		_userContainer.add(Recurso.setupDivision());
+		_userContainer.add(Recurso.setupTextoSimulaciones());
+		
 		_userContainer.add(Recurso.setupUserLogoPanini());
+		_userContainer.add(Recurso.setupUserLogoUngs());
 		frame.getContentPane().add(_userContainer);
 	}
 
@@ -156,6 +167,19 @@ public class Interfaz {
 			}
 		});
 
+		_figusRaras.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent ke) {
+				_presenter.eventoTeclado(ke, _figusRaras);
+			}
+		});
+		_precioPaquete.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent ke) {
+				_presenter.eventoTeclado(ke, _precioPaquete);
+			}
+		});
+		
 		_usuarios.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent ke) {
@@ -163,25 +187,24 @@ public class Interfaz {
 			}
 		});
 		
-		_figusRaras.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent ke) {
-				_presenter.eventoTeclado(ke, _figusRaras);
-			}
-		});
-
 		_escenarios.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				_presenter.eventoElegirEscenario(_escenarios);
 			}
-
+		});
+		
+		_simulaciones.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent ke) {
+				_presenter.eventoTeclado(ke, _simulaciones);
+			}
 		});
 
 		_iniciar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _usuarios);
+				_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios, _simulaciones);
 			}
 		});
 

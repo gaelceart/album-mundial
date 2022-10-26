@@ -2,15 +2,12 @@ package simulacion;
 
 public class Model {
 
-	// public double simular(int cantSimulaciones, int cantUsuarios, int
-	// cantFigusAlbum, int cantFigusPorPaquete, double costoPaquete, tipoEscenario
-	// e) {
 	private int _cantSimulaciones;
 	private int _cantUsuarios;
 	private int _cantFigusAlbum;
 	private int _cantFigusRaras;
 	private int _cantFigusPaquete;
-	private double _costoPaquete;
+	private double _precioPaquete;
 	private double _costoTotal;
 	tipoEscenario _escenario;
 
@@ -23,7 +20,7 @@ public class Model {
 		_cantFigusAlbum = 0;
 		_cantFigusRaras = 0;
 		_cantFigusPaquete = 0;
-		_costoPaquete = 0;
+		_precioPaquete = 0;
 		_costoTotal = 0;
 		_escenario = tipoEscenario.individual;
 	}
@@ -48,8 +45,8 @@ public class Model {
 		_cantFigusPaquete = n;
 	}
 
-	public void setCostoPaquete(double c) {
-		_costoPaquete = c;
+	public void setPrecioPaquete(double c) {
+		_precioPaquete = c;
 	}
 
 	public void setTipoEscenario(tipoEscenario e) {
@@ -116,7 +113,7 @@ public class Model {
 	}
 
 	private void sumarCostoDeSimulacion(int i) {
-		_costoTotal += _s[i].getPaquetesTotalesComprados() * _costoPaquete / _cantUsuarios;
+		_costoTotal += _s[i].getPaquetesTotalesComprados() * _precioPaquete / _cantUsuarios;
 	}
 
 	public void iniciarSimulacion() {

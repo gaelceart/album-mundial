@@ -37,14 +37,15 @@ public class Presenter {
 		_gui.setBtnIniciar(true);
 	}
 
-	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField cantUser) {
+	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField precioPaquete, JTextField cantUser, JTextField cantSimulaciones) {
 		Paquete.setGenerador(new GeneradorRandom());
 		_gui.setInteracciones(false);
 		_model.setCantFigusAlbum(Integer.parseInt(figuAlbum.getText()));
 		_model.setCantFigusPaquete(Integer.parseInt(figuPaquete.getText()));
 		_model.setCantFigusRaras(Integer.parseInt(figusRaras.getText()));
+		_model.setPrecioPaquete(Integer.parseInt(figusRaras.getText()));
 		_model.setCantUsuarios(Integer.parseInt(cantUser.getText()));
-		_model.setCantSimulaciones(2);
+		_model.setCantSimulaciones(Integer.parseInt(cantSimulaciones.getText()));
 		_model.iniciarSimulacion();
 	}
 
