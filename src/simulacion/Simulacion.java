@@ -64,7 +64,7 @@ public class Simulacion implements Runnable {
 		_calcularPaquetesTotales();
 		_calcularFigusRepetidasTotales();
 		_calcularFigusRepetidasSobrantes();
-		mostrarResultados(startTime);
+		//mostrarResultados(startTime);
 	}
 
 	private void pegarFiguritas(HashMap<Integer, Integer[]> paquetes) {
