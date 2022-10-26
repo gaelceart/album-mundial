@@ -1,5 +1,8 @@
 package interfaz;
 import selecciones.*;
+import simulacion.Model;
+import simulacion.Simulacion;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -80,7 +83,7 @@ public class Recurso {
 
 	public static JLabel setupUserLogoPanini() {
 		JLabel logoImagen = new JLabel();
-		logoImagen.setBounds(0, 340, 210, 215);
+		logoImagen.setBounds(0, 440, 210, 190);
 		ImageIcon imagen = new ImageIcon("src/panini.png");
 		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoImagen.getWidth(),logoImagen.getHeight(), 
 				Image.SCALE_DEFAULT));
@@ -90,7 +93,7 @@ public class Recurso {
 	
 	public static JLabel setupUserLogoUngs() {
 		JLabel logoImagen = new JLabel();
-		logoImagen.setBounds(-10, 440, 230, 140);
+		logoImagen.setBounds(10, 10, 75, 75);
 		ImageIcon imagen = new ImageIcon("src/ungs.png");
 		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoImagen.getWidth(),logoImagen.getHeight(), 
 				Image.SCALE_DEFAULT));
@@ -110,7 +113,7 @@ public class Recurso {
 	
 	public static JLabel setupTextoFigusPorAlbum() {
 		JLabel cantidadDeFigusAlbum = new JLabel("Figuritas por Álbum", SwingConstants.CENTER);
-		cantidadDeFigusAlbum.setBounds(40, 15, 140, 35);
+		cantidadDeFigusAlbum.setBounds(40, 35, 140, 35);
 		cantidadDeFigusAlbum.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		cantidadDeFigusAlbum.setForeground(Color.WHITE);
 		return cantidadDeFigusAlbum;
@@ -118,13 +121,13 @@ public class Recurso {
 
 	public static JTextField setupCantidadDeFigusAlbum() {
 		JTextField cantidadDeFigusAlbum = new JTextField();
-		cantidadDeFigusAlbum.setBounds(40, 40, 140, 25);
+		cantidadDeFigusAlbum.setBounds(40, 60, 140, 25);
 		return cantidadDeFigusAlbum;
 	}
 
 	public static JLabel setupTextoFigusPorPaquete() {
 		JLabel cantidadDeFigusPaquete = new JLabel("Figuritas por Paquete", SwingConstants.CENTER);
-		cantidadDeFigusPaquete.setBounds(40, 65, 140, 35);
+		cantidadDeFigusPaquete.setBounds(40, 95, 140, 35);
 		cantidadDeFigusPaquete.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		cantidadDeFigusPaquete.setForeground(Color.WHITE);
 		return cantidadDeFigusPaquete;
@@ -132,13 +135,13 @@ public class Recurso {
 
 	public static JTextField setupFigusPorPaquete() {
 		JTextField cantidadDeFigusPaquete = new JTextField();
-		cantidadDeFigusPaquete.setBounds(40, 90, 140, 25);
+		cantidadDeFigusPaquete.setBounds(40, 120, 140, 25);
 		return cantidadDeFigusPaquete;
 	}
 	
 	public static JLabel setupTextoFigusRaras() {
 		JLabel figusRaras = new JLabel("Figuritas Raras", SwingConstants.CENTER);
-		figusRaras.setBounds(40, 115, 140, 35);
+		figusRaras.setBounds(40, 155, 140, 35);
 		figusRaras.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		figusRaras.setForeground(Color.WHITE);
 		return figusRaras;
@@ -146,13 +149,13 @@ public class Recurso {
 
 	public static JTextField setupFigusRaras() {
 		JTextField figusRaras = new JTextField();
-		figusRaras.setBounds(40, 140, 140, 25);
+		figusRaras.setBounds(40, 180, 140, 25);
 		return figusRaras;
 	}
 	
 	public static JLabel setupTextoPrecioPaquete() {
 		JLabel precioPaquete = new JLabel("Precio Paquete", SwingConstants.CENTER);
-		precioPaquete.setBounds(40, 165, 140, 35);
+		precioPaquete.setBounds(40, 215, 140, 35);
 		precioPaquete.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		precioPaquete.setForeground(Color.WHITE);
 		return precioPaquete;
@@ -160,13 +163,13 @@ public class Recurso {
 
 	public static JTextField setupPrecioPaquete() {
 		JTextField precioPaquete = new JTextField();
-		precioPaquete.setBounds(40, 190, 140, 25);
+		precioPaquete.setBounds(40, 240, 140, 25);
 		return precioPaquete;
 	}
 	
 	public static JLabel setupTextoUsuarios() {
 		JLabel usuarios = new JLabel("Usuarios", SwingConstants.CENTER);
-		usuarios.setBounds(40, 215, 140, 35);
+		usuarios.setBounds(40, 275, 140, 35);
 		usuarios.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		usuarios.setForeground(Color.WHITE);
 		return usuarios;
@@ -174,13 +177,13 @@ public class Recurso {
 
 	public static JTextField setupUsuarios() {
 		JTextField usuarios = new JTextField();
-		usuarios.setBounds(40, 240, 140, 25);
+		usuarios.setBounds(40, 300, 140, 25);
 		return usuarios;
 	}
 
 	public static JComboBox setupBtnEscenarios() {
 		JComboBox menuEscenarios = new JComboBox();
-		menuEscenarios.setBounds(35, 285, 150, 25);
+		menuEscenarios.setBounds(30, 360, 165, 30);
 		menuEscenarios.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		menuEscenarios.setToolTipText("Escenarios");
 		String[] escenarios = setupEscenarios();
@@ -193,7 +196,7 @@ public class Recurso {
 	
 	public static JLabel setupTextoSimulaciones() {
 		JLabel simulaciones = new JLabel("Simulaciones", SwingConstants.CENTER);
-		simulaciones.setBounds(40, 305, 140, 35);
+		simulaciones.setBounds(40, 390, 140, 35);
 		simulaciones.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		simulaciones.setForeground(Color.WHITE);
 		return simulaciones;
@@ -201,13 +204,13 @@ public class Recurso {
 
 	public static JTextField setupSimulaciones() {
 		JTextField simulaciones = new JTextField();
-		simulaciones.setBounds(40, 330, 140, 25);
+		simulaciones.setBounds(40, 415, 140, 25);
 		return simulaciones;
 	}
 	
 	public static JButton setupBtnIniciar() {
 		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.setBounds(40, /*255*/367, 140, 35);
+		btnIniciar.setBounds(40, 470, 140, 35);
 		btnIniciar.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		btnIniciar.setEnabled(false);
 		return btnIniciar;
@@ -297,19 +300,28 @@ public class Recurso {
 	
 	public static JTextPane setupPanelUsuario0() {
 		JTextPane panelUsuario0 = new JTextPane();
-		panelUsuario0.setEditable(true);
+		panelUsuario0.setEditable(false);
 		panelUsuario0.setFont(new Font("Arial", Font.PLAIN, 12));
 		panelUsuario0.setBackground(new Color(230, 230, 230));
 		panelUsuario0.setBounds(417, 25, 120, 128);
-		panelUsuario0.setText("TEXTO DE PRUEBA xd");
+		panelUsuario0.setText("");
 		return panelUsuario0;
 	}
-
+	
 	public static JPanel setupDivision() {
 		JPanel division = new JPanel();
-		division.setBounds(0, 272, 225, 5);
+		division.setBounds(0, 30, 225, 5);
 		division.setLayout(null);
-		division.setBackground(Color.LIGHT_GRAY);
+		division.setBackground(Color.lightGray);
 		return division;
 	}
+	
+	public static JPanel setupContenedorIniciar() {
+		JPanel division = new JPanel();
+		division.setBounds(0, 340, 225, 5);
+		division.setLayout(null);
+		division.setBackground(Color.lightGray);
+		return division;
+	}
+	
 }

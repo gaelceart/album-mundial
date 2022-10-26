@@ -106,7 +106,7 @@ public class Interfaz {
 
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();	
-		
+		_albumContainer.add(Recurso.setupUserLogoUngs());
 		_albumContainer.add(Recurso.setupAlbumImage());
 		
 		frame.getContentPane().add(_albumContainer);
@@ -137,10 +137,11 @@ public class Interfaz {
 		_userContainer.add(Recurso.setupTextoPrecioPaquete());
 		_userContainer.add(Recurso.setupTextoUsuarios());
 		_userContainer.add(Recurso.setupDivision());
+		_userContainer.add(Recurso.setupContenedorIniciar());
 		_userContainer.add(Recurso.setupTextoSimulaciones());
 		
 		_userContainer.add(Recurso.setupUserLogoPanini());
-		_userContainer.add(Recurso.setupUserLogoUngs());
+		
 		frame.getContentPane().add(_userContainer);
 	}
 
