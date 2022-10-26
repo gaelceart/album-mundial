@@ -17,6 +17,14 @@ public class SimulacionIndividualTest {
 		assertTrue(simulacion.albumesCompletos());
 	}
 
+	@Test
+	public void completarAlbumDosUsuariosTest() {
+		Paquete.setGenerador(generadorRepetidor());
+		Simulacion simulacion = new Simulacion(2, 10, 2, 2, tipoEscenario.individual);
+		simulacion.run();
+		assertTrue(simulacion.albumesCompletos());
+	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void completarAlbumNuloTest() {
 		Paquete.setGenerador(generadorPrefijado());
@@ -75,6 +83,7 @@ public class SimulacionIndividualTest {
 
 			@Override
 			public int nextInt(int rango) {
+				System.out.println("INICIO " + cont);
 				if (cont < limite) {
 					return cont++;
 				}
