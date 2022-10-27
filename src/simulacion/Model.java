@@ -113,7 +113,7 @@ public class Model {
 	}
 
 	private void sumarCostoDeSimulacion(int i) {
-		_costoTotal += _s[i].getPaquetesTotalesComprados() * _precioPaquete / _cantUsuarios;
+		_costoTotal += _s[i].getCantidadPaquetesComprados() * _precioPaquete / _cantUsuarios;
 	}
 
 	public void iniciarSimulacion() {

@@ -23,7 +23,7 @@ public class SimulacionIndividualDosUsuariosTest {
 		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
 		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(18, simulacion.getPaquetesTotalesComprados());
+		assertEquals(18, simulacion.getCantidadPaquetesComprados());
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class SimulacionIndividualDosUsuariosTest {
 		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
 		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(16, simulacion.getFiguritasSobrantes());
+		assertEquals(16, simulacion.getCantidadFigusRepetidas());
 	}
 
 	@Test

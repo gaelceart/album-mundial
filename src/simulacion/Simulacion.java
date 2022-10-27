@@ -7,12 +7,12 @@ public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;
 	private int _cantRarasAlbum;
-	private int _paquetesTotalesComprados;
-	private int _figusTotalesRepetidas;
+	private int _cantidadPaquetesComprados;
+	private int _cantidadFigusRepetidas;
 	private int _cantidadFigusAlbum;
 	private int _cantidadFigusDonadas;
-	private int _cantIntercambiosRealizados;
-	private int _figusRepetidasSobrantes;
+	private int _cantidadIntercambiosRealizados;
+	private int _cantidadFigusSobrantes;
 
 	private tipoEscenario _escenario;
 
@@ -26,12 +26,12 @@ public class Simulacion implements Runnable {
 		_cantRarasAlbum = cantFigusRaras;
 		_cantidadFigusPorPaquete = cantFigusPorPaquete;
 		_users = inicializarUsers(cantUsuarios);
-		_paquetesTotalesComprados = 0;
-		_figusTotalesRepetidas = 0;
+		_cantidadPaquetesComprados = 0;
+		_cantidadFigusRepetidas = 0;
 		_escenario = e;
 		_cantidadFigusDonadas = 0;
-		_figusRepetidasSobrantes = 0;
-		_cantIntercambiosRealizados = 0;
+		_cantidadFigusSobrantes = 0;
+		_cantidadIntercambiosRealizados = 0;
 	}
 
 	private Usuario[] inicializarUsers(int cantUsuarios) {
@@ -72,8 +72,9 @@ public class Simulacion implements Runnable {
 
 	private void pegarFiguritas(HashMap<Integer, Integer[]> paquetes) {
 		for (int i = 0; i < _users.length; i++)
-			if (paquetes.containsKey(i))
+			if (paquetes.containsKey(i)) {
 				_users[i].pegarFiguritas(paquetes.get(i));
+			}
 	}
 
 	private void donarFiguritas() {
@@ -118,7 +119,7 @@ public class Simulacion implements Runnable {
 								_users[trader].pegarFigurita(figuB);
 								_users[destino].pegarFigurita(figuTrader);
 								seIntercambio = true;
-								_cantIntercambiosRealizados++;
+								_cantidadIntercambiosRealizados++;
 								break;
 							}
 							itB.remove();
@@ -135,17 +136,17 @@ public class Simulacion implements Runnable {
 
 	private void _calcularFigusRepetidasTotales() {
 		for (Usuario u : _users)
-			_figusTotalesRepetidas += u.getCantidadFigusRepetidasTotal();
+			_cantidadFigusRepetidas += u.getCantidadFigusRepetidasTotal();
 	}
 
 	private void _calcularPaquetesTotales() {
 		for (Usuario u : _users)
-			_paquetesTotalesComprados += u.getCantidadPaquetesComprados();
+			_cantidadPaquetesComprados += u.getCantidadPaquetesComprados();
 	}
 
 	private void _calcularFigusRepetidasSobrantes() {
 		for (Usuario u : _users)
-			_figusRepetidasSobrantes += u.getFiguritasRepetidas().size();
+			_cantidadFigusSobrantes += u.getFiguritasRepetidas().size();
 	}
 
 	private HashMap<Integer, Integer[]> comprarPaquetes(int cantFigus) {
@@ -168,15 +169,23 @@ public class Simulacion implements Runnable {
 		return true;
 	}
 
-	public int getPaquetesTotalesComprados() {
-		return _paquetesTotalesComprados;
+	public int getcantidadIntercambiosRealizados() {
+		return _cantidadIntercambiosRealizados;
 	}
 
-	public int getFiguritasSobrantes() {
-		return _figusTotalesRepetidas;
+	public int getCantidadFigusRepetidas() {
+		return _cantidadFigusRepetidas;
 	}
-	public int getFiguritasTotalesDonadas() {
+
+	public int getCantidadPaquetesComprados() {
+		return _cantidadPaquetesComprados;
+	}
+
+	public int getCantidadFigusDonadas() {
 		return _cantidadFigusDonadas;
 	}
 
+	public int getCantidadFigusSobrantes() {
+		return _cantidadFigusSobrantes;
+	}
 }

@@ -5,11 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import albumMundial.Paquete;
-import generadores.Generador;
-import generadores.GeneradorCuadruplePaquetes;
 import generadores.GeneradorPaquetesDoblesEnOrden;
 import generadores.GeneradorPaquetesEnOrdenTrue;
-import generadores.GeneradorRandom;
 
 public class SimulacionIndividualTest {
 
@@ -24,7 +21,7 @@ public class SimulacionIndividualTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void simularConCeroUsuarios() {
 		Simulacion simulacion = new Simulacion(0, 1, 1, 1, tipoEscenario.individual);
-		simulacion.getFiguritasSobrantes();
+		simulacion.getCantidadFigusDonadas();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -40,7 +37,7 @@ public class SimulacionIndividualTest {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 1, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(100, simulacion.getPaquetesTotalesComprados());
+		assertEquals(100, simulacion.getCantidadPaquetesComprados());
 	}
 
 	@Test
@@ -48,7 +45,7 @@ public class SimulacionIndividualTest {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 5, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(20, simulacion.getPaquetesTotalesComprados());
+		assertEquals(20, simulacion.getCantidadPaquetesComprados());
 	}
 
 	@Test
@@ -56,7 +53,7 @@ public class SimulacionIndividualTest {
 		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
 		Simulacion simulacion = new Simulacion(1, 20, 0, 2, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(19, simulacion.getPaquetesTotalesComprados());
+		assertEquals(19, simulacion.getCantidadPaquetesComprados());
 
 	}
 
@@ -65,7 +62,7 @@ public class SimulacionIndividualTest {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 20, 20, 20, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(0, simulacion.getFiguritasSobrantes());
+		assertEquals(0, simulacion.getCantidadFigusSobrantes());
 	}
 
 	@Test
@@ -73,7 +70,7 @@ public class SimulacionIndividualTest {
 		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
 		Simulacion simulacion = new Simulacion(1, 20, 0, 2, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(18, simulacion.getFiguritasSobrantes());
+		assertEquals(18, simulacion.getCantidadFigusSobrantes());
 	}
 
 	@Test
