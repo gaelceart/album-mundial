@@ -118,6 +118,7 @@ public class Recurso {
 	public static JTextField setupCantidadDeFigusAlbum() {
 		JTextField cantidadDeFigusAlbum = new JTextField();
 		cantidadDeFigusAlbum.setBounds(40, 60, 140, 25);
+		cantidadDeFigusAlbum.setHorizontalAlignment(JTextField.CENTER);
 		return cantidadDeFigusAlbum;
 	}
 
@@ -132,6 +133,7 @@ public class Recurso {
 	public static JTextField setupFigusPorPaquete() {
 		JTextField cantidadDeFigusPaquete = new JTextField();
 		cantidadDeFigusPaquete.setBounds(40, 120, 140, 25);
+		cantidadDeFigusPaquete.setHorizontalAlignment(JTextField.CENTER);
 		return cantidadDeFigusPaquete;
 	}
 	
@@ -144,8 +146,9 @@ public class Recurso {
 	}
 
 	public static JTextField setupFigusRaras() {
-		JTextField figusRaras = new JTextField();
+		JTextField figusRaras = new JTextField(SwingConstants.CENTER);
 		figusRaras.setBounds(40, 180, 140, 25);
+		figusRaras.setHorizontalAlignment(JTextField.CENTER);
 		return figusRaras;
 	}
 	
@@ -160,6 +163,7 @@ public class Recurso {
 	public static JTextField setupPrecioPaquete() {
 		JTextField precioPaquete = new JTextField();
 		precioPaquete.setBounds(40, 240, 140, 25);
+		precioPaquete.setHorizontalAlignment(JTextField.CENTER);
 		return precioPaquete;
 	}
 	
@@ -174,6 +178,7 @@ public class Recurso {
 	public static JTextField setupUsuarios() {
 		JTextField usuarios = new JTextField();
 		usuarios.setBounds(40, 300, 140, 25);
+		usuarios.setHorizontalAlignment(JTextField.CENTER);
 		return usuarios;
 	}
 
@@ -199,8 +204,9 @@ public class Recurso {
 	}
 
 	public static JTextField setupSimulaciones() {
-		JTextField simulaciones = new JTextField();
+		JTextField simulaciones = new JTextField(SwingConstants.CENTER);
 		simulaciones.setBounds(40, 415, 140, 25);
+		simulaciones.setHorizontalAlignment(JTextField.CENTER);
 		return simulaciones;
 	}
 	
@@ -230,13 +236,12 @@ public class Recurso {
 	}
 	
 	public static JTextField setupEscenario() {
-		JTextField escenario = new JTextField("");
+		JTextField escenario = new JTextField();
 		escenario.setBounds(240, 25, 125, 25);
 		escenario.setEditable(false);
 		escenario.setFont(new Font("Arial", Font.PLAIN, 12));
 		escenario.setBackground(new Color(214,217,223));
 		escenario.setForeground(Color.magenta);
-		escenario.setText("");
 		return escenario;
 	}
 	
@@ -249,13 +254,12 @@ public class Recurso {
 	}
 	
 	public static JTextField setupCostoPromedio() {
-		JTextField costoPromedio = new JTextField("");
+		JTextField costoPromedio = new JTextField();
 		costoPromedio.setBounds(240, 60, 125, 25);
 		costoPromedio.setEditable(false);
 		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
 		costoPromedio.setBackground(new Color(214,217,223));
 		costoPromedio.setForeground(Color.black);
-		costoPromedio.setText("");
 		return costoPromedio;
 	}
 	
@@ -268,13 +272,12 @@ public class Recurso {
 	}
 
 	public static JTextField setupPaquetesComprados() {
-		JTextField paquetes = new JTextField("");
+		JTextField paquetes = new JTextField();
 		paquetes.setBounds(240, 95, 125, 25);
 		paquetes.setEditable(false);
 		paquetes.setFont(new Font("Arial", Font.PLAIN, 12));
 		paquetes.setBackground(new Color(214,217,223));
 		paquetes.setForeground(Color.black);
-		paquetes.setText("");
 		return paquetes;
 	}
 	
@@ -287,13 +290,12 @@ public class Recurso {
 	}
 	
 	public static JTextField setupFiguritasRepetidas() {
-		JTextField figuRepetida = new JTextField("");
+		JTextField figuRepetida = new JTextField();
 		figuRepetida.setBounds(240, 130, 125, 25);
 		figuRepetida.setEditable(false);
 		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
 		figuRepetida.setBackground(new Color(214,217,223));
 		figuRepetida.setForeground(Color.black);
-		figuRepetida.setText("");
 		return figuRepetida;
 	}
 	

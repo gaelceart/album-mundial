@@ -1,5 +1,8 @@
 package simulacion;
 
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 public class Model {
 
 	private int _cantSimulaciones;
@@ -121,28 +124,24 @@ public class Model {
 	}
 	
 
-	public void setEscenarioActual(String s) {
-		// TODO Auto-generated method stub
+	public String setEscenarioActual() {
+		return _escenario + "";
 	}
 
-	public void setCostoPromedio(String s) {
-		// TODO Auto-generated method stub
-		
+	public String setCostoPromedio() {
+		return simular() + "";
 	}
 
-	public void setPaquetesComprados(String s) {
-		// TODO Auto-generated method stub
-		
+	public String setPaquetesComprados() {
+		return "Falta hacer";
 	}
 
-	public void setFigusRepetidas(String s) {
-		// TODO Auto-generated method stub
-		
+	public String setFigusRepetidas() {
+		return "Falta hacer";
 	}
 
-	public void setUsuario0(String s) {
-		// TODO Auto-generated method stub
-		
+	public String setUsuario0() {
+		return "Muestro el usuario 0\n ¿De que simulacion?";
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -15,7 +16,6 @@ import presenter.Presenter;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -40,6 +40,7 @@ public class Interfaz {
 	private JTextField _tipoDeEscenario;
 	private JTextField _paquetesComprados;
 	private JTextField _figuritasRepetidas;
+	private JTextArea _usuario0;
 	
 	
 
@@ -87,17 +88,18 @@ public class Interfaz {
 		_costoPromedio = Recurso.setupCostoPromedio();
 		_figuritasRepetidas = Recurso.setupFiguritasRepetidas();
 		_paquetesComprados = Recurso.setupPaquetesComprados();
+		_usuario0 = Recurso.setupPanelUsuario0();
 		
 		_statisticsContainer.add(_costoPromedio);
 		_statisticsContainer.add(_tipoDeEscenario);
 		_statisticsContainer.add(_figuritasRepetidas);
 		_statisticsContainer.add(_paquetesComprados);
+		_statisticsContainer.add(_usuario0);
 		_statisticsContainer.add(Recurso.setupTextoEscenario());
 		_statisticsContainer.add(Recurso.setupTextoCostoPromedio());
 		_statisticsContainer.add(Recurso.setupTextoFiguritasRepetidas());
 		_statisticsContainer.add(Recurso.setupTextoPaquetesComprados());
 		_statisticsContainer.add(Recurso.setupTextoUsuario0());
-		_statisticsContainer.add(Recurso.setupPanelUsuario0());
 		
 		_statisticsContainer.add(Recurso.setupStatisticsImage());
 		
@@ -150,7 +152,7 @@ public class Interfaz {
 	}
 
 	private void setupEventosDeEstadisticas() {
-
+		_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
 	}
 
 	private void setupEventosDeUsuario() {
