@@ -197,7 +197,7 @@ public class Recurso {
 	
 	public static JLabel setupTextoSimulaciones() {
 		JLabel simulaciones = new JLabel("Simulaciones", SwingConstants.CENTER);
-		simulaciones.setBounds(40, 390, 140, 35);
+		simulaciones.setBounds(40, 400, 140, 35);
 		simulaciones.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		simulaciones.setForeground(Color.WHITE);
 		return simulaciones;
@@ -205,7 +205,7 @@ public class Recurso {
 
 	public static JTextField setupSimulaciones() {
 		JTextField simulaciones = new JTextField(SwingConstants.CENTER);
-		simulaciones.setBounds(40, 415, 140, 25);
+		simulaciones.setBounds(40, 425, 140, 25);
 		simulaciones.setHorizontalAlignment(JTextField.CENTER);
 		return simulaciones;
 	}

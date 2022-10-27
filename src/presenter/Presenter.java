@@ -37,6 +37,19 @@ public class Presenter {
 		}
 		_gui.setBtnIniciar(true);
 	}
+	
+	public boolean camposValidados(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField precioPaquete, JTextField cantUser, JTextField cantSimulaciones) {
+		if( campoVacio(cantUser) || cantUser.getText() == "0" || campoVacio(cantSimulaciones)) {
+			return false;
+		} else if ( campoVacio(figuAlbum) || campoVacio(figuPaquete) || campoVacio(figusRaras) || campoVacio(precioPaquete) ) {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean campoVacio(JTextField campoDeTexto) {
+		return campoDeTexto.getText().isEmpty();
+	}
 
 	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField precioPaquete, JTextField cantUser, JTextField cantSimulaciones) {
 		Paquete.setGenerador(new GeneradorRandom());
