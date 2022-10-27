@@ -172,6 +172,10 @@ public class Simulacion implements Runnable {
 	public int getFiguritasSobrantes() {
 		return _figusTotalesRepetidas;
 	}
+	
+	public String toStringUsuario0() {
+		return "FALTA HACER";
+	}
 
 	private void mostrarResultados(long startTime) {
 		System.out.println("CANT USERS:" + _users.length);

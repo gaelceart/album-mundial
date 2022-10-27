@@ -255,4 +255,5 @@ public class Interfaz {
 		_paquetesComprados.setEnabled(value);
 		_figuritasRepetidas.setEnabled(value);
 	}
+	
 }

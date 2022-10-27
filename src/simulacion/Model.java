@@ -7,8 +7,11 @@ public class Model {
 	private int _cantFigusAlbum;
 	private int _cantFigusRaras;
 	private int _cantFigusPaquete;
+	private int _cantFigusRepetidas;
+	private int _cantPaquetesComprados;
 	private double _precioPaquete;
 	private double _costoTotal;
+	private double _costoPromedio;
 	tipoEscenario _escenario;
 
 	private Simulacion[] _s;
@@ -20,8 +23,11 @@ public class Model {
 		_cantFigusAlbum = 0;
 		_cantFigusRaras = 0;
 		_cantFigusPaquete = 0;
+		_cantFigusRepetidas = 0;
+		_cantPaquetesComprados = 0;
 		_precioPaquete = 0;
 		_costoTotal = 0;
+		_costoPromedio = 0;
 		_escenario = tipoEscenario.individual;
 	}
 
@@ -63,16 +69,20 @@ public class Model {
 		System.out.println("paso4");
 		stopThreads();
 		System.out.println("paso5");
-		calcCostoTotal();
+		calcularEstadisticas();
 		System.out.println("paso6");
 
 		System.out.println("CARGANDO...\n");
 
-		double costoPromedio = _costoTotal / _cantSimulaciones;
+		calcCostoPromedio();
 		System.out.println("COSTO TOTAL: " + _costoTotal);
-		System.out.println("COSTO PROMEDIO: " + costoPromedio);
+		System.out.println("COSTO PROMEDIO: " + _costoPromedio);
 
-		return costoPromedio;
+		return _costoPromedio;
+	}
+
+	private void calcCostoPromedio() {
+		_costoPromedio = _costoTotal / _cantSimulaciones;
 	}
 
 	private void initSimulaciones() {
@@ -107,17 +117,28 @@ public class Model {
 		}
 	}
 
-	private void calcCostoTotal() {
-		for (int i = 0; i < _cantSimulaciones; i++)
+	private void calcularEstadisticas() {
+		for (int i = 0; i < _cantSimulaciones; i++) {
 			sumarCostoDeSimulacion(i);
+			calcPaquetesComprados(i);
+			calcFigusRepetidas(i);
+		}
+	}
+
+	private void calcFigusRepetidas(int i) {
+		_cantFigusRepetidas += _s[i].getFiguritasSobrantes();
 	}
 
 	private void sumarCostoDeSimulacion(int i) {
 		_costoTotal += _s[i].getPaquetesTotalesComprados() * _precioPaquete / _cantUsuarios;
 	}
-
+	
+	private void calcPaquetesComprados(int i) {
+		_cantPaquetesComprados += _s[i].getPaquetesTotalesComprados();
+	}
+	
 	public void iniciarSimulacion() {
-		double costoPromedio = simular();
+		simular();
 	}
 	
 
@@ -126,19 +147,19 @@ public class Model {
 	}
 
 	public String setCostoPromedio() {
-		return simular() + "";
+		return _costoPromedio + "";
 	}
 
 	public String setPaquetesComprados() {
-		return "Falta hacer";
+		return _cantPaquetesComprados + "";
 	}
 
 	public String setFigusRepetidas() {
-		return "Falta hacer";
+		return _cantFigusRepetidas + "";
 	}
 
 	public String setUsuario0() {
-		return "Muestro el usuario 0" + " ";
+		return _s[0].toStringUsuario0();
 	}
 
 }
