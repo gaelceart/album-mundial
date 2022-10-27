@@ -36,15 +36,6 @@ public class SimulacionIndividualTest {
 	}
 
 	@Test
-	public void completarAlbumSinUsuariosTest() {
-		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
-		Simulacion simulacion = new Simulacion(0, 10, 0, 1, tipoEscenario.individual);
-		simulacion.run();
-		assertTrue(simulacion.albumesCompletos());
-
-	}
-
-	@Test
 	public void comprarPaqueteConUnaFiguritaTest() {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 100, 0, 1, tipoEscenario.individual);

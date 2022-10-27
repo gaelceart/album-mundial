@@ -12,14 +12,15 @@ public class Simulacion implements Runnable {
 	private int _cantidadFigusAlbum;
 	private int _cantidadFigusDonadas;
 	private int _cantIntercambiosRealizados;
+	private int _figusRepetidasSobrantes;
 
 	private tipoEscenario _escenario;
-	private int _figusRepetidasSobrantes;
 
 	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusRaras, int cantFigusPorPaquete,
 			tipoEscenario e) {
 		if (cantUsuarios <= 0) {
-			throw new IllegalArgumentException("No puede existir una simulacion con 0 o menos usuarios. cantUsuarios: "+ cantUsuarios);
+			throw new IllegalArgumentException(
+					"No puede existir una simulacion con 0 o menos usuarios. cantUsuarios: " + cantUsuarios);
 		}
 		_cantidadFigusAlbum = cantFigusAlbum;
 		_cantRarasAlbum = cantFigusRaras;
@@ -173,6 +174,9 @@ public class Simulacion implements Runnable {
 
 	public int getFiguritasSobrantes() {
 		return _figusTotalesRepetidas;
+	}
+	public int getFiguritasTotalesDonadas() {
+		return _cantidadFigusDonadas;
 	}
 
 }
