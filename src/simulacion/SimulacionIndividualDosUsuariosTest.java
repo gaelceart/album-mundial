@@ -21,9 +21,9 @@ public class SimulacionIndividualDosUsuariosTest {
 	@Test
 	public void paquetesRepetidosTest() {
 		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
-		Simulacion simulacion = new Simulacion(2, 20, 0, 2, tipoEscenario.individual);
+		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(38, simulacion.getPaquetesTotalesComprados());
+		assertEquals(18, simulacion.getPaquetesTotalesComprados());
 	}
 
 	@Test
