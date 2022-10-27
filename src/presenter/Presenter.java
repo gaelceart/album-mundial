@@ -51,8 +51,6 @@ public class Presenter {
 	}
 	
 	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados, JTextField figusRepetidas, JTextArea usuario0) {
-		Paquete.setGenerador(new GeneradorRandom());
-		_gui.setInteracciones(false);
 		_model.iniciarSimulacion();
 		_model.setEscenarioActual(escenarioActual + "");
 		_model.setCostoPromedio(costoPromedio +  "");

@@ -237,6 +237,18 @@ public class Interfaz {
 	}
 
 	public void setInteracciones(boolean value) {
-		// desactivar o activar todos los botones y cosas
+		_figusPorAlbum.setEnabled(value);
+		_figusPorPaquete.setEnabled(value);
+		_figusRaras.setEnabled(value);
+		_precioPaquete.setEnabled(value);
+		_usuarios.setEnabled(value);
+		_escenarios.setEnabled(value);
+		_simulaciones.setEnabled(value);
+		_iniciar.setEnabled(value);
+
+		_costoPromedio.setEnabled(value);
+		_tipoDeEscenario.setEnabled(value);
+		_paquetesComprados.setEnabled(value);
+		_figuritasRepetidas.setEnabled(value);
 	}
 }
