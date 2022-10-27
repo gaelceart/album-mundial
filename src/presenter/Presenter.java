@@ -3,6 +3,7 @@ package presenter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import albumMundial.Paquete;
@@ -47,6 +48,17 @@ public class Presenter {
 		_model.setCantUsuarios(Integer.parseInt(cantUser.getText()));
 		_model.setCantSimulaciones(Integer.parseInt(cantSimulaciones.getText()));
 		_model.iniciarSimulacion();
+	}
+	
+	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados, JTextField figusRepetidas, JTextArea usuario0) {
+		Paquete.setGenerador(new GeneradorRandom());
+		_gui.setInteracciones(false);
+		_model.iniciarSimulacion();
+		_model.setEscenarioActual(escenarioActual + "");
+		_model.setCostoPromedio(costoPromedio +  "");
+		_model.setPaquetesComprados(paqComprados +  "");
+		_model.setFigusRepetidas(figusRepetidas+  "");
+		_model.setUsuario0(usuario0 + "");
 	}
 
 	public void eventoTeclado(KeyEvent ke, JTextField textField) {

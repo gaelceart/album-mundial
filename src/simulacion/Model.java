@@ -119,5 +119,30 @@ public class Model {
 	public void iniciarSimulacion() {
 		double costoPromedio = simular();
 	}
+	
+
+	public void setEscenarioActual(String s) {
+		// TODO Auto-generated method stub
+	}
+
+	public void setCostoPromedio(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPaquetesComprados(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setFigusRepetidas(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setUsuario0(String s) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

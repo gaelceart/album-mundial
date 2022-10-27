@@ -1,10 +1,6 @@
 package interfaz;
-import selecciones.*;
-import simulacion.Model;
-import simulacion.Simulacion;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
@@ -18,12 +14,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
 public class Recurso {
-
+	
 	public static JFrame setupFrame() {
 		JFrame frame = new JFrame();
 		frame.setResizable(false);
@@ -238,6 +234,7 @@ public class Recurso {
 		escenario.setBounds(240, 25, 125, 25);
 		escenario.setEditable(false);
 		escenario.setFont(new Font("Arial", Font.PLAIN, 12));
+		escenario.setBackground(new Color(214,217,223));
 		escenario.setForeground(Color.magenta);
 		escenario.setText("");
 		return escenario;
@@ -256,6 +253,7 @@ public class Recurso {
 		costoPromedio.setBounds(240, 60, 125, 25);
 		costoPromedio.setEditable(false);
 		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
+		costoPromedio.setBackground(new Color(214,217,223));
 		costoPromedio.setForeground(Color.black);
 		costoPromedio.setText("");
 		return costoPromedio;
@@ -274,6 +272,7 @@ public class Recurso {
 		paquetes.setBounds(240, 95, 125, 25);
 		paquetes.setEditable(false);
 		paquetes.setFont(new Font("Arial", Font.PLAIN, 12));
+		paquetes.setBackground(new Color(214,217,223));
 		paquetes.setForeground(Color.black);
 		paquetes.setText("");
 		return paquetes;
@@ -292,6 +291,7 @@ public class Recurso {
 		figuRepetida.setBounds(240, 130, 125, 25);
 		figuRepetida.setEditable(false);
 		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
+		figuRepetida.setBackground(new Color(214,217,223));
 		figuRepetida.setForeground(Color.black);
 		figuRepetida.setText("");
 		return figuRepetida;
@@ -305,11 +305,11 @@ public class Recurso {
 		return textoUsuario0;
 	}
 	
-	public static JTextPane setupPanelUsuario0() {
-		JTextPane panelUsuario0 = new JTextPane();
+	public static JTextArea setupPanelUsuario0() {
+		JTextArea panelUsuario0 = new JTextArea();
 		panelUsuario0.setEditable(false);
 		panelUsuario0.setFont(new Font("Arial", Font.PLAIN, 12));
-		panelUsuario0.setBackground(new Color(230, 230, 230));
+		panelUsuario0.setBackground(new Color(214,217,223));
 		panelUsuario0.setBounds(417, 25, 120, 128);
 		panelUsuario0.setText("");
 		return panelUsuario0;
