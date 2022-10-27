@@ -1,8 +1,5 @@
 package simulacion;
 
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
 public class Model {
 
 	private int _cantSimulaciones;
@@ -141,7 +138,7 @@ public class Model {
 	}
 
 	public String setUsuario0() {
-		return "Muestro el usuario 0\n ¿De que simulacion?";
+		return "Muestro el usuario 0" + " ";
 	}
 
 }

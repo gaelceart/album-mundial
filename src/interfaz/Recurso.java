@@ -313,7 +313,6 @@ public class Recurso {
 		panelUsuario0.setFont(new Font("Arial", Font.PLAIN, 12));
 		panelUsuario0.setBackground(new Color(214,217,223));
 		panelUsuario0.setBounds(417, 25, 120, 128);
-		panelUsuario0.setText("");
 		return panelUsuario0;
 	}
 	

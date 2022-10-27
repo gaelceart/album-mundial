@@ -42,7 +42,6 @@ public class Interfaz {
 	private JTextField _figuritasRepetidas;
 	private JTextArea _usuario0;
 	
-	
 
 	/**
 	 * Launch the application.
@@ -79,6 +78,7 @@ public class Interfaz {
 		setupAlbumContainer();
 		setupStatsContainer();
 		setupEventosDeUsuario();
+		setupEventosDeEstadisticas();
 		updateFrame();
 	}
 
@@ -152,7 +152,7 @@ public class Interfaz {
 	}
 
 	private void setupEventosDeEstadisticas() {
-		_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
+		
 	}
 
 	private void setupEventosDeUsuario() {
@@ -208,6 +208,8 @@ public class Interfaz {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios, _simulaciones);
+				_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
+				setInteracciones(true);
 			}
 		});
 

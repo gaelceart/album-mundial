@@ -51,7 +51,8 @@ public class Presenter {
 	}
 	
 	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados, JTextField figusRepetidas, JTextArea usuario0) {
-		escenarioActual.setText(_model.setEscenarioActual());
+		System.out.println("ENTRO A RESULTADOS--------------------------------------------");
+		escenarioActual.setText(_model.setEscenarioActual().toUpperCase());
 		costoPromedio.setText(_model.setCostoPromedio());
 		paqComprados.setText(_model.setPaquetesComprados());
 		figusRepetidas.setText(_model.setFigusRepetidas());
