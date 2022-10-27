@@ -22,11 +22,11 @@ public class SimulacionDonacionTest {
 	}
 
 	@Test
-	public void comprarPaquetesExactosTest() {
+	public void completarAlbumSinDonarTest() {
 		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
 		Simulacion simulacion = new Simulacion(2, 20, 0, 2, tipoEscenario.donacion);
 		simulacion.run();
-		assertEquals(20, simulacion.getCantidadPaquetesComprados());
+		assertEquals(0, simulacion.getCantidadFigusDonadas());
 	}
 
 	@Test
@@ -54,8 +54,15 @@ public class SimulacionDonacionTest {
 	}
 
 	@Test
-	public void costoPaquetesExactosTest() {
+	public void figuritasRepetidasTest() {
+		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
+		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.donacion);
+		simulacion.run();
+		assertEquals(16, simulacion.getCantidadFigusRepetidas());
+	}	
 
+	@Test
+	public void costoPaquetesExactosTest() {
 	}
 
 	@Test

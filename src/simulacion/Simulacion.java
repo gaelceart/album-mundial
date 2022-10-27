@@ -11,6 +11,7 @@ public class Simulacion implements Runnable {
 	private int _cantidadFigusRepetidas;
 	private int _cantidadFigusAlbum;
 	private int _cantidadFigusDonadas;
+	private int _cantidadFigusIntercambiadas;
 	private int _cantidadIntercambiosRealizados;
 	private int _cantidadFigusSobrantes;
 
@@ -32,6 +33,7 @@ public class Simulacion implements Runnable {
 		_cantidadFigusDonadas = 0;
 		_cantidadFigusSobrantes = 0;
 		_cantidadIntercambiosRealizados = 0;
+		_cantidadFigusIntercambiadas = 0;
 	}
 
 	private Usuario[] inicializarUsers(int cantUsuarios) {
@@ -119,6 +121,7 @@ public class Simulacion implements Runnable {
 								_users[trader].pegarFigurita(figuB);
 								_users[destino].pegarFigurita(figuTrader);
 								seIntercambio = true;
+								_cantidadFigusIntercambiadas+=2;
 								_cantidadIntercambiosRealizados++;
 								break;
 							}
@@ -187,5 +190,9 @@ public class Simulacion implements Runnable {
 
 	public int getCantidadFigusSobrantes() {
 		return _cantidadFigusSobrantes;
+	}
+	
+	public int getCantidadFigusIntercambiadas() {
+		return _cantidadFigusIntercambiadas;
 	}
 }
