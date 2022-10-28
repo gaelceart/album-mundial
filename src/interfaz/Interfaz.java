@@ -212,8 +212,8 @@ public class Interfaz {
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios, _simulaciones);
 					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
 					setInteracciones(true);
-				}
-				JOptionPane.showMessageDialog(null, "Rellene los campos de texto antes de iniciar la simulacion");
+				} else
+					JOptionPane.showMessageDialog(null, "Rellene los campos de texto antes de iniciar la simulacion");
 			}
 		});
 
@@ -237,9 +237,6 @@ public class Interfaz {
 		updateFrame();
 	}
 
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	private void setupFrame() {
 		frame = Recurso.setupFrame();
 
