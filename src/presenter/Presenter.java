@@ -14,7 +14,7 @@ import simulacion.tipoEscenario;
 
 @SuppressWarnings({ "rawtypes" })
 public class Presenter {
-	// rename View ?
+	// rename View ? 28/10/22 -> VIEW seria Interfaz
 	private Interfaz _gui;
 	private Model _model;
 
