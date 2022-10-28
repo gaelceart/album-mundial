@@ -10,12 +10,16 @@ public class Usuario {
 	private ArrayList<Integer> _figuritasRepetidas;
 	private int _cantidadFigusRepetidasTotal;
 
+	public void setCantidadFigusRepetidasTotal(int _cantidadFigusRepetidasTotal) {
+		this._cantidadFigusRepetidasTotal = _cantidadFigusRepetidasTotal;
+	}
+
 	public Usuario() {
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
 		_cantidadFigusRepetidasTotal = 0;
 	}
-	
+
 	public void comprarAlbum(int cantFigusAlbum, int cantFigusRaras) {
 		_album = new Album(cantFigusAlbum, cantFigusRaras);
 	}
@@ -48,13 +52,13 @@ public class Usuario {
 	}
 
 	public void pegarFiguritas(Integer[] paquete) {
-		for (int i = 0; i < paquete.length; i++) {
-			if (_album.esFiguritaRepetida(paquete[i])) {
-				_figuritasRepetidas.add(paquete[i]);
-				_cantidadFigusRepetidasTotal = getCantidadFigusRepetidasTotal() + 1;
-			} else {
-				pegarFigurita(paquete[i]);
-				System.out.println("PEGUÉ figu " + paquete[i]);
+		for (Integer figurita : paquete) {
+			if (!_album.figuritaPegada(figurita)) {
+				_album.pegarFigurita(figurita);
+			}
+			else {
+				_figuritasRepetidas.add(figurita);
+				_cantidadFigusRepetidasTotal++;
 			}
 		}
 	}

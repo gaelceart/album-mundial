@@ -7,27 +7,33 @@ public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;
 	private int _cantRarasAlbum;
-	private int _paquetesTotalesComprados;
-	private int _figusTotalesRepetidas;
+	private int _cantidadPaquetesComprados;
+	private int _cantidadFigusRepetidas;
 	private int _cantidadFigusAlbum;
 	private int _cantidadFigusDonadas;
-	private int _cantIntercambiosRealizados;
+	private int _cantidadFigusIntercambiadas;
+	private int _cantidadIntercambiosRealizados;
+	private int _cantidadFigusSobrantes;
 
 	private tipoEscenario _escenario;
-	private int _figusRepetidasSobrantes;
 
 	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusRaras, int cantFigusPorPaquete,
 			tipoEscenario e) {
+		if (cantUsuarios <= 0) {
+			throw new IllegalArgumentException(
+					"No puede existir una simulacion con 0 o menos usuarios. cantUsuarios: " + cantUsuarios);
+		}
 		_cantidadFigusAlbum = cantFigusAlbum;
 		_cantRarasAlbum = cantFigusRaras;
 		_cantidadFigusPorPaquete = cantFigusPorPaquete;
 		_users = inicializarUsers(cantUsuarios);
-		_paquetesTotalesComprados = 0;
-		_figusTotalesRepetidas = 0;
+		_cantidadPaquetesComprados = 0;
+		_cantidadFigusRepetidas = 0;
 		_escenario = e;
 		_cantidadFigusDonadas = 0;
-		_figusRepetidasSobrantes = 0;
-		_cantIntercambiosRealizados = 0;
+		_cantidadFigusSobrantes = 0;
+		_cantidadIntercambiosRealizados = 0;
+		_cantidadFigusIntercambiadas = 0;
 	}
 
 	private Usuario[] inicializarUsers(int cantUsuarios) {
@@ -36,7 +42,7 @@ public class Simulacion implements Runnable {
 			ret[i] = new Usuario();
 		return ret;
 	}
-	
+
 	private void comprarAlbumes(int cantFigusAlbum, int cantFigusRaras) {
 		for (int i = 0; i < _users.length; i++)
 			_users[i].comprarAlbum(cantFigusAlbum, cantFigusRaras);
@@ -46,7 +52,7 @@ public class Simulacion implements Runnable {
 	public void run() {
 		long startTime = System.currentTimeMillis();
 		comprarAlbumes(_cantidadFigusAlbum, _cantRarasAlbum);
-		
+
 		while (!albumesCompletos()) {
 			// Fase 1 Comprar paquetes
 			HashMap<Integer, Integer[]> paquetes = comprarPaquetes(_cantidadFigusPorPaquete);
@@ -64,13 +70,13 @@ public class Simulacion implements Runnable {
 		_calcularPaquetesTotales();
 		_calcularFigusRepetidasTotales();
 		_calcularFigusRepetidasSobrantes();
-		mostrarResultados(startTime);
 	}
 
 	private void pegarFiguritas(HashMap<Integer, Integer[]> paquetes) {
 		for (int i = 0; i < _users.length; i++)
-			if (paquetes.containsKey(i))
+			if (paquetes.containsKey(i)) {
 				_users[i].pegarFiguritas(paquetes.get(i));
+			}
 	}
 
 	private void donarFiguritas() {
@@ -115,7 +121,8 @@ public class Simulacion implements Runnable {
 								_users[trader].pegarFigurita(figuB);
 								_users[destino].pegarFigurita(figuTrader);
 								seIntercambio = true;
-								_cantIntercambiosRealizados++;
+								_cantidadFigusIntercambiadas+=2;
+								_cantidadIntercambiosRealizados++;
 								break;
 							}
 							itB.remove();
@@ -132,17 +139,17 @@ public class Simulacion implements Runnable {
 
 	private void _calcularFigusRepetidasTotales() {
 		for (Usuario u : _users)
-			_figusTotalesRepetidas += u.getCantidadFigusRepetidasTotal();
+			_cantidadFigusRepetidas += u.getCantidadFigusRepetidasTotal();
 	}
 
 	private void _calcularPaquetesTotales() {
 		for (Usuario u : _users)
-			_paquetesTotalesComprados += u.getCantidadPaquetesComprados();
+			_cantidadPaquetesComprados += u.getCantidadPaquetesComprados();
 	}
 
 	private void _calcularFigusRepetidasSobrantes() {
 		for (Usuario u : _users)
-			_figusRepetidasSobrantes += u.getFiguritasRepetidas().size();
+			_cantidadFigusSobrantes += u.getFiguritasRepetidas().size();
 	}
 
 	private HashMap<Integer, Integer[]> comprarPaquetes(int cantFigus) {
@@ -165,12 +172,28 @@ public class Simulacion implements Runnable {
 		return true;
 	}
 
-	public int getPaquetesTotalesComprados() {
-		return _paquetesTotalesComprados;
+	public int getcantidadIntercambiosRealizados() {
+		return _cantidadIntercambiosRealizados;
+	}
+
+	public int getCantidadFigusRepetidas() {
+		return _cantidadFigusRepetidas;
+	}
+
+	public int getCantidadPaquetesComprados() {
+		return _cantidadPaquetesComprados;
+	}
+
+	public int getCantidadFigusDonadas() {
+		return _cantidadFigusDonadas;
+	}
+
+	public int getCantidadFigusSobrantes() {
+		return _cantidadFigusSobrantes;
 	}
 	
-	public int getFiguritasSobrantes() {
-		return _figusTotalesRepetidas;
+	public int getCantidadFigusIntercambiadas() {
+		return _cantidadFigusIntercambiadas;
 	}
 	
 	public String toStringUsuario0() {
@@ -181,17 +204,17 @@ public class Simulacion implements Runnable {
 		System.out.println("CANT USERS:" + _users.length);
 		System.out.println("CANTIDAD FIGUS ALBUM: " + _cantidadFigusAlbum);
 		System.out.println("CANTIDAD FIGUS PAQUETE: " + _cantidadFigusPorPaquete);
-		System.out.println("Paquetes totales: " + _paquetesTotalesComprados);
+		System.out.println("Paquetes totales: " + _cantidadPaquetesComprados);
 		System.out.println("Paquetes comprados por el usuario 0: " + _users[0].getCantidadPaquetesComprados());
 		System.out.println(
 				"Paquetes comprados por el usuario final: " + _users[_users.length - 1].getCantidadPaquetesComprados());
-		System.out.println("Figuritas repetidas totales: " + _figusTotalesRepetidas);
-		System.out.println("Figuritas repetidas sobrantes: " + _figusRepetidasSobrantes);
+		System.out.println("Figuritas repetidas totales: " + _cantidadFigusRepetidas);
+		System.out.println("Figuritas repetidas sobrantes: " + _cantidadFigusSobrantes);
 		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getCantidadFigusRepetidasTotal());
 		System.out.println(
 				"Figuritas repetidas del usuario final: " + _users[_users.length - 1].getCantidadFigusRepetidasTotal());
 		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
-		System.out.println("Figuritas intercambiadas: " + _cantIntercambiosRealizados);
+		System.out.println("Figuritas intercambiadas: " + _cantidadIntercambiosRealizados);
 		long endTime = System.currentTimeMillis();
 		System.out.println("TIEMPO TRANSCURRIDO: " + (endTime - startTime) + "ms\n");
 	}

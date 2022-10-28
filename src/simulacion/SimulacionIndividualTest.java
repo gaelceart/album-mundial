@@ -5,21 +5,28 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import albumMundial.Paquete;
-import generadores.Generador;
+import generadores.GeneradorPaquetesDoblesEnOrden;
+import generadores.GeneradorPaquetesEnOrdenTrue;
 
 public class SimulacionIndividualTest {
 
 	@Test
 	public void completarAlbumTest() {
-		Paquete.setGenerador(generadorPrefijado());
-		Simulacion simulacion = new Simulacion(1, 100, 5, 5, tipoEscenario.individual);
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
+		Simulacion simulacion = new Simulacion(1, 100, 0, 5, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
+	public void simularConCeroUsuarios() {
+		Simulacion simulacion = new Simulacion(0, 1, 1, 1, tipoEscenario.individual);
+		simulacion.getCantidadFigusDonadas();
+	}
+
+	@Test(expected = IllegalArgumentException.class)
 	public void completarAlbumNuloTest() {
-		Paquete.setGenerador(generadorPrefijado());
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
 		Simulacion simulacion = new Simulacion(1, 0, 0, 0, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
@@ -27,94 +34,52 @@ public class SimulacionIndividualTest {
 
 	@Test
 	public void comprarPaqueteConUnaFiguritaTest() {
-		Paquete.setGenerador(generadorPrefijado());
-		Simulacion simulacion = new Simulacion(1, 100, 1, 1, tipoEscenario.individual);
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
+		Simulacion simulacion = new Simulacion(1, 100, 0, 1, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(100, simulacion.getPaquetesTotalesComprados());
+		assertEquals(100, simulacion.getCantidadPaquetesComprados());
 	}
 
 	@Test
-	public void comprarPaquetesJustosTest() {
-		Paquete.setGenerador(generadorPrefijado());
-		Simulacion simulacion = new Simulacion(1, 100, 5, 5, tipoEscenario.individual);
+	public void comprarPaquetesExactosTest() {
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
+		Simulacion simulacion = new Simulacion(1, 100, 0, 5, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(20, simulacion.getPaquetesTotalesComprados());
+		assertEquals(20, simulacion.getCantidadPaquetesComprados());
 	}
 
 	@Test
 	public void paquetesRepetidosTest() {
-		Paquete.setGenerador(generadorRepetidor());
-		Simulacion simulacion = new Simulacion(1, 20, 2, 2, tipoEscenario.individual);
+		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
+		Simulacion simulacion = new Simulacion(1, 20, 0, 2, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(19, simulacion.getPaquetesTotalesComprados());
+		assertEquals(19, simulacion.getCantidadPaquetesComprados());
 
 	}
 
 	@Test
 	public void completarAlbumSinSobrantesTest() {
-		Paquete.setGenerador(generadorPrefijado());
-		Simulacion simulacion = new Simulacion(1,20,20,20, tipoEscenario.individual);
+		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
+		Simulacion simulacion = new Simulacion(1, 20, 20, 20, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(0, simulacion.getFiguritasSobrantes());
+		assertEquals(0, simulacion.getCantidadFigusSobrantes());
 	}
 
 	@Test
 	public void figuritasSobrantesTest() {
-		Paquete.setGenerador(generadorRepetidor());
-		Simulacion simulacion = new Simulacion(1, 20, 2, 2, tipoEscenario.individual);
+		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
+		Simulacion simulacion = new Simulacion(1, 20, 0, 2, tipoEscenario.individual);
 		simulacion.run();
-		assertEquals(18, simulacion.getFiguritasSobrantes());
+		assertEquals(18, simulacion.getCantidadFigusSobrantes());
 	}
 
-	private Generador generadorRepetidor() {
-		Generador generador = new Generador() {
-			int cont = 0;
-			int inicioAux = 0;
-			int limite = 1;
-			boolean repetir = true;
+	@Test
+	public void costoPaquetesExactosTest() {
 
-			@Override
-			public int nextInt(int rango) {
-				if (cont < limite) {
-					return cont++;
-				}
-				if (repetir) {
-					cont = inicioAux;
-					repetir = false;
-					return cont++;
-				}
-				limite += 2;
-				inicioAux = cont;
-				repetir = true;
-				return cont++;
-
-			}
-
-			@Override
-			public boolean nextBoolean() {
-				return true;
-			}
-
-		};
-		return generador;
 	}
 
-	private Generador generadorPrefijado() {
-		Generador generador = new Generador() {
-			int count = 0;
+	@Test
+	public void costoPaquetesDoblesTest() {
 
-			@Override
-			public int nextInt(int rango) {
-
-				return count < rango ? count++ : rango;
-			}
-
-			@Override
-			public boolean nextBoolean() {
-				return true;
-			}
-		};
-		return generador;
 	}
-
 }

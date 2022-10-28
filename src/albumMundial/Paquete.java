@@ -3,6 +3,7 @@ package albumMundial;
 import java.util.ArrayList;
 import java.util.List;
 import generadores.Generador;
+import generadores.GeneradorCuadruplePaquetes;
 
 
 public class Paquete {
@@ -40,5 +41,6 @@ public class Paquete {
 			throw new IllegalArgumentException("Un paquete no puede contener 0 o menos figuritas: " + cantFigus);
 		}
 	}
+
 
 }

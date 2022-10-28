@@ -126,28 +126,27 @@ public class Model {
 	}
 
 	private void calcFigusRepetidas(int i) {
-		_cantFigusRepetidas = _s[i].getFiguritasSobrantes();
+		_cantFigusRepetidas = _s[i].getCantidadFigusSobrantes();
 	}
 
 	private void sumarCostoDeSimulacion(int i) {
-		_costoTotal = _s[i].getPaquetesTotalesComprados() * _precioPaquete / _cantUsuarios;
+		_costoTotal += _s[i].getCantidadPaquetesComprados() * _precioPaquete / _cantUsuarios;
 	}
-	
+
 	private void calcPaquetesComprados(int i) {
-		_cantPaquetesComprados = _s[i].getPaquetesTotalesComprados();
+		_cantPaquetesComprados = _s[i].getCantidadPaquetesComprados();
 	}
-	
+
 	public void iniciarSimulacion() {
 		simular();
 	}
-	
 
 	public String setEscenarioActual() {
 		return _escenario + "";
 	}
 
 	public String setCostoPromedio() {
-		_costoPromedio = Math.round(_costoPromedio*100.0)/100.0;
+		_costoPromedio = Math.round(_costoPromedio * 100.0) / 100.0;
 		return _costoPromedio + "";
 	}
 
