@@ -24,7 +24,7 @@ public class Presenter {
 	}
 
 	public void eventoElegirEscenario(JComboBox _escenarios) {
-		if (_escenarios.getSelectedIndex() == 0) {
+		if(_escenarios.getSelectedIndex() == 0 ) {
 			_gui.setBtnIniciar(false);
 			return;
 		}
@@ -36,19 +36,6 @@ public class Presenter {
 			_model.setTipoEscenario(tipoEscenario.intercambio);
 		}
 		_gui.setBtnIniciar(true);
-	}
-	
-	public boolean camposValidados(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField precioPaquete, JTextField cantUser, JTextField cantSimulaciones) {
-		if( campoVacio(cantUser) || cantUser.getText() == "0" || campoVacio(cantSimulaciones)) {
-			return false;
-		} else if ( campoVacio(figuAlbum) || campoVacio(figuPaquete) || campoVacio(figusRaras) || campoVacio(precioPaquete) ) {
-			return false;
-		}
-		return true;
-	}
-
-	private boolean campoVacio(JTextField campoDeTexto) {
-		return campoDeTexto.getText().isEmpty();
 	}
 
 	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField precioPaquete, JTextField cantUser, JTextField cantSimulaciones) {
@@ -64,7 +51,7 @@ public class Presenter {
 	}
 	
 	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados, JTextField figusRepetidas, JTextArea usuario0) {
-		System.out.println("ENTRO A RESULTADOS--------------------------------------------");
+		System.out.println("--------------------ENTRO A RESULTADOS------------------------");
 		escenarioActual.setText(_model.setEscenarioActual().toUpperCase());
 		costoPromedio.setText(_model.setCostoPromedio());
 		paqComprados.setText(_model.setPaquetesComprados());

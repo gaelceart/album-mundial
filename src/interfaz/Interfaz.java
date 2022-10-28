@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -207,14 +208,30 @@ public class Interfaz {
 		_iniciar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios, _simulaciones);
-				_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
-				setInteracciones(true);
+				if ( camposValidados() ) {
+					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios, _simulaciones);
+					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
+					setInteracciones(true);
+				}
+				JOptionPane.showMessageDialog(null, "Rellene los campos de texto antes de iniciar la simulacion");
 			}
 		});
 
 	}
+	
+	public boolean camposValidados() {
+		if( campoVacio(_usuarios) || _usuarios.getText() == "0" || campoVacio(_simulaciones)) {
+			return false;
+		} else if ( campoVacio(_figusPorAlbum) || campoVacio(_figusPorPaquete) || campoVacio(_figusRaras) || campoVacio(_precioPaquete) ) {
+			return false;
+		}
+		return true;
+	}
 
+	private boolean campoVacio(JTextField campoDeTexto) {
+		return campoDeTexto.getText().isEmpty();
+	}
+	
 	public void setBtnIniciar(boolean value) {
 		_iniciar.setEnabled(value);
 		updateFrame();
