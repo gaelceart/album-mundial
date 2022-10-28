@@ -124,7 +124,6 @@ public class Simulacion implements Runnable {
 								itB.remove();
 								itA.remove();
 								break;
-
 							}
 						}
 					}
