@@ -113,14 +113,12 @@ public class Simulacion implements Runnable {
 				Integer figuTrader = itA.next();
 				for (int destino = trader + 1; destino < _users.length; destino++) {
 					if (!_users[destino].esFiguritaRepetida(figuTrader)) {
-						boolean seIntercambio = false;
 						Iterator<Integer> itB = _users[destino].getFiguritasRepetidas().iterator();
 						while (itB.hasNext()) {
 							Integer figuB = itB.next();
 							if (!_users[trader].esFiguritaRepetida(figuB)) {
 								_users[trader].pegarFigurita(figuB);
 								_users[destino].pegarFigurita(figuTrader);
-								seIntercambio = true;
 								_cantidadFigusIntercambiadas += 2;
 								_cantidadIntercambiosRealizados++;
 								itB.remove();
