@@ -121,14 +121,12 @@ public class Simulacion implements Runnable {
 								_users[trader].pegarFigurita(figuB);
 								_users[destino].pegarFigurita(figuTrader);
 								seIntercambio = true;
-								_cantidadFigusIntercambiadas+=2;
+								_cantidadFigusIntercambiadas += 2;
 								_cantidadIntercambiosRealizados++;
-								break;
-							}
-							itB.remove();
-							if (seIntercambio) {
+								itB.remove();
 								itA.remove();
 								break;
+
 							}
 						}
 					}
@@ -191,7 +189,7 @@ public class Simulacion implements Runnable {
 	public int getCantidadFigusSobrantes() {
 		return _cantidadFigusSobrantes;
 	}
-	
+
 	public int getCantidadFigusIntercambiadas() {
 		return _cantidadFigusIntercambiadas;
 	}
