@@ -1,5 +1,7 @@
 package simulacion;
 
+import albumMundial.Album;
+
 public class Model {
 
 	private int _cantSimulaciones;
@@ -9,7 +11,7 @@ public class Model {
 	private int _cantFigusPaquete;
 	private int _cantFigusRepetidas;
 	private int _cantPaquetesComprados;
-	private double _precioPaquete;
+	private int _precioPaquete;
 	private double _costoTotal;
 	private double _costoPromedio;
 	tipoEscenario _escenario;
@@ -51,7 +53,7 @@ public class Model {
 		_cantFigusPaquete = n;
 	}
 
-	public void setPrecioPaquete(double c) {
+	public void setPrecioPaquete(int c) {
 		_precioPaquete = c;
 	}
 
@@ -60,20 +62,11 @@ public class Model {
 	}
 
 	double simular() {
-		System.out.println("paso1");
 		initSimulaciones();
-		System.out.println("paso2");
 		initThreads();
-		System.out.println("paso3");
 		startThreads();
-		System.out.println("paso4");
 		stopThreads();
-		System.out.println("paso5");
 		calcularEstadisticas();
-		System.out.println("paso6");
-
-		System.out.println("CARGANDO...\n");
-
 		calcCostoPromedio();
 		System.out.println("COSTO TOTAL: " + _costoTotal);
 		System.out.println("COSTO PROMEDIO: " + _costoPromedio);
@@ -88,8 +81,10 @@ public class Model {
 	private void initSimulaciones() {
 		_s = new Simulacion[_cantSimulaciones];
 
-		for (int i = 0; i < _cantSimulaciones; i++)
-			_s[i] = new Simulacion(_cantUsuarios, _cantFigusAlbum, _cantFigusRaras, _cantFigusPaquete, _escenario);
+		for (int i = 0; i < _cantSimulaciones; i++) {
+			Album album = new Album(_cantFigusAlbum, _cantFigusRaras);
+			_s[i] = new Simulacion(_cantUsuarios, album, _cantFigusPaquete, _precioPaquete, _escenario);
+		}
 	}
 
 	private void initThreads() {

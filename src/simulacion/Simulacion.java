@@ -3,6 +3,10 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.junit.internal.builders.NullBuilder;
+
+import albumMundial.Album;
+
 public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;
@@ -14,26 +18,36 @@ public class Simulacion implements Runnable {
 	private int _cantidadFigusIntercambiadas;
 	private int _cantidadIntercambiosRealizados;
 	private int _cantidadFigusSobrantes;
+	private int _costoPaquete;
+	private int _costoTotal;
 
 	private tipoEscenario _escenario;
 
-	public Simulacion(int cantUsuarios, int cantFigusAlbum, int cantFigusRaras, int cantFigusPorPaquete,
-			tipoEscenario e) {
+	public Simulacion(int cantUsuarios, Album album, int cantFigusPorPaquete, int costoPaquete, tipoEscenario e) {
+		if (album == null) {
+			throw new NullPointerException("Un album no puede ser null");
+		}
+		if (costoPaquete < 0) {
+			throw new IllegalArgumentException(
+					"El costo de los paquetes no puede ser menor 0. costoPaquete:" + costoPaquete);
+		}
 		if (cantUsuarios <= 0) {
 			throw new IllegalArgumentException(
 					"No puede existir una simulacion con 0 o menos usuarios. cantUsuarios: " + cantUsuarios);
 		}
-		_cantidadFigusAlbum = cantFigusAlbum;
-		_cantRarasAlbum = cantFigusRaras;
+		_cantidadFigusAlbum = album.getCantidadFiguritas();
+		_cantRarasAlbum = album.getCantidadFiguritasRaras();
 		_cantidadFigusPorPaquete = cantFigusPorPaquete;
 		_users = inicializarUsers(cantUsuarios);
+		_escenario = e;
 		_cantidadPaquetesComprados = 0;
 		_cantidadFigusRepetidas = 0;
-		_escenario = e;
 		_cantidadFigusDonadas = 0;
 		_cantidadFigusSobrantes = 0;
 		_cantidadIntercambiosRealizados = 0;
 		_cantidadFigusIntercambiadas = 0;
+		_costoPaquete = 0;
+		_costoTotal = 0;
 	}
 
 	private Usuario[] inicializarUsers(int cantUsuarios) {
@@ -70,6 +84,7 @@ public class Simulacion implements Runnable {
 		CalcularPaquetesTotales();
 		CalcularFigusRepetidasTotales();
 		CalcularFigusRepetidasSobrantes();
+		CalcularCostoTotal();
 	}
 
 	private void pegarFiguritas(HashMap<Integer, Integer[]> paquetes) {
@@ -123,7 +138,7 @@ public class Simulacion implements Runnable {
 								_users[trader].pegarFigurita(figuB);
 								_users[destino].pegarFigurita(figuTrader);
 								seIntercambio = true;
-								_cantidadFigusIntercambiadas+=2;
+								_cantidadFigusIntercambiadas += 2;
 								_cantidadIntercambiosRealizados++;
 								break;
 							}
@@ -152,6 +167,11 @@ public class Simulacion implements Runnable {
 	private void CalcularFigusRepetidasSobrantes() {
 		for (Usuario u : _users)
 			_cantidadFigusSobrantes += u.getFiguritasRepetidas().size();
+	}
+
+	private void CalcularCostoTotal() {
+		for (Usuario u : _users)
+			_costoTotal += u.getCantidadPaquetesComprados() * _costoPaquete;
 	}
 
 	private HashMap<Integer, Integer[]> comprarPaquetes(int cantFigus) {
@@ -197,7 +217,11 @@ public class Simulacion implements Runnable {
 	public int getCantidadFigusIntercambiadas() {
 		return _cantidadFigusIntercambiadas;
 	}
-	
+
+	public int getCostoTotal() {
+		return _costoTotal;
+	}
+
 	public String toStringUsuario0() {
 		return "FALTA HACER";
 	}

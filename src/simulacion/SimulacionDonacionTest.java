@@ -3,8 +3,10 @@ package simulacion;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import albumMundial.Album;
 import albumMundial.Paquete;
 import generadores.GeneradorCuadruplePaquetes;
 import generadores.GeneradorDonante;
@@ -12,11 +14,17 @@ import generadores.GeneradorPaquetesDoblesEnOrden;
 import generadores.GeneradorRandom;
 
 public class SimulacionDonacionTest {
+	Album _album;
+
+	@Before
+	public void setAlbum() {
+		_album = new Album(10, 0);
+	}
 
 	@Test
 	public void completarAlbumTest() {
 		Paquete.setGenerador(new GeneradorRandom());
-		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.donacion);
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
 	}
@@ -24,7 +32,7 @@ public class SimulacionDonacionTest {
 	@Test
 	public void completarAlbumSinDonarTest() {
 		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
-		Simulacion simulacion = new Simulacion(2, 20, 0, 2, tipoEscenario.donacion);
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
 		simulacion.run();
 		assertEquals(0, simulacion.getCantidadFigusDonadas());
 	}
@@ -32,7 +40,7 @@ public class SimulacionDonacionTest {
 	@Test
 	public void paquetesRepetidosTest() {
 		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
-		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.donacion);
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
 		simulacion.run();
 		assertEquals(18, simulacion.getCantidadPaquetesComprados());
 	}
@@ -40,7 +48,7 @@ public class SimulacionDonacionTest {
 	@Test
 	public void figuritasSobrantesTest() {
 		Paquete.setGenerador(new GeneradorDonante());
-		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.donacion);
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
 		simulacion.run();
 		assertEquals(12, simulacion.getCantidadFigusSobrantes());
 	}
@@ -48,7 +56,7 @@ public class SimulacionDonacionTest {
 	@Test
 	public void figuritasDonadasTest() {
 		Paquete.setGenerador(new GeneradorDonante());
-		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.donacion);
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
 		simulacion.run();
 		assertEquals(6, simulacion.getCantidadFigusDonadas());
 	}
@@ -56,10 +64,10 @@ public class SimulacionDonacionTest {
 	@Test
 	public void figuritasRepetidasTest() {
 		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
-		Simulacion simulacion = new Simulacion(2, 10, 0, 2, tipoEscenario.donacion);
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
 		simulacion.run();
 		assertEquals(16, simulacion.getCantidadFigusRepetidas());
-	}	
+	}
 
 	@Test
 	public void costoPaquetesExactosTest() {
