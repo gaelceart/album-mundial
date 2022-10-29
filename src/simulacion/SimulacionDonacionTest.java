@@ -68,13 +68,4 @@ public class SimulacionDonacionTest {
 		simulacion.run();
 		assertEquals(16, simulacion.getCantidadFigusRepetidas());
 	}
-
-	@Test
-	public void costoPaquetesExactosTest() {
-	}
-
-	@Test
-	public void costoPaquetesDoblesTest() {
-
-	}
 }

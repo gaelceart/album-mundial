@@ -11,26 +11,34 @@ import generadores.GeneradorPaquetesDoblesEnOrden;
 import generadores.GeneradorPaquetesEnOrdenTrue;
 
 public class SimulacionIndividualTest {
-	private Album _album;
+	private Album _albumDeDiez;
 	private Album _albumDeVeinte;
 	private Album _albumDeCien;
+
 	@Before
 	public void setAlbum() {
-		_album =  new Album(10,0);
-		_albumDeVeinte =  new Album(20,0);
-		_albumDeCien =  new Album(100,0);
+		_albumDeDiez = new Album(10, 0);
+		_albumDeVeinte = new Album(20, 0);
+		_albumDeCien = new Album(100, 0);
 	}
+
 	@Test
 	public void completarAlbumTest() {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
-		Simulacion simulacion = new Simulacion(1,_album, 5, 0, tipoEscenario.individual);
+		Simulacion simulacion = new Simulacion(1, _albumDeDiez, 5, 0, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void simularConCeroUsuarios() {
-		Simulacion simulacion = new Simulacion(0, _album, 1, 0, tipoEscenario.individual);
+	public void costoPaqueteNegativoTest() {
+		Simulacion simulacion = new Simulacion(1, _albumDeDiez, 1, -1, tipoEscenario.individual);
+		simulacion.getCostoTotal();
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void simularConCeroUsuariosTest() {
+		Simulacion simulacion = new Simulacion(0, _albumDeDiez, 1, 0, tipoEscenario.individual);
 		simulacion.getCantidadFigusDonadas();
 	}
 
@@ -82,13 +90,4 @@ public class SimulacionIndividualTest {
 		assertEquals(18, simulacion.getCantidadFigusSobrantes());
 	}
 
-	@Test
-	public void costoPaquetesExactosTest() {
-
-	}
-
-	@Test
-	public void costoPaquetesDoblesTest() {
-
-	}
 }

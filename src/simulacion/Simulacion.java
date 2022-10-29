@@ -46,7 +46,7 @@ public class Simulacion implements Runnable {
 		_cantidadFigusSobrantes = 0;
 		_cantidadIntercambiosRealizados = 0;
 		_cantidadFigusIntercambiadas = 0;
-		_costoPaquete = 0;
+		_costoPaquete = costoPaquete;
 		_costoTotal = 0;
 	}
 

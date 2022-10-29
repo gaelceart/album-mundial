@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import albumMundial.Album;
 import albumMundial.Paquete;
+import generadores.GeneradorCuadruplePaquetes;
 import generadores.GeneradorIntercambiador;
 import generadores.GeneradorIntercambiadorSobrantes;
 import generadores.GeneradorPaquetesDoblesEnOrden;
@@ -73,14 +74,5 @@ public class SimulacionIntercambioTest {
 		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.intercambio);
 		simulacion.run();
 		assertEquals(0, simulacion.getCantidadFigusSobrantes());
-	}
-
-	@Test
-	public void costoCompletarSinIntercambiarTest() {
-	}
-
-	@Test
-	public void costoPaquetesIntercambiandoTest() {
-
 	}
 }
