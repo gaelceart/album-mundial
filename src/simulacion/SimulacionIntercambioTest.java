@@ -28,7 +28,7 @@ public class SimulacionIntercambioTest {
 	}
 
 	@Test
-	public void completarAlbumSinIntercambiarTest() {
+	public void completarSinIntercambiarTest() {
 		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
 		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.intercambio);
 		simulacion.run();
@@ -36,7 +36,7 @@ public class SimulacionIntercambioTest {
 	}
 
 	@Test
-	public void completarAlbumIntercambiando() {
+	public void completarIntercambiandoTest() {
 		Paquete.setGenerador(new GeneradorIntercambiador());
 		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.intercambio);
 		simulacion.run();
@@ -44,7 +44,7 @@ public class SimulacionIntercambioTest {
 	}
 
 	@Test
-	public void cantidadFiguritasIntercambiadas() {
+	public void cantidadFiguritasIntercambiadasTest() {
 		Paquete.setGenerador(new GeneradorIntercambiador());
 		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.intercambio);
 		simulacion.run();

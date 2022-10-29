@@ -9,6 +9,7 @@ import albumMundial.Album;
 import albumMundial.Paquete;
 import generadores.GeneradorCuadruplePaquetes;
 import generadores.GeneradorPaquetesDoblesEnOrden;
+import generadores.GeneradorRandom;
 
 public class SimulacionIndividualDosUsuariosTest {
 	Album _album;
@@ -19,8 +20,8 @@ public class SimulacionIndividualDosUsuariosTest {
 	}
 
 	@Test
-	public void CompletarAlbum() {
-		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
+	public void CompletarAlbumTest() {
+		Paquete.setGenerador(new GeneradorRandom());
 		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.individual);
 		simulacion.run();
 		assertTrue(simulacion.albumesCompletos());
@@ -42,5 +43,20 @@ public class SimulacionIndividualDosUsuariosTest {
 		assertEquals(16, simulacion.getCantidadFigusRepetidas());
 	}
 
+	@Test
+	public void SinSobrantesTest() {
+		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.individual);
+		simulacion.run();
+		assertEquals(0, simulacion.getCantidadFigusSobrantes());
+	}
+
+	@Test
+	public void figuritasSobrantesTest() {
+		Paquete.setGenerador(new GeneradorCuadruplePaquetes());
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.individual);
+		simulacion.run();
+		assertEquals(16, simulacion.getCantidadFigusSobrantes());
+	}
 
 }

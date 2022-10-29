@@ -30,7 +30,7 @@ public class SimulacionDonacionTest {
 	}
 
 	@Test
-	public void completarAlbumSinDonarTest() {
+	public void sinDonarTest() {
 		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
 		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
 		simulacion.run();
@@ -51,6 +51,14 @@ public class SimulacionDonacionTest {
 		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
 		simulacion.run();
 		assertEquals(12, simulacion.getCantidadFigusSobrantes());
+	}
+
+	@Test
+	public void SinSobrantesTest() {
+		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.donacion);
+		simulacion.run();
+		assertEquals(0, simulacion.getCantidadFigusSobrantes());
 	}
 
 	@Test

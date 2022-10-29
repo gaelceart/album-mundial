@@ -30,25 +30,6 @@ public class SimulacionIndividualTest {
 		assertTrue(simulacion.albumesCompletos());
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void costoPaqueteNegativoTest() {
-		Simulacion simulacion = new Simulacion(1, _albumDeDiez, 1, -1, tipoEscenario.individual);
-		simulacion.getCostoTotal();
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void simularConCeroUsuariosTest() {
-		Simulacion simulacion = new Simulacion(0, _albumDeDiez, 1, 0, tipoEscenario.individual);
-		simulacion.getCantidadFigusDonadas();
-	}
-
-	@Test(expected = NullPointerException.class)
-	public void completarAlbumNuloTest() {
-		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
-		Simulacion simulacion = new Simulacion(1, null, 1, 0, tipoEscenario.individual);
-		simulacion.run();
-	}
-
 	@Test
 	public void comprarPaqueteConUnaFiguritaTest() {
 		Paquete.setGenerador(new GeneradorPaquetesEnOrdenTrue());
