@@ -59,7 +59,7 @@ public class Model {
 		_escenario = e;
 	}
 
-	double simular() {
+	void simular() {
 		System.out.println("paso1");
 		initSimulaciones();
 		System.out.println("paso2");
@@ -78,11 +78,6 @@ public class Model {
 		System.out.println("COSTO TOTAL: " + _costoTotal);
 		System.out.println("COSTO PROMEDIO: " + _costoPromedio);
 
-		return _costoPromedio;
-	}
-
-	private void calcCostoPromedio() {
-		_costoPromedio = _costoTotal / _cantSimulaciones;
 	}
 
 	private void initSimulaciones() {
@@ -119,22 +114,27 @@ public class Model {
 
 	private void calcularEstadisticas() {
 		for (int i = 0; i < _cantSimulaciones; i++) {
-			sumarCostoDeSimulacion(i);
 			calcPaquetesComprados(i);
 			calcFigusRepetidas(i);
+			sumarCostoDeSimulacion(i);
 		}
 	}
-
+	
+	private void calcCostoPromedio() {
+		_costoPromedio = _costoTotal / _cantSimulaciones;
+	}
+	
 	private void calcFigusRepetidas(int i) {
-		_cantFigusRepetidas = _s[i].getCantidadFigusSobrantes();
+		_cantFigusRepetidas += _s[i].getCantidadFigusRepetidas();
 	}
 
 	private void sumarCostoDeSimulacion(int i) {
-		_costoTotal += _s[i].getCantidadPaquetesComprados() * _precioPaquete / _cantUsuarios;
+		System.out.println(_s[i].getCantidadPaquetesComprados());
+		_costoTotal += (_s[i].getCantidadPaquetesComprados() * _precioPaquete) / _cantUsuarios;
 	}
 
 	private void calcPaquetesComprados(int i) {
-		_cantPaquetesComprados = _s[i].getCantidadPaquetesComprados();
+		_cantPaquetesComprados += _s[i].getCantidadPaquetesComprados();
 	}
 
 	public void iniciarSimulacion() {

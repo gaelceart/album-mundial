@@ -212,17 +212,18 @@ public class Interfaz {
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios, _simulaciones);
 					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
 					setInteracciones(true);
-				} else
-					JOptionPane.showMessageDialog(null, "Rellene los campos de texto antes de iniciar la simulacion");
+				}
 			}
 		});
 
 	}
 	
 	public boolean camposValidados() {
-		if( campoVacio(_usuarios) || _usuarios.getText() == "0" || campoVacio(_simulaciones)) {
+		if( campoVacio(_usuarios) || campoVacio(_simulaciones) || campoVacio(_figusPorAlbum) || campoVacio(_figusPorPaquete) || campoVacio(_figusRaras) || campoVacio(_precioPaquete) ) {
+			JOptionPane.showMessageDialog(null, "Rellene los campos de texto antes de iniciar la simulacion");
 			return false;
-		} else if ( campoVacio(_figusPorAlbum) || campoVacio(_figusPorPaquete) || campoVacio(_figusRaras) || campoVacio(_precioPaquete) ) {
+		} else if (  _usuarios.getText().equals("0") || _simulaciones.getText().equals("0")) {
+			JOptionPane.showMessageDialog(null, "La cantidad de usuarios y simulaciones no puede ser 0");
 			return false;
 		}
 		return true;
