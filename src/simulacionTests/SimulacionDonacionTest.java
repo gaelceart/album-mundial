@@ -1,4 +1,4 @@
-package simulacion;
+package simulacionTests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -12,6 +12,8 @@ import generadores.GeneradorCuadruplePaquetes;
 import generadores.GeneradorDonante;
 import generadores.GeneradorPaquetesDoblesEnOrden;
 import generadores.GeneradorRandom;
+import simulacion.Simulacion;
+import simulacion.tipoEscenario;
 
 public class SimulacionDonacionTest {
 	Album _album;

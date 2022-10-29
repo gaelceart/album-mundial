@@ -1,4 +1,4 @@
-package simulacion;
+package simulacionTests;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,8 @@ import albumMundial.Paquete;
 import generadores.GeneradorCuadruplePaquetes;
 import generadores.GeneradorPaquetesDoblesEnOrden;
 import generadores.GeneradorRandom;
+import simulacion.Simulacion;
+import simulacion.tipoEscenario;
 
 public class SimulacionIndividualDosUsuariosTest {
 	Album _album;

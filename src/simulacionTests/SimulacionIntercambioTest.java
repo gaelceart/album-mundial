@@ -1,4 +1,4 @@
-package simulacion;
+package simulacionTests;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,8 @@ import albumMundial.Paquete;
 import generadores.GeneradorIntercambiador;
 import generadores.GeneradorIntercambiadorSobrantes;
 import generadores.GeneradorPaquetesDoblesEnOrden;
+import simulacion.Simulacion;
+import simulacion.tipoEscenario;
 
 public class SimulacionIntercambioTest {
 	private Album _album;
