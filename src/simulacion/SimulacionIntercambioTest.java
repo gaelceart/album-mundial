@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import albumMundial.Album;
 import albumMundial.Paquete;
-import generadores.GeneradorCuadruplePaquetes;
 import generadores.GeneradorIntercambiador;
 import generadores.GeneradorIntercambiadorSobrantes;
 import generadores.GeneradorPaquetesDoblesEnOrden;

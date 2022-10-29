@@ -3,8 +3,6 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.junit.internal.builders.NullBuilder;
-
 import albumMundial.Album;
 
 public class Simulacion implements Runnable {
