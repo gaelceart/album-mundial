@@ -34,33 +34,32 @@ public class Usuario {
 		_album.checkEsCompleto();
 	}
 
+	public void pegarFiguritas(Integer[] paquete) {
+		for (Integer figurita : paquete) {
+			if (!_album.figuritaPegada(figurita)) {
+				_album.pegarFigurita(figurita);
+			} else {
+				_figuritasRepetidas.add(figurita);
+				_cantidadFigusRepetidasTotal++;
+			}
+		}
+	}
+
 	public boolean tieneAlbumCompleto() {
 		_album.checkEsCompleto();
 		return _album.isCompleto();
 	}
 
+	public boolean esFiguritaRepetida(int n) {
+		return _album.esFiguritaRepetida(n);
+	}
+	
 	public int getCantidadPaquetesComprados() {
 		return _paquetesComprados;
 	}
 
 	public ArrayList<Integer> getFiguritasRepetidas() {
 		return _figuritasRepetidas;
-	}
-
-	public boolean esFiguritaRepetida(int n) {
-		return _album.esFiguritaRepetida(n);
-	}
-
-	public void pegarFiguritas(Integer[] paquete) {
-		for (Integer figurita : paquete) {
-			if (!_album.figuritaPegada(figurita)) {
-				_album.pegarFigurita(figurita);
-			}
-			else {
-				_figuritasRepetidas.add(figurita);
-				_cantidadFigusRepetidasTotal++;
-			}
-		}
 	}
 
 	public int getCantidadFigusRepetidasTotal() {

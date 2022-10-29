@@ -48,20 +48,9 @@ public class Simulacion implements Runnable {
 		_costoTotal = 0;
 	}
 
-	private Usuario[] inicializarUsers(int cantUsuarios) {
-		Usuario[] ret = new Usuario[cantUsuarios];
-		for (int i = 0; i < cantUsuarios; i++)
-			ret[i] = new Usuario();
-		return ret;
-	}
-
-	private void comprarAlbumes(int cantFigusAlbum, int cantFigusRaras) {
-		for (int i = 0; i < _users.length; i++)
-			_users[i].comprarAlbum(cantFigusAlbum, cantFigusRaras);
-	}
-
 	@Override
 	public void run() {
+
 		long startTime = System.currentTimeMillis();
 		comprarAlbumes(_cantidadFigusAlbum, _cantRarasAlbum);
 
@@ -83,6 +72,38 @@ public class Simulacion implements Runnable {
 		CalcularFigusRepetidasTotales();
 		CalcularFigusRepetidasSobrantes();
 		CalcularCostoTotal();
+	}
+
+	public boolean albumesCompletos() {
+		for (Usuario u : _users) {
+			if (!u.tieneAlbumCompleto())
+				return false;
+		}
+		return true;
+	}
+
+	private Usuario[] inicializarUsers(int cantUsuarios) {
+		Usuario[] ret = new Usuario[cantUsuarios];
+		for (int i = 0; i < cantUsuarios; i++)
+			ret[i] = new Usuario();
+		return ret;
+	}
+
+	private void comprarAlbumes(int cantFigusAlbum, int cantFigusRaras) {
+		for (int i = 0; i < _users.length; i++)
+			_users[i].comprarAlbum(cantFigusAlbum, cantFigusRaras);
+	}
+
+	private HashMap<Integer, Integer[]> comprarPaquetes(int cantFigus) {
+		HashMap<Integer, Integer[]> ret = new HashMap<>();
+		int index = 0;
+		for (Usuario u : _users) {
+			if (!u.tieneAlbumCompleto())
+				ret.put(index, u.comprarPaquete(cantFigus));
+			index++;
+
+		}
+		return ret;
 	}
 
 	private void pegarFiguritas(HashMap<Integer, Integer[]> paquetes) {
@@ -170,26 +191,6 @@ public class Simulacion implements Runnable {
 	private void CalcularCostoTotal() {
 		for (Usuario u : _users)
 			_costoTotal += u.getCantidadPaquetesComprados() * _costoPaquete;
-	}
-
-	private HashMap<Integer, Integer[]> comprarPaquetes(int cantFigus) {
-		HashMap<Integer, Integer[]> ret = new HashMap<>();
-		int index = 0;
-		for (Usuario u : _users) {
-			if (!u.tieneAlbumCompleto())
-				ret.put(index, u.comprarPaquete(cantFigus));
-			index++;
-
-		}
-		return ret;
-	}
-
-	public boolean albumesCompletos() {
-		for (Usuario u : _users) {
-			if (!u.tieneAlbumCompleto())
-				return false;
-		}
-		return true;
 	}
 
 	public int getcantidadIntercambiosRealizados() {
