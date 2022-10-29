@@ -193,7 +193,7 @@ public class Simulacion implements Runnable {
 	public int getCantidadFigusSobrantes() {
 		return _cantidadFigusSobrantes;
 	}
-	
+
 	public int getCantidadFigusIntercambiadas() {
 		return _cantidadFigusIntercambiadas;
 	}
