@@ -67,7 +67,7 @@ public class Simulacion implements Runnable {
 			intercambiarFiguritas();
 		}
 
-		_calcularPaquetesTotales();
+		_calcularPaquetes();
 		_calcularFigusRepetidasTotales();
 		_calcularFigusRepetidasSobrantes();
 	}
@@ -142,7 +142,7 @@ public class Simulacion implements Runnable {
 			_cantidadFigusRepetidas += u.getCantidadFigusRepetidasTotal();
 	}
 
-	private void _calcularPaquetesTotales() {
+	private void _calcularPaquetes() {
 		for (Usuario u : _users)
 			_cantidadPaquetesComprados += u.getCantidadPaquetesComprados();
 	}

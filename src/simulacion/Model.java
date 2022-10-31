@@ -10,7 +10,7 @@ public class Model {
 	private int _cantFigusRepetidas;
 	private int _cantPaquetesComprados;
 	private double _precioPaquete;
-	private double _costoTotal;
+	private double _promedioDePaquetes;
 	private double _costoPromedio;
 	tipoEscenario _escenario;
 
@@ -26,7 +26,7 @@ public class Model {
 		_cantFigusRepetidas = 0;
 		_cantPaquetesComprados = 0;
 		_precioPaquete = 0;
-		_costoTotal = 0;
+		_promedioDePaquetes = 0;
 		_costoPromedio = 0;
 		_escenario = tipoEscenario.individual;
 	}
@@ -74,8 +74,7 @@ public class Model {
 
 		System.out.println("CARGANDO...\n");
 
-		calcCostoPromedio();
-		System.out.println("COSTO TOTAL: " + _costoTotal);
+		System.out.println("PROMEDIO DE PAQUETES \nQUE NECESITO PARA COMPLETAR EL ALBUM: " + _promedioDePaquetes);
 		System.out.println("COSTO PROMEDIO: " + _costoPromedio);
 
 	}
@@ -116,21 +115,28 @@ public class Model {
 		for (int i = 0; i < _cantSimulaciones; i++) {
 			calcPaquetesComprados(i);
 			calcFigusRepetidas(i);
-			sumarCostoDeSimulacion(i);
+			
+			_promedioDePaquetes += calcPromedioDePaquetes(i);
 		}
+		calcPromedioDeSimulaciones();
+		calcCostoPromedio();
 	}
 	
 	private void calcCostoPromedio() {
-		_costoPromedio = _costoTotal / _cantSimulaciones;
+		System.out.println(_precioPaquete);
+		_costoPromedio = _promedioDePaquetes * _precioPaquete;
 	}
 	
 	private void calcFigusRepetidas(int i) {
 		_cantFigusRepetidas += _s[i].getCantidadFigusRepetidas();
 	}
 
-	private void sumarCostoDeSimulacion(int i) {
-		System.out.println(_s[i].getCantidadPaquetesComprados());
-		_costoTotal += (_s[i].getCantidadPaquetesComprados() * _precioPaquete) / _cantUsuarios;
+	private int calcPromedioDePaquetes(int i) {
+		return _s[i].getCantidadPaquetesComprados() / _cantUsuarios;
+	}
+	
+	private void calcPromedioDeSimulaciones() {
+		_promedioDePaquetes = _promedioDePaquetes / _cantSimulaciones;
 	}
 
 	private void calcPaquetesComprados(int i) {
@@ -146,7 +152,7 @@ public class Model {
 	}
 
 	public String setCostoPromedio() {
-		_costoPromedio = Math.round(_costoPromedio * 100.0) / 100.0;
+		//_costoPromedio = Math.round(_costoPromedio * 100.0) / 100.0;
 		return _costoPromedio + "";
 	}
 
