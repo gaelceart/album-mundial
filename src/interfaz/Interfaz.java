@@ -208,12 +208,14 @@ public class Interfaz {
 		_iniciar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
+				setInteracciones(false);
 				if ( camposValidados() ) {
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios, _simulaciones);
 					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
-					setInteracciones(true);
-				} else
+				} else {
 					JOptionPane.showMessageDialog(null, "Rellene los campos de texto antes de iniciar la simulacion");
+				}
+				setInteracciones(true);
 			}
 		});
 
