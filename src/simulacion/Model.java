@@ -153,25 +153,25 @@ public class Model {
 	}
 
 	
-	public String setEscenarioActual() {
+	public String getEscenarioActual() {
 		return _escenario + "";
 	}
 
-	public String setCostoPromedio() {
+	public String getCostoPromedio() {
 		_costoPromedio = Math.round(_costoPromedio * 100.0) / 100.0;
 		return _costoPromedio + "";
 	}
 
-	public String setPaquetesComprados() {
+	public String getPaquetesComprados() {
 		return _cantPaquetesComprados + "";
 	}
 
-	public String setFigusRepetidas() {
+	public String getFigusRepetidas() {
 		return _cantFigusRepetidas + "";
 	}
 
-	public String setUsuario0() {
-		return _s[0].toStringUsuario0();
+	public String datosDelUsuario0() {
+		return _s[0].datosDelUsuario0();
 	}
 
 }

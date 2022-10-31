@@ -63,8 +63,20 @@ public class Usuario {
 		}
 	}
 
+	public Album getAlbum() {
+		return _album;
+	}
+
 	public int getCantidadFigusRepetidasTotal() {
 		return _cantidadFigusRepetidasTotal;
+	}
+
+	public Object getCantidadFigusDonadas() {
+		return "Hacer dona"; 
+	}
+
+	public Object getCantidadFigusIntercambiadas() {
+		return "Hacer inter";
 	}
 
 }

@@ -310,9 +310,11 @@ public class Recurso {
 	public static JTextArea setupPanelUsuario0() {
 		JTextArea panelUsuario0 = new JTextArea();
 		panelUsuario0.setEditable(false);
+		panelUsuario0.setLayout(null);
+		panelUsuario0.setLineWrap(true);
 		panelUsuario0.setFont(new Font("Arial", Font.PLAIN, 12));
 		panelUsuario0.setBackground(new Color(214,217,223));
-		panelUsuario0.setBounds(417, 25, 120, 128);
+		panelUsuario0.setBounds(410, 25, 135, 128);
 		return panelUsuario0;
 	}
 	

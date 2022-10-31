@@ -3,6 +3,8 @@ package simulacion;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import javax.swing.JTextArea;
+
 public class Simulacion implements Runnable {
 	private Usuario[] _users;
 	private int _cantidadFigusPorPaquete;
@@ -196,8 +198,38 @@ public class Simulacion implements Runnable {
 		return _cantidadFigusIntercambiadas;
 	}
 	
-	public String toStringUsuario0() {
-		return "FALTA HACER";
+	public String datosDelUsuario0() {
+		if(_escenario.equals(tipoEscenario.donacion)) {
+			return datosUsuarioDeDonacion();
+		} else if (_escenario.equals(tipoEscenario.intercambio)) {
+			return datosUsuarioDeIntercambio();
+		}
+		return datosUsuario();	
+	}
+
+	private String datosUsuario() {
+		StringBuilder s = new StringBuilder();
+		s.append("Paquetes Comprados\n");
+		s.append(_users[0].getCantidadPaquetesComprados());
+		s.append("\nRepetidas\n");
+		s.append(_users[0].getCantidadFigusRepetidasTotal());
+		s.append("\nRaras\n");
+		s.append(_users[0].getAlbum().getCantidadFiguritasRaras());
+		return s+"\n";
+	}
+
+	private String datosUsuarioDeIntercambio() {
+		StringBuilder s = new StringBuilder(datosUsuario());
+		s.append("Intercambiadas\n");
+		s.append(_users[0].getCantidadFigusIntercambiadas());
+		return s+"\n";
+	}
+
+	private String datosUsuarioDeDonacion() {
+		StringBuilder s = new StringBuilder(datosUsuario());
+		s.append("Donadas\n");
+		s.append(_users[0].getCantidadFigusDonadas());
+		return s+"\n";
 	}
 
 	private void mostrarResultados(long startTime) {
