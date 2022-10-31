@@ -18,6 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class Recurso {
 	
 	public static JFrame setupFrame() {
@@ -215,6 +216,7 @@ public class Recurso {
 		btnIniciar.setBounds(40, 470, 140, 35);
 		btnIniciar.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		btnIniciar.setEnabled(false);
+		btnIniciar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		return btnIniciar;
 	}
 	
