@@ -53,7 +53,7 @@ public class Usuario {
 	public boolean esFiguritaRepetida(int n) {
 		return _album.esFiguritaRepetida(n);
 	}
-	
+
 	public int getCantidadPaquetesComprados() {
 		return _paquetesComprados;
 	}

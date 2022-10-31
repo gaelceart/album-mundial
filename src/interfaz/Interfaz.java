@@ -28,7 +28,7 @@ public class Interfaz {
 	private JPanel _albumContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
-	
+
 	private JTextField _figusPorAlbum;
 	private JTextField _figusPorPaquete;
 	private JTextField _figusRaras;
@@ -43,7 +43,6 @@ public class Interfaz {
 	private JTextField _paquetesComprados;
 	private JTextField _figuritasRepetidas;
 	private JTextArea _usuario0;
-	
 
 	/**
 	 * Launch the application.
@@ -91,7 +90,7 @@ public class Interfaz {
 		_figuritasRepetidas = Recurso.setupFiguritasRepetidas();
 		_paquetesComprados = Recurso.setupPaquetesComprados();
 		_usuario0 = Recurso.setupPanelUsuario0();
-		
+
 		_statisticsContainer.add(_costoPromedio);
 		_statisticsContainer.add(_tipoDeEscenario);
 		_statisticsContainer.add(_figuritasRepetidas);
@@ -102,17 +101,17 @@ public class Interfaz {
 		_statisticsContainer.add(Recurso.setupTextoFiguritasRepetidas());
 		_statisticsContainer.add(Recurso.setupTextoPaquetesComprados());
 		_statisticsContainer.add(Recurso.setupTextoUsuario0());
-		
+
 		_statisticsContainer.add(Recurso.setupStatisticsImage());
-		
+
 		frame.getContentPane().add(_statisticsContainer);
 	}
 
 	private void setupAlbumContainer() {
-		_albumContainer = Recurso.setupAlbumContainer();	
+		_albumContainer = Recurso.setupAlbumContainer();
 		_albumContainer.add(Recurso.setupUserLogoUngs());
 		_albumContainer.add(Recurso.setupAlbumImage());
-		
+
 		frame.getContentPane().add(_albumContainer);
 	}
 
@@ -126,7 +125,7 @@ public class Interfaz {
 		_usuarios = Recurso.setupUsuarios();
 		_simulaciones = Recurso.setupSimulaciones();
 		_precioPaquete = Recurso.setupPrecioPaquete();
-		
+
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
 		_userContainer.add(_figusPorAlbum);
@@ -143,9 +142,9 @@ public class Interfaz {
 		_userContainer.add(Recurso.setupDivision());
 		_userContainer.add(Recurso.setupContenedorIniciar());
 		_userContainer.add(Recurso.setupTextoSimulaciones());
-		
+
 		_userContainer.add(Recurso.setupUserLogoPanini());
-		
+
 		frame.getContentPane().add(_userContainer);
 	}
 
@@ -154,7 +153,7 @@ public class Interfaz {
 	}
 
 	private void setupEventosDeEstadisticas() {
-		
+
 	}
 
 	private void setupEventosDeUsuario() {
@@ -184,21 +183,21 @@ public class Interfaz {
 				_presenter.eventoTeclado(ke, _precioPaquete);
 			}
 		});
-		
+
 		_usuarios.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent ke) {
 				_presenter.eventoTeclado(ke, _usuarios);
 			}
 		});
-		
+
 		_escenarios.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				_presenter.eventoElegirEscenario(_escenarios);
 			}
 		});
-		
+
 		_simulaciones.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent ke) {
@@ -210,10 +209,12 @@ public class Interfaz {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				setInteracciones(false);
-				if ( camposValidados() ) {
+				if (camposValidados()) {
 					modoEspera();
-					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios, _simulaciones);
-					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados, _figuritasRepetidas, _usuario0);
+					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios,
+							_simulaciones);
+					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados,
+							_figuritasRepetidas, _usuario0);
 					modoNormal();
 				} else {
 					JOptionPane.showMessageDialog(null, "Rellene los campos de texto antes de iniciar la simulacion");
@@ -228,15 +229,16 @@ public class Interfaz {
 	private void modoEspera() { // CAMBIAR ALGO NOTABLE ANTES DE QUE INICIEN LAS SIMULACIONES !FIXME
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	}
-	
+
 	private void modoNormal() {
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
-	
+
 	public boolean camposValidados() {
-		if( campoVacio(_usuarios) || _usuarios.getText() == "0" || campoVacio(_simulaciones)) {
+		if (campoVacio(_usuarios) || _usuarios.getText() == "0" || campoVacio(_simulaciones)) {
 			return false;
-		} else if ( campoVacio(_figusPorAlbum) || campoVacio(_figusPorPaquete) || campoVacio(_figusRaras) || campoVacio(_precioPaquete) ) {
+		} else if (campoVacio(_figusPorAlbum) || campoVacio(_figusPorPaquete) || campoVacio(_figusRaras)
+				|| campoVacio(_precioPaquete)) {
 			return false;
 		}
 		return true;
@@ -245,7 +247,7 @@ public class Interfaz {
 	private boolean campoVacio(JTextField campoDeTexto) {
 		return campoDeTexto.getText().isEmpty();
 	}
-	
+
 	public void setBtnIniciar(boolean value) {
 		_iniciar.setEnabled(value);
 		updateFrame();
@@ -283,5 +285,5 @@ public class Interfaz {
 		_paquetesComprados.setEnabled(value);
 		_figuritasRepetidas.setEnabled(value);
 	}
-	
+
 }
