@@ -3,6 +3,7 @@ package presenter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import albumMundial.Paquete;
@@ -13,7 +14,7 @@ import simulacion.tipoEscenario;
 
 @SuppressWarnings({ "rawtypes" })
 public class Presenter {
-	// rename View ?
+	// rename View ? 28/10/22 -> VIEW seria Interfaz
 	private Interfaz _gui;
 	private Model _model;
 
@@ -37,9 +38,9 @@ public class Presenter {
 		_gui.setBtnIniciar(true);
 	}
 
-	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras, JTextField precioPaquete, JTextField cantUser, JTextField cantSimulaciones) {
+	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras,
+			JTextField precioPaquete, JTextField cantUser, JTextField cantSimulaciones) {
 		Paquete.setGenerador(new GeneradorRandom());
-		_gui.setInteracciones(false);
 		_model.setCantFigusAlbum(Integer.parseInt(figuAlbum.getText()));
 		_model.setCantFigusPaquete(Integer.parseInt(figuPaquete.getText()));
 		_model.setCantFigusRaras(Integer.parseInt(figusRaras.getText()));
@@ -47,6 +48,16 @@ public class Presenter {
 		_model.setCantUsuarios(Integer.parseInt(cantUser.getText()));
 		_model.setCantSimulaciones(Integer.parseInt(cantSimulaciones.getText()));
 		_model.iniciarSimulacion();
+	}
+
+	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados,
+			JTextField figusRepetidas, JTextArea usuario0) {
+		System.out.println("--------------------ENTRO A RESULTADOS------------------------");
+		escenarioActual.setText(_model.getEscenarioActual().toUpperCase());
+		costoPromedio.setText(_model.getCostoPromedio());
+		paqComprados.setText(_model.getPaquetesComprados());
+		figusRepetidas.setText(_model.getFigusRepetidas());
+		usuario0.setText(_model.getUsuario0());
 	}
 
 	public void eventoTeclado(KeyEvent ke, JTextField textField) {

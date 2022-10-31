@@ -67,7 +67,11 @@ public class AlbumTest {
 		_album = new Album(1, 0);
 		_album.pegarFigurita(-1);
 	}
-
+	@Test
+	public void cantidadDeRarasTest() {
+		_album = new Album(100, 10);
+		assertEquals(10, _album.getCantidadFiguritasRaras());
+	}
 	@Test
 	public void esFiguritaRaraTest() {
 		_album = new Album(10, 1);

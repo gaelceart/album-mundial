@@ -2,7 +2,6 @@ package albumMundial;
 
 import generadores.Generador;
 
-
 public class Paquete {
 	private static Generador _random;
 

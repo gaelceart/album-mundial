@@ -10,12 +10,16 @@ public class Usuario {
 	private ArrayList<Integer> _figuritasRepetidas;
 	private int _cantidadFigusRepetidasTotal;
 
+	public void setCantidadFigusRepetidasTotal(int _cantidadFigusRepetidasTotal) {
+		this._cantidadFigusRepetidasTotal = _cantidadFigusRepetidasTotal;
+	}
+
 	public Usuario() {
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
 		_cantidadFigusRepetidasTotal = 0;
 	}
-	
+
 	public void comprarAlbum(int cantFigusAlbum, int cantFigusRaras) {
 		_album = new Album(cantFigusAlbum, cantFigusRaras);
 	}
@@ -30,9 +34,24 @@ public class Usuario {
 		_album.checkEsCompleto();
 	}
 
+	public void pegarFiguritas(Integer[] paquete) {
+		for (Integer figurita : paquete) {
+			if (!_album.figuritaPegada(figurita)) {
+				_album.pegarFigurita(figurita);
+			} else {
+				_figuritasRepetidas.add(figurita);
+				_cantidadFigusRepetidasTotal++;
+			}
+		}
+	}
+
 	public boolean tieneAlbumCompleto() {
 		_album.checkEsCompleto();
 		return _album.isCompleto();
+	}
+
+	public boolean esFiguritaRepetida(int n) {
+		return _album.esFiguritaRepetida(n);
 	}
 
 	public int getCantidadPaquetesComprados() {
@@ -43,20 +62,6 @@ public class Usuario {
 		return _figuritasRepetidas;
 	}
 
-	public boolean esFiguritaRepetida(int n) {
-		return _album.esFiguritaRepetida(n);
-	}
-
-	public void pegarFiguritas(Integer[] paquete) {
-		for (int i = 0; i < paquete.length; i++) {
-			if (_album.esFiguritaRepetida(paquete[i])) {
-				_figuritasRepetidas.add(paquete[i]);
-				_cantidadFigusRepetidasTotal = getCantidadFigusRepetidasTotal() + 1;
-			} else {
-				pegarFigurita(paquete[i]);
-			}
-		}
-	}
 
 	public int getCantidadFigusRepetidasTotal() {
 		return _cantidadFigusRepetidasTotal;
