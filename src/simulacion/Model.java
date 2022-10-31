@@ -121,7 +121,7 @@ public class Model {
 	}
 
 	private void calcFigusRepetidas(int i) {
-		_cantFigusRepetidas = _s[i].getCantidadFigusSobrantes();
+		_cantFigusRepetidas += _s[i].getCantidadFigusSobrantes();
 	}
 
 	private void sumarCostoDeSimulacion(int i) {
@@ -129,7 +129,7 @@ public class Model {
 	}
 
 	private void calcPaquetesComprados(int i) {
-		_cantPaquetesComprados = _s[i].getCantidadPaquetesComprados();
+		_cantPaquetesComprados += _s[i].getCantidadPaquetesComprados();
 	}
 
 	public void iniciarSimulacion() {
