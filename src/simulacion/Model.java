@@ -113,23 +113,23 @@ public class Model {
 	}
 
 	private void calcularEstadisticas() {
-		for (int i = 0; i < _cantSimulaciones; i++) {
-			sumarCostoDeSimulacion(i);
-			calcPaquetesComprados(i);
-			calcFigusRepetidas(i);
+		for (int userIndex = 0; userIndex < _cantSimulaciones; userIndex++) {
+			sumarCostoDeSimulacion(userIndex);
+			calcPaquetesComprados(userIndex);
+			calcFigusRepetidas(userIndex);
 		}
 	}
 
-	private void calcFigusRepetidas(int i) {
-		_cantFigusRepetidas += _s[i].getCantidadFigusSobrantes();
+	private void calcFigusRepetidas(int userIndex) {
+		_cantFigusRepetidas += _s[userIndex].getCantidadFigusSobrantes();
 	}
 
-	private void sumarCostoDeSimulacion(int i) {
-		_costoTotal += _s[i].getCantidadPaquetesComprados() * _precioPaquete / _cantUsuarios;
+	private void sumarCostoDeSimulacion(int userIndex) {
+		_costoTotal += _s[userIndex].getCantidadPaquetesComprados() * _precioPaquete / _cantUsuarios;
 	}
 
-	private void calcPaquetesComprados(int i) {
-		_cantPaquetesComprados += _s[i].getCantidadPaquetesComprados();
+	private void calcPaquetesComprados(int userIndex) {
+		_cantPaquetesComprados += _s[userIndex].getCantidadPaquetesComprados();
 	}
 
 	public void iniciarSimulacion() {
