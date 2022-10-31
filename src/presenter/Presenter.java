@@ -57,8 +57,9 @@ public class Presenter {
 		paqComprados.setText(_model.setPaquetesComprados());
 		figusRepetidas.setText(_model.setFigusRepetidas());
 		usuario0.setText(_model.setUsuario0());
+		_model.reiniciarVariables();
 	}
-
+	
 	public void eventoTeclado(KeyEvent ke, JTextField textField) {
 		if (ke.getKeyChar() == 8 || ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
 			textField.setEditable(true);

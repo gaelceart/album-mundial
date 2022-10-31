@@ -59,6 +59,10 @@ public class Model {
 		_escenario = e;
 	}
 
+	public void iniciarSimulacion() {
+		simular();
+	}
+	
 	void simular() {
 		System.out.println("paso1");
 		initSimulaciones();
@@ -121,10 +125,15 @@ public class Model {
 		calcPromedioDeSimulaciones();
 		calcCostoPromedio();
 	}
-	
-	private void calcCostoPromedio() {
-		System.out.println(_precioPaquete);
-		_costoPromedio = _promedioDePaquetes * _precioPaquete;
+
+	public void reiniciarVariables() {
+		_cantPaquetesComprados = 0;
+		_cantFigusRepetidas = 0;
+		_costoPromedio = 0;
+	}
+
+	private void calcPaquetesComprados(int i) {
+		_cantPaquetesComprados += _s[i].getCantidadPaquetesComprados();
 	}
 	
 	private void calcFigusRepetidas(int i) {
@@ -139,20 +148,17 @@ public class Model {
 		_promedioDePaquetes = _promedioDePaquetes / _cantSimulaciones;
 	}
 
-	private void calcPaquetesComprados(int i) {
-		_cantPaquetesComprados += _s[i].getCantidadPaquetesComprados();
+	private void calcCostoPromedio() {
+		_costoPromedio = _promedioDePaquetes * _precioPaquete;
 	}
 
-	public void iniciarSimulacion() {
-		simular();
-	}
-
+	
 	public String setEscenarioActual() {
 		return _escenario + "";
 	}
 
 	public String setCostoPromedio() {
-		//_costoPromedio = Math.round(_costoPromedio * 100.0) / 100.0;
+		_costoPromedio = Math.round(_costoPromedio * 100.0) / 100.0;
 		return _costoPromedio + "";
 	}
 
