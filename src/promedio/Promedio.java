@@ -1,6 +1,6 @@
-package costo;
+package promedio;
 
-public class Costos {
+public class Promedio {
 
 	static public double calcularPromedio(double cantidad, double cantidadUsuario, double cantidadSimulaciones) {
 		if (cantidad < 0 || cantidadUsuario < 0 || cantidadSimulaciones < 0) {
