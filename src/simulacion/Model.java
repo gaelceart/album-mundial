@@ -59,10 +59,6 @@ public class Model {
 		}
 	}
 
-	private void calcCostoPromedio() {
-		_costoPromedio = _costoTotal / _cantSimulaciones;
-	}
-
 	private void initThreads() {
 		_t = new Thread[_cantSimulaciones];
 		for (int i = 0; i < _cantSimulaciones; i++)
@@ -86,6 +82,10 @@ public class Model {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void calcCostoPromedio() {
+		_costoPromedio = _costoTotal / _cantSimulaciones;
 	}
 
 	private void calcularEstadisticas() {
