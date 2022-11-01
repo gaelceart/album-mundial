@@ -76,4 +76,34 @@ public class SimulacionIntercambioTest {
 		simulacion.run();
 		assertEquals(0, simulacion.getCantidadFigusSobrantes());
 	}
+
+	@Test
+	public void figuritasIntercambiadasUsuario0Test() {
+		Paquete.setGenerador(new GeneradorIntercambiador());
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.intercambio);
+		simulacion.run();
+		assertEquals(4, simulacion.cantidadFigusIntercambiadasUsuario(0));
+	}
+
+	@Test
+	public void figuritasIntercambiadasUsuario0SinIntercambioTest() {
+		Paquete.setGenerador(new GeneradorPaquetesDoblesEnOrden());
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.intercambio);
+		simulacion.run();
+		assertEquals(0, simulacion.cantidadFigusIntercambiadasUsuario(0));
+	}
+
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void usuarioNegativoFueraDeRangoTest() {
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.intercambio);
+		simulacion.cantidadFigusIntercambiadasUsuario(-1);
+
+	}
+
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void usuarioPositivoFueraDeRangoTest() {
+		Simulacion simulacion = new Simulacion(2, _album, 2, 0, tipoEscenario.intercambio);
+		simulacion.cantidadFigusIntercambiadasUsuario(2);
+
+	}
 }

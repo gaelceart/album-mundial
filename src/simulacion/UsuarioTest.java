@@ -35,7 +35,7 @@ public class UsuarioTest {
 		usuario.comprarAlbum(10, 5);
 		Integer [] figuritas = {0,1,2,3,4,5};
 		usuario.pegarFiguritas(figuritas);
-		assertEquals(0, usuario.getCantidadFigusRepetidasTotal());
+		assertEquals(0, usuario.getCantidadFigusRepetidas());
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ public class UsuarioTest {
 		usuario.comprarAlbum(10, 5);
 		Integer [] figuritas = {0,0,1,1,2,2,3,3,4,4,5,5};
 		usuario.pegarFiguritas(figuritas);
-		assertEquals(6, usuario.getCantidadFigusRepetidasTotal());
+		assertEquals(6, usuario.getCantidadFigusRepetidas());
 		
 	}
 	@Test
@@ -54,7 +54,7 @@ public class UsuarioTest {
 		Integer [] figuritas = {0,0,1,1,2,2,3,3,4,4,5,5};
 		Integer [] figuritasRepetidas = {0,1,2,3,4,5};
 		usuario.pegarFiguritas(figuritas);
-		assertArrayEquals(figuritasRepetidas, usuario.getFiguritasRepetidas().toArray(new Integer[usuario.getCantidadFigusRepetidasTotal()]));
+		assertArrayEquals(figuritasRepetidas, usuario.getFiguritasRepetidas().toArray(new Integer[usuario.getCantidadFigusRepetidas()]));
 	}
  
 }

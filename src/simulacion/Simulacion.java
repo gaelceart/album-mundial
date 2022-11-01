@@ -82,6 +82,20 @@ public class Simulacion implements Runnable {
 		return true;
 	}
 
+	public int cantidadFigusIntercambiadasUsuario(int i) {
+		if (i > _users.length || i < 0) {
+			throw new IndexOutOfBoundsException("Indice fuera de rango: " + i);
+		}
+		return _users[i].getCantidadFigusIntercambiadas();
+	}
+
+	public int cantidadFigusDonadasUsuario(int i) {
+		if (i > _users.length || i < 0) {
+			throw new IndexOutOfBoundsException("Indice fuera de rango: " + i);
+		}
+		return _users[i].getCantidadFigusDonadas();
+	}
+
 	private Usuario[] inicializarUsers(int cantUsuarios) {
 		Usuario[] ret = new Usuario[cantUsuarios];
 		for (int i = 0; i < cantUsuarios; i++)
