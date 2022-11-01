@@ -1,4 +1,4 @@
-package simulacion;
+package costo;
 
 import static org.junit.Assert.*;
 

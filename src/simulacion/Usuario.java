@@ -8,16 +8,18 @@ public class Usuario {
 	private Album _album;
 	private int _paquetesComprados;
 	private ArrayList<Integer> _figuritasRepetidas;
-	private int _cantidadFigusRepetidasTotal;
+	private int _cantidadFigusRepetidas;
+	private int _cantidadFigusDonadas;
+	private int _cantidadFigusIntercambiadas;
 
 	public void setCantidadFigusRepetidasTotal(int _cantidadFigusRepetidasTotal) {
-		this._cantidadFigusRepetidasTotal = _cantidadFigusRepetidasTotal;
+		this._cantidadFigusRepetidas = _cantidadFigusRepetidasTotal;
 	}
 
 	public Usuario() {
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
-		_cantidadFigusRepetidasTotal = 0;
+		_cantidadFigusRepetidas = 0;
 	}
 
 	public void comprarAlbum(int cantFigusAlbum, int cantFigusRaras) {
@@ -40,7 +42,7 @@ public class Usuario {
 				_album.pegarFigurita(figurita);
 			} else {
 				_figuritasRepetidas.add(figurita);
-				_cantidadFigusRepetidasTotal++;
+				_cantidadFigusRepetidas++;
 			}
 		}
 	}
@@ -54,6 +56,14 @@ public class Usuario {
 		return _album.esFiguritaRepetida(n);
 	}
 
+	public void contarFiguritaIntercambiada() {
+		_cantidadFigusIntercambiadas++;
+	}
+
+	public void contarFiguritaDonada() {
+		_cantidadFigusDonadas++;
+	}
+
 	public int getCantidadPaquetesComprados() {
 		return _paquetesComprados;
 	}
@@ -62,9 +72,15 @@ public class Usuario {
 		return _figuritasRepetidas;
 	}
 
-
-	public int getCantidadFigusRepetidasTotal() {
-		return _cantidadFigusRepetidasTotal;
+	public int getCantidadFigusRepetidas() {
+		return _cantidadFigusRepetidas;
 	}
 
+	public int getCantidadFigusDonadas() {
+		return _cantidadFigusDonadas;
+	}
+
+	public int getCantidadFigusIntercambiadas() {
+		return _cantidadFigusIntercambiadas;
+	}
 }

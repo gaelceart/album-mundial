@@ -1,4 +1,4 @@
-package simulacion;
+package costo;
 
 public class Costos {
 
