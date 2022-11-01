@@ -33,35 +33,11 @@ public class Model {
 		_escenario = tipoEscenario.individual;
 	}
 
-	public void setCantSimulaciones(int n) {
-		_cantSimulaciones = n;
+	public void iniciarSimulacion() {
+		simular();
 	}
 
-	public void setCantUsuarios(int n) {
-		_cantUsuarios = n;
-	}
-
-	public void setCantFigusAlbum(int n) {
-		_cantFigusAlbum = n;
-	}
-
-	public void setCantFigusRaras(int n) {
-		_cantFigusRaras = n;
-	}
-
-	public void setCantFigusPaquete(int n) {
-		_cantFigusPaquete = n;
-	}
-
-	public void setPrecioPaquete(int c) {
-		_precioPaquete = c;
-	}
-
-	public void setTipoEscenario(tipoEscenario e) {
-		_escenario = e;
-	}
-
-	double simular() {
+	public double simular() {
 		initSimulaciones();
 		initThreads();
 		startThreads();
@@ -74,10 +50,6 @@ public class Model {
 		return _costoPromedio;
 	}
 
-	private void calcCostoPromedio() {
-		_costoPromedio = _costoTotal / _cantSimulaciones;
-	}
-
 	private void initSimulaciones() {
 		_s = new Simulacion[_cantSimulaciones];
 
@@ -85,6 +57,10 @@ public class Model {
 			Album album = new Album(_cantFigusAlbum, _cantFigusRaras);
 			_s[i] = new Simulacion(_cantUsuarios, album, _cantFigusPaquete, _precioPaquete, _escenario);
 		}
+	}
+
+	private void calcCostoPromedio() {
+		_costoPromedio = _costoTotal / _cantSimulaciones;
 	}
 
 	private void initThreads() {
@@ -132,8 +108,32 @@ public class Model {
 		_cantPaquetesComprados += _s[userIndex].getCantidadPaquetesComprados();
 	}
 
-	public void iniciarSimulacion() {
-		simular();
+	public void setCantSimulaciones(int n) {
+		_cantSimulaciones = n;
+	}
+
+	public void setCantUsuarios(int n) {
+		_cantUsuarios = n;
+	}
+
+	public void setCantFigusAlbum(int n) {
+		_cantFigusAlbum = n;
+	}
+
+	public void setCantFigusRaras(int n) {
+		_cantFigusRaras = n;
+	}
+
+	public void setCantFigusPaquete(int n) {
+		_cantFigusPaquete = n;
+	}
+
+	public void setPrecioPaquete(int c) {
+		_precioPaquete = c;
+	}
+
+	public void setTipoEscenario(tipoEscenario e) {
+		_escenario = e;
 	}
 
 	public String getEscenarioActual() {
