@@ -127,6 +127,7 @@ public class Simulacion implements Runnable {
 						_users[destino].pegarFigurita(figu);
 						it.remove();
 						_cantidadFigusDonadas++;
+						_users[donante].contarFiguritaDonada();
 						break;
 					}
 				}
@@ -159,6 +160,8 @@ public class Simulacion implements Runnable {
 								seIntercambio = true;
 								_cantidadFigusIntercambiadas += 2;
 								_cantidadIntercambiosRealizados++;
+								_users[trader].contarFiguritaIntercambiada();
+								_users[destino].contarFiguritaIntercambiada();
 								break;
 							}
 						}
@@ -175,7 +178,7 @@ public class Simulacion implements Runnable {
 
 	private void CalcularFigusRepetidasTotales() {
 		for (Usuario u : _users)
-			_cantidadFigusRepetidas += u.getCantidadFigusRepetidasTotal();
+			_cantidadFigusRepetidas += u.getCantidadFigusRepetidas();
 	}
 
 	private void CalcularPaquetesTotales() {
@@ -235,9 +238,9 @@ public class Simulacion implements Runnable {
 				"Paquetes comprados por el usuario final: " + _users[_users.length - 1].getCantidadPaquetesComprados());
 		System.out.println("Figuritas repetidas totales: " + _cantidadFigusRepetidas);
 		System.out.println("Figuritas repetidas sobrantes: " + _cantidadFigusSobrantes);
-		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getCantidadFigusRepetidasTotal());
+		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getCantidadFigusRepetidas());
 		System.out.println(
-				"Figuritas repetidas del usuario final: " + _users[_users.length - 1].getCantidadFigusRepetidasTotal());
+				"Figuritas repetidas del usuario final: " + _users[_users.length - 1].getCantidadFigusRepetidas());
 		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
 		System.out.println("Figuritas intercambiadas: " + _cantidadIntercambiosRealizados);
 		long endTime = System.currentTimeMillis();
