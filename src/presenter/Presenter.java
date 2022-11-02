@@ -44,7 +44,7 @@ public class Presenter {
 		_model.setCantFigusAlbum(Integer.parseInt(figuAlbum.getText()));
 		_model.setCantFigusPaquete(Integer.parseInt(figuPaquete.getText()));
 		_model.setCantFigusRaras(Integer.parseInt(figusRaras.getText()));
-		_model.setPrecioPaquete(Integer.parseInt(figusRaras.getText()));
+		_model.setPrecioPaquete(Integer.parseInt(precioPaquete.getText()));
 		_model.setCantUsuarios(Integer.parseInt(cantUser.getText()));
 		_model.setCantSimulaciones(Integer.parseInt(cantSimulaciones.getText()));
 		_model.iniciarSimulacion();
