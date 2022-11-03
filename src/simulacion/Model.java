@@ -57,6 +57,9 @@ public class Model {
 			Album album = new Album(_cantFigusAlbum, _cantFigusRaras);
 			_s[i] = new Simulacion(_cantUsuarios, album, _cantFigusPaquete, _precioPaquete, _escenario);
 		}
+		System.out.println(_cantSimulaciones);
+		System.out.println(_cantUsuarios);
+		System.out.println("_________________");
 	}
 
 	private void initThreads() {
@@ -86,9 +89,9 @@ public class Model {
 
 	private void calcularEstadisticas() {
 		for (int userIndex = 0; userIndex < _cantSimulaciones; userIndex++) {
-			sumarCostos(userIndex);
 			sumarPaquetesComprados(userIndex);
 			sumarRepetidas(userIndex);
+			sumarCostos(userIndex);
 		}
 	}
 
@@ -105,7 +108,7 @@ public class Model {
 	}
 
 	private void calcCostoPromedio() {
-		_costoPromedio = _costoTotal / _cantSimulaciones * _cantUsuarios;
+		_costoPromedio = _costoTotal / (_cantSimulaciones * _cantUsuarios);
 	}
 
 	public void setCantSimulaciones(int n) {
