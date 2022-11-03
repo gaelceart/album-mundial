@@ -56,5 +56,18 @@ public class UsuarioTest {
 		usuario.pegarFiguritas(figuritas);
 		assertArrayEquals(figuritasRepetidas, usuario.getFiguritasRepetidas().toArray(new Integer[usuario.getCantidadFigusRepetidas()]));
 	}
- 
+ 	
+ 	@Test
+ 	public void aumentarContadorDonadasTest(){
+ 		Usuario usuario = new Usuario();
+ 		usuario.contarFiguritaDonada();
+ 		assertEquals(1, usuario.getCantidadFigusDonadas());
+ 	}
+
+ 	@Test
+ 	public void aumentarContadorIntercambiadasTest(){
+ 		Usuario usuario = new Usuario();
+ 		usuario.contarFiguritaIntercambiada();
+ 		assertEquals(1, usuario.getCantidadFigusIntercambiadas());
+ 	}
 }
