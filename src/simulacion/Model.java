@@ -84,28 +84,28 @@ public class Model {
 		}
 	}
 
-	private void calcCostoPromedio() {
-		_costoPromedio = _costoTotal / _cantSimulaciones;
-	}
-
 	private void calcularEstadisticas() {
 		for (int userIndex = 0; userIndex < _cantSimulaciones; userIndex++) {
-			sumarCostoDeSimulacion(userIndex);
-			calcPaquetesComprados(userIndex);
-			calcFigusRepetidas(userIndex);
+			sumarCostos(userIndex);
+			sumarPaquetesComprados(userIndex);
+			sumarRepetidas(userIndex);
 		}
 	}
 
-	private void calcFigusRepetidas(int userIndex) {
+	private void sumarRepetidas(int userIndex) {
 		_cantFigusRepetidas += _s[userIndex].getCantidadFigusSobrantes();
 	}
 
-	private void sumarCostoDeSimulacion(int userIndex) {
-		_costoTotal += _s[userIndex].getCantidadPaquetesComprados() * _precioPaquete / _cantUsuarios;
+	private void sumarCostos(int userIndex) {
+		_costoTotal += _s[userIndex].getCostoTotal();
 	}
 
-	private void calcPaquetesComprados(int userIndex) {
+	private void sumarPaquetesComprados(int userIndex) {
 		_cantPaquetesComprados += _s[userIndex].getCantidadPaquetesComprados();
+	}
+
+	private void calcCostoPromedio() {
+		_costoPromedio = _costoTotal / _cantSimulaciones * _cantUsuarios;
 	}
 
 	public void setCantSimulaciones(int n) {
