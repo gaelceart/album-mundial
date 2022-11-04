@@ -238,27 +238,38 @@ public class Simulacion implements Runnable {
 		return _costoTotal;
 	}
 
-	public String toStringUsuario0() {
-		return "FALTA HACER";
+	public String datosDelUsuario0() {
+		if(_escenario.equals(tipoEscenario.donacion)) {
+			return datosUsuarioDeDonacion();
+		} else if (_escenario.equals(tipoEscenario.intercambio)) {
+			return datosUsuarioDeIntercambio();
+		}
+		return datosUsuario();	
 	}
 
-	private void mostrarResultados(long startTime) {
-		System.out.println("CANT USERS:" + _users.length);
-		System.out.println("CANTIDAD FIGUS ALBUM: " + _cantidadFigusAlbum);
-		System.out.println("CANTIDAD FIGUS PAQUETE: " + _cantidadFigusPorPaquete);
-		System.out.println("Paquetes totales: " + _cantidadPaquetesComprados);
-		System.out.println("Paquetes comprados por el usuario 0: " + _users[0].getCantidadPaquetesComprados());
-		System.out.println(
-				"Paquetes comprados por el usuario final: " + _users[_users.length - 1].getCantidadPaquetesComprados());
-		System.out.println("Figuritas repetidas totales: " + _cantidadFigusRepetidas);
-		System.out.println("Figuritas repetidas sobrantes: " + _cantidadFigusSobrantes);
-		System.out.println("Figuritas repetidas del usuario 0: " + _users[0].getCantidadFigusRepetidas());
-		System.out.println(
-				"Figuritas repetidas del usuario final: " + _users[_users.length - 1].getCantidadFigusRepetidas());
-		System.out.println("Figuritas donadas totales: " + _cantidadFigusDonadas);
-		System.out.println("Figuritas intercambiadas: " + _cantidadIntercambiosRealizados);
-		long endTime = System.currentTimeMillis();
-		System.out.println("TIEMPO TRANSCURRIDO: " + (endTime - startTime) + "ms\n");
+	private String datosUsuario() {
+		StringBuilder s = new StringBuilder();
+		s.append("Paquetes Comprados\n");
+		s.append(_users[0].getCantidadPaquetesComprados());
+		s.append("\nRepetidas\n");
+		s.append(_users[0].getCantidadFigusRepetidas());
+		s.append("\nRaras\n");
+		s.append(_users[0].getAlbum().getCantidadFiguritasRaras());
+		return s+"\n";
+	}
+
+	private String datosUsuarioDeIntercambio() {
+		StringBuilder s = new StringBuilder(datosUsuario());
+		s.append("Intercambiadas\n");
+		s.append(_users[0].getCantidadFigusIntercambiadas());
+		return s+"\n";
+	}
+
+	private String datosUsuarioDeDonacion() {
+		StringBuilder s = new StringBuilder(datosUsuario());
+		s.append("Donadas\n");
+		s.append(_users[0].getCantidadFigusDonadas());
+		return s+"\n";
 	}
 
 }

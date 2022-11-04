@@ -46,6 +46,12 @@ public class Usuario {
 			}
 		}
 	}
+	
+	
+	
+	public Album getAlbum() {
+		return _album;
+	}
 
 	public boolean tieneAlbumCompleto() {
 		_album.checkEsCompleto();

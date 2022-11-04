@@ -161,7 +161,7 @@ public class Model {
 	}
 
 	public String getUsuario0() {
-		return _s[0].toStringUsuario0();
+		return _s[0].datosDelUsuario0();
 	}
 
 }
