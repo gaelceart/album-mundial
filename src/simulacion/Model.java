@@ -88,23 +88,23 @@ public class Model {
 	}
 
 	private void calcularEstadisticas() {
-		for (int userIndex = 0; userIndex < _cantSimulaciones; userIndex++) {
-			sumarPaquetesComprados(userIndex);
-			sumarRepetidas(userIndex);
-			sumarCostos(userIndex);
+		for (int simulacion = 0; simulacion < _cantSimulaciones; simulacion++) {
+			sumarPaquetesComprados(simulacion);
+			sumarRepetidas(simulacion);
+			sumarCostos(simulacion);
 		}
 	}
 
-	private void sumarRepetidas(int userIndex) {
-		_cantFigusRepetidas += _s[userIndex].getCantidadFigusSobrantes();
+	private void sumarRepetidas(int simulacion) {
+		_cantFigusRepetidas += _s[simulacion].getCantidadFigusSobrantes();
 	}
 
-	private void sumarCostos(int userIndex) {
-		_costoTotal += _s[userIndex].getCostoTotal();
+	private void sumarCostos(int simulacion) {
+		_costoTotal += _s[simulacion].getCostoTotal();
 	}
 
-	private void sumarPaquetesComprados(int userIndex) {
-		_cantPaquetesComprados += _s[userIndex].getCantidadPaquetesComprados();
+	private void sumarPaquetesComprados(int simulacion) {
+		_cantPaquetesComprados += _s[simulacion].getCantidadPaquetesComprados();
 	}
 
 	private void calcCostoPromedio() {
