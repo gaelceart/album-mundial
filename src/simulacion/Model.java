@@ -14,6 +14,7 @@ public class Model {
 	private int _precioPaquete;
 	private double _costoTotal;
 	private double _costoPromedio;
+	private double _promedioPaquetes;
 	tipoEscenario _escenario;
 
 	private Simulacion[] _s;
@@ -30,6 +31,7 @@ public class Model {
 		_precioPaquete = 0;
 		_costoTotal = 0;
 		_costoPromedio = 0;
+		_promedioPaquetes = 0;
 		_escenario = tipoEscenario.individual;
 	}
 
@@ -57,9 +59,6 @@ public class Model {
 			Album album = new Album(_cantFigusAlbum, _cantFigusRaras);
 			_s[i] = new Simulacion(_cantUsuarios, album, _cantFigusPaquete, _precioPaquete, _escenario);
 		}
-		System.out.println(_cantSimulaciones);
-		System.out.println(_cantUsuarios);
-		System.out.println("_________________");
 	}
 
 	private void initThreads() {
@@ -95,6 +94,10 @@ public class Model {
 		}
 	}
 
+	private void sumarPaquetesComprados(int simulacion) {
+		_cantPaquetesComprados += _s[simulacion].getCantidadPaquetesComprados();
+	}
+
 	private void sumarRepetidas(int simulacion) {
 		_cantFigusRepetidas += _s[simulacion].getCantidadFigusSobrantes();
 	}
@@ -103,12 +106,11 @@ public class Model {
 		_costoTotal += _s[simulacion].getCostoTotal();
 	}
 
-	private void sumarPaquetesComprados(int simulacion) {
-		_cantPaquetesComprados += _s[simulacion].getCantidadPaquetesComprados();
-	}
-
 	private void calcCostoPromedio() {
 		_costoPromedio = _costoTotal / (_cantSimulaciones * _cantUsuarios);
+	}
+	private void calcCantidadPaquete() {
+		_promedioPaquetes = _cantPaquetesComprados / (_cantSimulaciones * _cantUsuarios);
 	}
 
 	public void setCantSimulaciones(int n) {

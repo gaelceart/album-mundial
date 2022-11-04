@@ -189,7 +189,7 @@ public class Simulacion implements Runnable {
 			}
 		}
 	}
-
+	
 	private void CalcularFigusRepetidasTotales() {
 		for (Usuario u : _users)
 			_cantidadFigusRepetidas += u.getCantidadFigusRepetidas();
