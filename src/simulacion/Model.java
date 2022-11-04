@@ -21,6 +21,15 @@ public class Model {
 	private Thread[] _t;
 
 	public Model() {
+		setearVariables();
+		_escenario = tipoEscenario.individual;
+	}
+
+	public void iniciarSimulacion() {
+		simular();
+	}
+
+	public void setearVariables() {
 		_cantSimulaciones = 0;
 		_cantUsuarios = 0;
 		_cantFigusAlbum = 0;
@@ -32,24 +41,16 @@ public class Model {
 		_costoTotal = 0;
 		_costoPromedio = 0;
 		_promedioPaquetes = 0;
-		_escenario = tipoEscenario.individual;
 	}
 
-	public void iniciarSimulacion() {
-		simular();
-	}
-
-	public double simular() {
+	public void simular() {
 		initSimulaciones();
 		initThreads();
 		startThreads();
 		stopThreads();
 		calcularEstadisticas();
 		calcCostoPromedio();
-		System.out.println("COSTO TOTAL: " + _costoTotal);
-		System.out.println("COSTO PROMEDIO: " + _costoPromedio);
 
-		return _costoPromedio;
 	}
 
 	private void initSimulaciones() {
@@ -109,6 +110,7 @@ public class Model {
 	private void calcCostoPromedio() {
 		_costoPromedio = _costoTotal / (_cantSimulaciones * _cantUsuarios);
 	}
+
 	private void calcCantidadPaquete() {
 		_promedioPaquetes = _cantPaquetesComprados / (_cantSimulaciones * _cantUsuarios);
 	}

@@ -57,7 +57,8 @@ public class Presenter {
 		costoPromedio.setText(_model.getCostoPromedio());
 		paqComprados.setText(_model.getPaquetesComprados());
 		figusRepetidas.setText(_model.getFigusRepetidas());
-		usuario0.setText(_model.getUsuario0());
+		_model.setearVariables();
+		//usuario0.setText(_model.getUsuario0());
 	}
 
 	public void eventoTeclado(KeyEvent ke, JTextField textField) {
