@@ -1,6 +1,7 @@
 package simulacion;
 
 import albumMundial.Album;
+import promedio.Promedio;
 
 public class Model {
 
@@ -108,11 +109,11 @@ public class Model {
 	}
 
 	private void calcCostoPromedio() {
-		_costoPromedio = _costoTotal / (_cantSimulaciones * _cantUsuarios);
+		_costoPromedio = Promedio.calcularPromedio(_costoTotal, _cantSimulaciones, _cantUsuarios);
 	}
 
 	private void calcCantidadPaquete() {
-		_promedioPaquetes = _cantPaquetesComprados / (_cantSimulaciones * _cantUsuarios);
+		_promedioPaquetes = Promedio.calcularPromedio(_cantPaquetesComprados, _cantSimulaciones, _cantUsuarios);
 	}
 
 	public void setCantSimulaciones(int n) {
