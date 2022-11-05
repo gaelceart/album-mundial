@@ -209,7 +209,7 @@ public class Interfaz {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				setInteracciones(false);
-				if (camposValidados()) {
+				if ( camposContienenTexto() && argumentosValidos() ) {
 					modoEspera();
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios,
 							_simulaciones);
@@ -232,11 +232,22 @@ public class Interfaz {
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	
-	public boolean camposValidados() {
+	private boolean argumentosValidos() {
+		if ( Integer.parseInt(_figusPorPaquete.getText()) > Integer.parseInt(_figusPorAlbum.getText()) ) {
+			JOptionPane.showMessageDialog(null, "Los paquetes no pueden tener mas figuritas que album");
+			return false;
+		} if ( Integer.parseInt(_figusRaras.getText()) > Integer.parseInt(_figusPorAlbum.getText()) ) {
+			JOptionPane.showMessageDialog(null, "La cantidad de figuritas raras no puede ser mayor a la cantidad de figuritas del album");
+			return false;
+		} 
+		return true;
+	}
+
+	private boolean camposContienenTexto() {
 		if( campoVacio(_usuarios) || campoVacio(_simulaciones) || campoVacio(_figusPorAlbum) || campoVacio(_figusPorPaquete) || campoVacio(_figusRaras) || campoVacio(_precioPaquete) ) {
 			JOptionPane.showMessageDialog(null, "Rellene los campos de texto antes de iniciar la simulacion");
 			return false;
-		} else if (  _usuarios.getText().equals("0") || _simulaciones.getText().equals("0")) {
+		} else if ( _usuarios.getText().equals("0") || _simulaciones.getText().equals("0")) {
 			JOptionPane.showMessageDialog(null, "La cantidad de usuarios y simulaciones no puede ser 0");
 			return false;
 		}
