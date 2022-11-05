@@ -68,10 +68,7 @@ public class Simulacion implements Runnable {
 			intercambiarFiguritas();
 		}
 
-		CalcularPaquetesTotales();
-		CalcularFigusRepetidasTotales();
-		CalcularFigusRepetidasSobrantes();
-		CalcularCostoTotal();
+		calcularEnUsuarios();
 	}
 
 	public boolean albumesCompletos() {
@@ -190,24 +187,29 @@ public class Simulacion implements Runnable {
 		}
 	}
 	
-	private void CalcularFigusRepetidasTotales() {
-		for (Usuario u : _users)
-			_cantidadFigusRepetidas += u.getCantidadFigusRepetidas();
+	private void calcularEnUsuarios() {
+		for (Usuario u : _users) {
+			calcularFigusRepetidasTotales(u);
+			calcularPaquetesTotales(u);
+			calcularFigusRepetidasSobrantes(u);
+			calcularCostoTotal(u);
+		}
 	}
 
-	private void CalcularPaquetesTotales() {
-		for (Usuario u : _users)
-			_cantidadPaquetesComprados += u.getCantidadPaquetesComprados();
+	private void calcularFigusRepetidasTotales(Usuario u) {
+		_cantidadFigusRepetidas += u.getCantidadFigusRepetidas();
 	}
 
-	private void CalcularFigusRepetidasSobrantes() {
-		for (Usuario u : _users)
-			_cantidadFigusSobrantes += u.getFiguritasRepetidas().size();
+	private void calcularPaquetesTotales(Usuario u) {
+		_cantidadPaquetesComprados += u.getCantidadPaquetesComprados();
 	}
 
-	private void CalcularCostoTotal() {
-		for (Usuario u : _users)
-			_costoTotal += u.getCantidadPaquetesComprados() * _costoPaquete;
+	private void calcularFigusRepetidasSobrantes(Usuario u) {
+		_cantidadFigusSobrantes += u.getFiguritasRepetidas().size();
+	}
+
+	private void calcularCostoTotal(Usuario u) {
+		_costoTotal += u.getCantidadPaquetesComprados() * _costoPaquete;
 	}
 
 	public int getcantidadIntercambiosRealizados() {
