@@ -70,4 +70,29 @@ public class Presenter {
 
 	}
 
+	public boolean argumentosValidos(JTextField _figusPorPaquete, JTextField _figusPorAlbum, JTextField _figusRaras) {
+		if ( Integer.parseInt(_figusPorPaquete.getText()) > Integer.parseInt(_figusPorAlbum.getText()) ) {
+			_gui.mensajeEmergente("Los paquetes no pueden tener mas figuritas que album");
+			return false;
+		} if ( Integer.parseInt(_figusRaras.getText()) > Integer.parseInt(_figusPorAlbum.getText()) ) {
+			_gui.mensajeEmergente("La cantidad de figuritas raras no puede ser mayor a la cantidad de figuritas del album");
+			return false;
+		} 
+		return true;
+	}
+
+	public boolean camposContienenTexto(JTextField _usuarios, JTextField _simulaciones, JTextField _figusPorAlbum, JTextField _figusPorPaquete, JTextField _figusRaras, JTextField _precioPaquete) {
+		if( campoVacio(_usuarios) || campoVacio(_simulaciones) || campoVacio(_figusPorAlbum) || campoVacio(_figusPorPaquete) || campoVacio(_figusRaras) || campoVacio(_precioPaquete) ) {
+			_gui.mensajeEmergente("Rellene los campos de texto antes de iniciar la simulacion");
+			return false;
+		} else if ( _usuarios.getText().equals("0") || _simulaciones.getText().equals("0")) {
+			_gui.mensajeEmergente("La cantidad de usuarios y simulaciones no puede ser 0");
+			return false;
+		}
+		return true;
+	}
+
+	private boolean campoVacio(JTextField campoDeTexto) {
+		return campoDeTexto.getText().isEmpty();
+	}
 }
