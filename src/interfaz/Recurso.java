@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -334,6 +335,14 @@ public class Recurso {
 		division.setLayout(null);
 		division.setBackground(Color.lightGray);
 		return division;
+	}
+	
+	public static JProgressBar setupBarraDeProgreso() {
+		JProgressBar barra = new JProgressBar();
+		barra.setLayout(null);
+		barra.setBounds(200, 375, 200, 20);
+		
+		return barra;
 	}
 
 }

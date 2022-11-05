@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -36,8 +37,10 @@ public class Interfaz {
 	private JTextField _usuarios;
 	private JComboBox _escenarios;
 	private JTextField _simulaciones;
+	
 	private JButton _iniciar;
-
+	private JProgressBar _barraDeProgreso;
+	
 	private JTextField _costoPromedio;
 	private JTextField _tipoDeEscenario;
 	private JTextField _paquetesComprados;
@@ -109,9 +112,12 @@ public class Interfaz {
 
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();
+		_barraDeProgreso = Recurso.setupBarraDeProgreso();
 		_albumContainer.add(Recurso.setupUserLogoUngs());
+		
+		_albumContainer.add(_barraDeProgreso);
 		_albumContainer.add(Recurso.setupAlbumImage());
-
+		
 		frame.getContentPane().add(_albumContainer);
 	}
 
@@ -125,7 +131,7 @@ public class Interfaz {
 		_usuarios = Recurso.setupUsuarios();
 		_simulaciones = Recurso.setupSimulaciones();
 		_precioPaquete = Recurso.setupPrecioPaquete();
-
+		
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
 		_userContainer.add(_figusPorAlbum);
@@ -224,7 +230,8 @@ public class Interfaz {
 
 	}
 
-	private void modoEspera() { // CAMBIAR ALGO NOTABLE ANTES DE QUE INICIEN LAS SIMULACIONES !FIXME
+	public void modoEspera() { // CAMBIAR ALGO NOTABLE ANTES DE QUE INICIEN LAS SIMULACIONES !FIXME
+		_barraDeProgreso.setIndeterminate(true);
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	}
 

@@ -51,7 +51,6 @@ public class Simulacion implements Runnable {
 	@Override
 	public void run() {
 
-		long startTime = System.currentTimeMillis();
 		comprarAlbumes(_cantidadFigusAlbum, _cantRarasAlbum);
 
 		while (!albumesCompletos()) {
