@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -13,6 +12,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import presenter.Presenter;
 
@@ -26,6 +29,7 @@ import javax.swing.JComboBox;
 public class Interfaz {
 	private Presenter _presenter;
 	private JFrame frame;
+	private ChartPanel _graficoContainer;
 	private JPanel _albumContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
@@ -40,6 +44,8 @@ public class Interfaz {
 	
 	private JButton _iniciar;
 	private JProgressBar _barraDeProgreso;
+	private JFreeChart _grafico;
+	private DefaultCategoryDataset _datos;
 	
 	private JTextField _costoPromedio;
 	private JTextField _tipoDeEscenario;
@@ -115,6 +121,11 @@ public class Interfaz {
 		_barraDeProgreso = Recurso.setupBarraDeProgreso();
 		_albumContainer.add(Recurso.setupUserLogoUngs());
 		
+		_datos = new DefaultCategoryDataset();
+		_grafico = Recurso.setupGrafico(_datos);
+		_graficoContainer = Recurso.setupGraficoContainer(_grafico);
+		_albumContainer.add(_graficoContainer);
+		
 		_albumContainer.add(_barraDeProgreso);
 		_albumContainer.add(Recurso.setupAlbumImage());
 		
@@ -145,8 +156,8 @@ public class Interfaz {
 		_userContainer.add(Recurso.setupTextoFigusRaras());
 		_userContainer.add(Recurso.setupTextoPrecioPaquete());
 		_userContainer.add(Recurso.setupTextoUsuarios());
-		_userContainer.add(Recurso.setupDivision());
-		_userContainer.add(Recurso.setupContenedorIniciar());
+		_userContainer.add(Recurso.setupDivisionSuperior());
+		_userContainer.add(Recurso.setupDivisionInferior());
 		_userContainer.add(Recurso.setupTextoSimulaciones());
 
 		_userContainer.add(Recurso.setupUserLogoPanini());
@@ -155,7 +166,7 @@ public class Interfaz {
 	}
 
 	private void setupEventosDeAlbum() {
-
+		
 	}
 
 	private void setupEventosDeEstadisticas() {
@@ -219,8 +230,10 @@ public class Interfaz {
 					modoEspera();
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios,
 							_simulaciones);
+					_presenter.actualizarGrafico(_graficoContainer);
 					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados,
 							_figuritasRepetidas, _usuario0);
+					
 					modoNormal();
 				}
 				setInteracciones(true);
@@ -230,12 +243,13 @@ public class Interfaz {
 
 	}
 
-	public void modoEspera() { // CAMBIAR ALGO NOTABLE ANTES DE QUE INICIEN LAS SIMULACIONES !FIXME
+	public void modoEspera() { 
 		_barraDeProgreso.setIndeterminate(true);
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	}
 
 	private void modoNormal() {
+		_barraDeProgreso.setIndeterminate(false);
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	

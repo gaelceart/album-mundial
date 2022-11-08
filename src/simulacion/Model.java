@@ -17,9 +17,10 @@ public class Model {
 	private double _costoPromedio;
 	private double _promedioPaquetes;
 	tipoEscenario _escenario;
-
+	
 	private Simulacion[] _s;
 	private Thread[] _t;
+	private int[] _datosDelGrafico;
 
 	public Model() {
 		setearVariables();
@@ -42,6 +43,7 @@ public class Model {
 		_costoTotal = 0;
 		_costoPromedio = 0;
 		_promedioPaquetes = 0;
+		
 	}
 
 	public void simular() {
@@ -89,11 +91,17 @@ public class Model {
 	}
 
 	private void calcularEstadisticas() {
+		_datosDelGrafico = new int[_cantSimulaciones];
 		for (int simulacion = 0; simulacion < _cantSimulaciones; simulacion++) {
+			guardarDatosDelGrafico(simulacion);
 			sumarPaquetesComprados(simulacion);
 			sumarRepetidas(simulacion);
 			sumarCostos(simulacion);
 		}
+	}
+
+	private void guardarDatosDelGrafico(int simulacion) {
+		_datosDelGrafico[simulacion] = _s[simulacion].getCantidadPaquetesComprados();
 	}
 
 	private void sumarPaquetesComprados(int simulacion) {
@@ -143,7 +151,15 @@ public class Model {
 	public void setTipoEscenario(tipoEscenario e) {
 		_escenario = e;
 	}
-
+	
+	public int getCantSimulaciones() {
+		return _cantSimulaciones;
+	}
+	
+	public int[] getDatosDelGrafico() {
+		return _datosDelGrafico;
+	}
+	
 	public String getEscenarioActual() {
 		return _escenario + "";
 	}

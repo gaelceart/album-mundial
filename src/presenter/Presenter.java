@@ -6,6 +6,12 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import albumMundial.Paquete;
 import generadores.GeneradorRandom;
 import interfaz.Interfaz;
@@ -14,7 +20,7 @@ import simulacion.tipoEscenario;
 
 @SuppressWarnings({ "rawtypes" })
 public class Presenter {
-	// rename View ? 28/10/22 -> VIEW seria Interfaz
+	
 	private Interfaz _gui;
 	private Model _model;
 
@@ -50,9 +56,22 @@ public class Presenter {
 		_model.iniciarSimulacion();
 	}
 
+	public DefaultCategoryDataset cargarDatos() {
+		DefaultCategoryDataset baseDeDatos = new DefaultCategoryDataset();
+		for (int simu = 0; simu < _model.getCantSimulaciones(); simu++) {
+			baseDeDatos.addValue((_model.getDatosDelGrafico()[simu]), "fila "+ simu, "columna " + simu);
+		}
+		baseDeDatos.addValue(Double.parseDouble(_model.getCostoPromedio()), "Final", "Final");
+		return baseDeDatos;
+	}
+	
+	public void actualizarGrafico(ChartPanel graficoContainer) {
+		graficoContainer = new ChartPanel(ChartFactory.createBarChart3D("Costo promedio de simulaciones", "CANTIDAD", "USUARIOS", 
+				cargarDatos(), PlotOrientation.VERTICAL, true, false, false));
+	}
+	
 	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados,
 			JTextField figusRepetidas, JTextArea usuario0) {
-		System.out.println("--------------------ENTRO A RESULTADOS------------------------");
 		escenarioActual.setText(_model.getEscenarioActual().toUpperCase());
 		costoPromedio.setText(_model.getCostoPromedio());
 		paqComprados.setText(_model.getPaquetesComprados());
@@ -60,14 +79,13 @@ public class Presenter {
 		usuario0.setText(_model.getUsuario0());
 		_model.setearVariables();
 	}
-
+	
 	public void eventoTeclado(KeyEvent ke, JTextField textField) {
 		if (ke.getKeyChar() == 8 || ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
 			textField.setEditable(true);
 		} else {
 			textField.setEditable(false);
 		}
-
 	}
 
 	public boolean argumentosValidos(JTextField _figusPorPaquete, JTextField _figusPorAlbum, JTextField _figusRaras) {
@@ -95,4 +113,7 @@ public class Presenter {
 	private boolean campoVacio(JTextField campoDeTexto) {
 		return campoDeTexto.getText().isEmpty();
 	}
+
+
+
 }

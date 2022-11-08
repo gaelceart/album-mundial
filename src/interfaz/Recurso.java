@@ -19,6 +19,12 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class Recurso {
 
@@ -55,7 +61,7 @@ public class Recurso {
 		JPanel userContainer = new JPanel();
 		userContainer.setBounds(575, 0, 225, 600);
 		userContainer.setLayout(null);
-		userContainer.setBackground(new Color(90, 15, 40)/* (141, 27, 61) */);
+		userContainer.setBackground(new Color(90, 15, 40));
 		return userContainer;
 	}
 
@@ -91,7 +97,7 @@ public class Recurso {
 
 	public static JLabel setupUserLogoUngs() {
 		JLabel logoImagen = new JLabel();
-		logoImagen.setBounds(10, 10, 75, 75);
+		logoImagen.setBounds(10, 10, 70, 65);
 		ImageIcon imagen = new ImageIcon("src/ungs.png");
 		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoImagen.getWidth(), logoImagen.getHeight(),
 				Image.SCALE_DEFAULT));
@@ -321,7 +327,7 @@ public class Recurso {
 		return panelUsuario0;
 	}
 
-	public static JPanel setupDivision() {
+	public static JPanel setupDivisionSuperior() {
 		JPanel division = new JPanel();
 		division.setBounds(0, 30, 225, 5);
 		division.setLayout(null);
@@ -329,7 +335,7 @@ public class Recurso {
 		return division;
 	}
 
-	public static JPanel setupContenedorIniciar() {
+	public static JPanel setupDivisionInferior() {
 		JPanel division = new JPanel();
 		division.setBounds(0, 340, 225, 5);
 		division.setLayout(null);
@@ -343,6 +349,20 @@ public class Recurso {
 		barra.setBounds(200, 375, 200, 20);
 		
 		return barra;
+	}
+	
+	public static JFreeChart setupGrafico(DefaultCategoryDataset datos ) {
+		JFreeChart grafico = ChartFactory.createBarChart3D("Costo promedio de simulaciones", "CANTIDAD", "USUARIOS", 
+				datos, PlotOrientation.VERTICAL, /*etiqueta de abajo*/false, false, false);
+
+		return grafico;
+	}
+
+	public static ChartPanel setupGraficoContainer(JFreeChart grafico) {
+		ChartPanel contenedorGrafico = new ChartPanel(grafico);
+		contenedorGrafico.setBounds(25, 90, 525, 275);
+		contenedorGrafico.setVisible(true);
+		return contenedorGrafico;
 	}
 
 }
