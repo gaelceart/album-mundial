@@ -2,7 +2,6 @@ package interfaz;
 
 import java.awt.Cursor;
 import java.awt.EventQueue;
-import java.awt.Graphics2D;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,9 +15,6 @@ import javax.swing.UIManager;
 
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.PlotState;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import presenter.Presenter;
@@ -26,8 +22,6 @@ import presenter.Presenter;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -95,7 +89,6 @@ public class Interfaz {
 		setupAlbumContainer();
 		setupStatsContainer();
 		setupEventosDeUsuario();
-		setupEventosDeEstadisticas();
 		updateFrame();
 	}
 
@@ -170,14 +163,6 @@ public class Interfaz {
 		_userContainer.add(Recurso.setupUserLogoPanini());
 
 		frame.getContentPane().add(_userContainer);
-	}
-
-	private void setupEventosDeAlbum() {
-
-	}
-
-	private void setupEventosDeEstadisticas() {
-
 	}
 
 	private void setupEventosDeUsuario() {
