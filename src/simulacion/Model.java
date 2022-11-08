@@ -15,7 +15,6 @@ public class Model {
 	private int _precioPaquete;
 	private double _costoTotal;
 	private double _costoPromedio;
-	private double _promedioPaquetes;
 	tipoEscenario _escenario;
 	
 	private Simulacion[] _s;
@@ -42,8 +41,6 @@ public class Model {
 		_precioPaquete = 0;
 		_costoTotal = 0;
 		_costoPromedio = 0;
-		_promedioPaquetes = 0;
-		
 	}
 
 	public void simular() {
@@ -118,10 +115,6 @@ public class Model {
 
 	private void calcCostoPromedio() {
 		_costoPromedio = Promedio.calcularPromedio(_costoTotal, _cantSimulaciones, _cantUsuarios);
-	}
-
-	private void calcCantidadPaquete() {
-		_promedioPaquetes = Promedio.calcularPromedio(_cantPaquetesComprados, _cantSimulaciones, _cantUsuarios);
 	}
 
 	public void setCantSimulaciones(int n) {
