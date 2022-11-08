@@ -1,6 +1,8 @@
 package presenter;
 
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -22,9 +24,10 @@ import simulacion.tipoEscenario;
 
 @SuppressWarnings({ "rawtypes" })
 public class Presenter {
-	
+
 	private Interfaz _gui;
 	private Model _model;
+	private DefaultCategoryDataset baseDeDatos;
 
 	public Presenter(Interfaz gui) {
 		_gui = gui;
@@ -59,24 +62,28 @@ public class Presenter {
 	}
 
 	public DefaultCategoryDataset cargarDatos() {
-		DefaultCategoryDataset baseDeDatos = new DefaultCategoryDataset();
+		baseDeDatos = new DefaultCategoryDataset();
 		for (int simu = 0; simu < _model.getCantSimulaciones(); simu++) {
-			baseDeDatos.addValue((_model.getDatosDelGrafico()[simu]), "Simu "+ simu, "Simu " + simu);
+			if (simu < 5) {
+				baseDeDatos.setValue(_model.getDatosDelGrafico()[simu], "Simu " + simu, "Simu " + simu);
+			}
 		}
 		baseDeDatos.addValue(Double.parseDouble(_model.getCostoPromedio()), "PROM", "Promedio");
 		System.out.println("ENTRE A CARGAR DATOS");
 		return baseDeDatos;
 	}
-	
+
 	public void actualizarGrafico(JFreeChart grafico, ChartPanel graficoContainer, JPanel albumContainer) {
+		albumContainer.removeAll();
 		System.out.println("ACTUALIZAR GRAFICO");
-		grafico = ChartFactory.createBarChart3D("Costo promedio de simulaciones", "SIMULACIONES", "COSTO", 
+		grafico = ChartFactory.createBarChart3D("Costo promedio de simulaciones", "SIMULACIONES", "COSTO",
 				cargarDatos(), PlotOrientation.VERTICAL, true, false, false);
 		graficoContainer = Recurso.setupGraficoContainer(grafico);
+
 		graficoContainer.setVisible(true);
 		albumContainer.add(graficoContainer);
 	}
-	
+
 	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados,
 			JTextField figusRepetidas, JTextArea usuario0) {
 		escenarioActual.setText(_model.getEscenarioActual().toUpperCase());
@@ -86,7 +93,7 @@ public class Presenter {
 		usuario0.setText(_model.getUsuario0());
 		_model.setearVariables();
 	}
-	
+
 	public void eventoTeclado(KeyEvent ke, JTextField textField) {
 		if (ke.getKeyChar() == 8 || ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
 			textField.setEditable(true);
@@ -96,21 +103,25 @@ public class Presenter {
 	}
 
 	public boolean argumentosValidos(JTextField _figusPorPaquete, JTextField _figusPorAlbum, JTextField _figusRaras) {
-		if ( Integer.parseInt(_figusPorPaquete.getText()) > Integer.parseInt(_figusPorAlbum.getText()) ) {
+		if (Integer.parseInt(_figusPorPaquete.getText()) > Integer.parseInt(_figusPorAlbum.getText())) {
 			_gui.mensajeEmergente("Los paquetes no pueden tener mas figuritas que album");
 			return false;
-		} if ( Integer.parseInt(_figusRaras.getText()) > Integer.parseInt(_figusPorAlbum.getText()) ) {
-			_gui.mensajeEmergente("La cantidad de figuritas raras no puede ser mayor a la cantidad de figuritas del album");
+		}
+		if (Integer.parseInt(_figusRaras.getText()) > Integer.parseInt(_figusPorAlbum.getText())) {
+			_gui.mensajeEmergente(
+					"La cantidad de figuritas raras no puede ser mayor a la cantidad de figuritas del album");
 			return false;
-		} 
+		}
 		return true;
 	}
 
-	public boolean camposContienenTexto(JTextField _usuarios, JTextField _simulaciones, JTextField _figusPorAlbum, JTextField _figusPorPaquete, JTextField _figusRaras, JTextField _precioPaquete) {
-		if( campoVacio(_usuarios) || campoVacio(_simulaciones) || campoVacio(_figusPorAlbum) || campoVacio(_figusPorPaquete) || campoVacio(_figusRaras) || campoVacio(_precioPaquete) ) {
+	public boolean camposContienenTexto(JTextField _usuarios, JTextField _simulaciones, JTextField _figusPorAlbum,
+			JTextField _figusPorPaquete, JTextField _figusRaras, JTextField _precioPaquete) {
+		if (campoVacio(_usuarios) || campoVacio(_simulaciones) || campoVacio(_figusPorAlbum)
+				|| campoVacio(_figusPorPaquete) || campoVacio(_figusRaras) || campoVacio(_precioPaquete)) {
 			_gui.mensajeEmergente("Rellene los campos de texto antes de iniciar la simulacion");
 			return false;
-		} else if ( _usuarios.getText().equals("0") || _simulaciones.getText().equals("0")) {
+		} else if (_usuarios.getText().equals("0") || _simulaciones.getText().equals("0")) {
 			_gui.mensajeEmergente("La cantidad de usuarios y simulaciones no puede ser 0");
 			return false;
 		}
@@ -120,7 +131,5 @@ public class Presenter {
 	private boolean campoVacio(JTextField campoDeTexto) {
 		return campoDeTexto.getText().isEmpty();
 	}
-
-
 
 }

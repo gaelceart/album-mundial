@@ -2,6 +2,7 @@ package interfaz;
 
 import java.awt.Cursor;
 import java.awt.EventQueue;
+import java.awt.Graphics2D;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +16,9 @@ import javax.swing.UIManager;
 
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.Plot;
+import org.jfree.chart.plot.PlotRenderingInfo;
+import org.jfree.chart.plot.PlotState;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import presenter.Presenter;
@@ -22,6 +26,8 @@ import presenter.Presenter;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -41,12 +47,12 @@ public class Interfaz {
 	private JTextField _usuarios;
 	private JComboBox _escenarios;
 	private JTextField _simulaciones;
-	
+
 	private JButton _iniciar;
 	private JProgressBar _barraDeProgreso;
 	private JFreeChart _grafico;
 	private DefaultCategoryDataset _datos;
-	
+
 	private JTextField _costoPromedio;
 	private JTextField _tipoDeEscenario;
 	private JTextField _paquetesComprados;
@@ -120,14 +126,8 @@ public class Interfaz {
 		_albumContainer = Recurso.setupAlbumContainer();
 		_barraDeProgreso = Recurso.setupBarraDeProgreso();
 		_albumContainer.add(Recurso.setupUserLogoUngs());
-		/*
-		_grafico = Recurso.setupGrafico(_datos);
-		_graficoContainer = Recurso.setupGraficoContainer(_grafico);
-		_albumContainer.add(_graficoContainer);
-		*/
 		_albumContainer.add(_barraDeProgreso);
 		_albumContainer.add(Recurso.setupAlbumImage());
-		
 		frame.getContentPane().add(_albumContainer);
 	}
 
@@ -141,7 +141,7 @@ public class Interfaz {
 		_usuarios = Recurso.setupUsuarios();
 		_simulaciones = Recurso.setupSimulaciones();
 		_precioPaquete = Recurso.setupPrecioPaquete();
-		
+
 		_userContainer.add(_iniciar);
 		_userContainer.add(_escenarios);
 		_userContainer.add(_figusPorAlbum);
@@ -165,7 +165,7 @@ public class Interfaz {
 	}
 
 	private void setupEventosDeAlbum() {
-		
+
 	}
 
 	private void setupEventosDeEstadisticas() {
@@ -174,6 +174,7 @@ public class Interfaz {
 
 	private void setupEventosDeUsuario() {
 		_figusPorAlbum.addKeyListener(new KeyAdapter() {
+
 			@Override
 			public void keyPressed(KeyEvent ke) {
 				_presenter.eventoTeclado(ke, _figusPorAlbum);
@@ -225,24 +226,24 @@ public class Interfaz {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				setInteracciones(false);
-				if ( camposContienenTexto() && argumentosValidos() ) {
+				if (camposContienenTexto() && argumentosValidos()) {
 					modoEspera();
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios,
 							_simulaciones);
-					_presenter.actualizarGrafico(_grafico,_graficoContainer,_albumContainer);
+					_presenter.actualizarGrafico(_grafico, _graficoContainer, _albumContainer);
+
 					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados,
 							_figuritasRepetidas, _usuario0);
-					updateFrame();
+
 					modoNormal();
 				}
 				setInteracciones(true);
 			}
 
 		});
-
 	}
-	
-	public void modoEspera() { 
+
+	public void modoEspera() {
 		_barraDeProgreso.setIndeterminate(true);
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	}
@@ -251,15 +252,16 @@ public class Interfaz {
 		_barraDeProgreso.setIndeterminate(false);
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
-	
+
 	private boolean argumentosValidos() {
 		return _presenter.argumentosValidos(_figusPorPaquete, _figusPorAlbum, _figusRaras);
 	}
 
 	private boolean camposContienenTexto() {
-		return _presenter.camposContienenTexto(_usuarios, _simulaciones, _figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete);
+		return _presenter.camposContienenTexto(_usuarios, _simulaciones, _figusPorAlbum, _figusPorPaquete, _figusRaras,
+				_precioPaquete);
 	}
-	
+
 	public void mensajeEmergente(String msg) {
 		JOptionPane.showMessageDialog(null, msg);
 	}
