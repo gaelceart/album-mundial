@@ -120,12 +120,11 @@ public class Interfaz {
 		_albumContainer = Recurso.setupAlbumContainer();
 		_barraDeProgreso = Recurso.setupBarraDeProgreso();
 		_albumContainer.add(Recurso.setupUserLogoUngs());
-		
-		_datos = new DefaultCategoryDataset();
+		/*
 		_grafico = Recurso.setupGrafico(_datos);
 		_graficoContainer = Recurso.setupGraficoContainer(_grafico);
 		_albumContainer.add(_graficoContainer);
-		
+		*/
 		_albumContainer.add(_barraDeProgreso);
 		_albumContainer.add(Recurso.setupAlbumImage());
 		
@@ -230,10 +229,10 @@ public class Interfaz {
 					modoEspera();
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios,
 							_simulaciones);
-					_presenter.actualizarGrafico(_graficoContainer);
+					_presenter.actualizarGrafico(_grafico,_graficoContainer,_albumContainer);
 					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados,
 							_figuritasRepetidas, _usuario0);
-					
+					updateFrame();
 					modoNormal();
 				}
 				setInteracciones(true);
@@ -242,7 +241,7 @@ public class Interfaz {
 		});
 
 	}
-
+	
 	public void modoEspera() { 
 		_barraDeProgreso.setIndeterminate(true);
 		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

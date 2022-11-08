@@ -3,6 +3,7 @@ package presenter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -15,6 +16,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import albumMundial.Paquete;
 import generadores.GeneradorRandom;
 import interfaz.Interfaz;
+import interfaz.Recurso;
 import simulacion.Model;
 import simulacion.tipoEscenario;
 
@@ -59,15 +61,20 @@ public class Presenter {
 	public DefaultCategoryDataset cargarDatos() {
 		DefaultCategoryDataset baseDeDatos = new DefaultCategoryDataset();
 		for (int simu = 0; simu < _model.getCantSimulaciones(); simu++) {
-			baseDeDatos.addValue((_model.getDatosDelGrafico()[simu]), "fila "+ simu, "columna " + simu);
+			baseDeDatos.addValue((_model.getDatosDelGrafico()[simu]), "Simu "+ simu, "Simu " + simu);
 		}
-		baseDeDatos.addValue(Double.parseDouble(_model.getCostoPromedio()), "Final", "Final");
+		baseDeDatos.addValue(Double.parseDouble(_model.getCostoPromedio()), "PROM", "Promedio");
+		System.out.println("ENTRE A CARGAR DATOS");
 		return baseDeDatos;
 	}
 	
-	public void actualizarGrafico(ChartPanel graficoContainer) {
-		graficoContainer = new ChartPanel(ChartFactory.createBarChart3D("Costo promedio de simulaciones", "CANTIDAD", "USUARIOS", 
-				cargarDatos(), PlotOrientation.VERTICAL, true, false, false));
+	public void actualizarGrafico(JFreeChart grafico, ChartPanel graficoContainer, JPanel albumContainer) {
+		System.out.println("ACTUALIZAR GRAFICO");
+		grafico = ChartFactory.createBarChart3D("Costo promedio de simulaciones", "SIMULACIONES", "COSTO", 
+				cargarDatos(), PlotOrientation.VERTICAL, true, false, false);
+		graficoContainer = Recurso.setupGraficoContainer(grafico);
+		graficoContainer.setVisible(true);
+		albumContainer.add(graficoContainer);
 	}
 	
 	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados,

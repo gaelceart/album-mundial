@@ -101,7 +101,7 @@ public class Model {
 	}
 
 	private void guardarDatosDelGrafico(int simulacion) {
-		_datosDelGrafico[simulacion] = _s[simulacion].getCantidadPaquetesComprados();
+		_datosDelGrafico[simulacion] = _s[simulacion].getCostoTotal();
 	}
 
 	private void sumarPaquetesComprados(int simulacion) {
