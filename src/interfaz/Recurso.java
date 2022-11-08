@@ -97,7 +97,7 @@ public class Recurso {
 
 	public static JLabel setupUserLogoUngs() {
 		JLabel logoImagen = new JLabel();
-		logoImagen.setBounds(10, 10, 70, 65);
+		logoImagen.setBounds(22, 10, 525, 65);
 		ImageIcon imagen = new ImageIcon("src/ungs.png");
 		Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(logoImagen.getWidth(), logoImagen.getHeight(),
 				Image.SCALE_DEFAULT));
