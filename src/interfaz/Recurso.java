@@ -246,7 +246,7 @@ public class Recurso {
 
 	public static JLabel setupTextoEscenario() {
 		JLabel textoEscenario = new JLabel("Escenario Actual", SwingConstants.LEFT);
-		textoEscenario.setBounds(110, 25, 125, 30);
+		textoEscenario.setBounds(110, 15, 125, 30);
 		textoEscenario.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		textoEscenario.setForeground(Color.yellow);
 		return textoEscenario;
@@ -254,7 +254,7 @@ public class Recurso {
 
 	public static JTextField setupEscenario() {
 		JTextField escenario = new JTextField();
-		escenario.setBounds(240, 25, 125, 25);
+		escenario.setBounds(240, 15, 125, 25);
 		escenario.setEditable(false);
 		escenario.setFont(new Font("Arial", Font.PLAIN, 12));
 		escenario.setBackground(new Color(214, 217, 223));
@@ -264,7 +264,7 @@ public class Recurso {
 
 	public static JLabel setupTextoCostoPromedio() {
 		JLabel costoPromedio = new JLabel("Costo Promedio", SwingConstants.LEFT);
-		costoPromedio.setBounds(110, 60, 125, 30);
+		costoPromedio.setBounds(110, 50, 125, 30);
 		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
 		costoPromedio.setForeground(Color.WHITE);
 		return costoPromedio;
@@ -272,7 +272,7 @@ public class Recurso {
 
 	public static JTextField setupCostoPromedio() {
 		JTextField costoPromedio = new JTextField();
-		costoPromedio.setBounds(240, 60, 125, 25);
+		costoPromedio.setBounds(240, 50, 125, 25);
 		costoPromedio.setEditable(false);
 		costoPromedio.setFont(new Font("Arial", Font.PLAIN, 12));
 		costoPromedio.setBackground(new Color(214, 217, 223));
@@ -282,7 +282,7 @@ public class Recurso {
 
 	public static JLabel setupTextoPaquetesComprados() {
 		JLabel textoPaquetes = new JLabel("Paquetes Comprados", SwingConstants.LEFT);
-		textoPaquetes.setBounds(110, 95, 125, 30);
+		textoPaquetes.setBounds(110, 85, 125, 30);
 		textoPaquetes.setFont(new Font("Arial", Font.PLAIN, 12));
 		textoPaquetes.setForeground(Color.WHITE);
 		return textoPaquetes;
@@ -290,7 +290,7 @@ public class Recurso {
 
 	public static JTextField setupPaquetesComprados() {
 		JTextField paquetes = new JTextField();
-		paquetes.setBounds(240, 95, 125, 25);
+		paquetes.setBounds(240, 85, 125, 25);
 		paquetes.setEditable(false);
 		paquetes.setFont(new Font("Arial", Font.PLAIN, 12));
 		paquetes.setBackground(new Color(214, 217, 223));
@@ -300,7 +300,7 @@ public class Recurso {
 
 	public static JLabel setupTextoFiguritasRepetidas() {
 		JLabel figuRepetida = new JLabel("Figuritas Repetidas", SwingConstants.LEFT);
-		figuRepetida.setBounds(110, 130, 125, 30);
+		figuRepetida.setBounds(110, 120, 125, 30);
 		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
 		figuRepetida.setForeground(Color.WHITE);
 		return figuRepetida;
@@ -308,7 +308,7 @@ public class Recurso {
 
 	public static JTextField setupFiguritasRepetidas() {
 		JTextField figuRepetida = new JTextField();
-		figuRepetida.setBounds(240, 130, 125, 25);
+		figuRepetida.setBounds(240, 120, 125, 25);
 		figuRepetida.setEditable(false);
 		figuRepetida.setFont(new Font("Arial", Font.PLAIN, 12));
 		figuRepetida.setBackground(new Color(214, 217, 223));
@@ -316,10 +316,10 @@ public class Recurso {
 		return figuRepetida;
 	}
 
-	public static JLabel setupTextoUsuario0() {
-		JLabel textoUsuario0 = new JLabel("Usuario 0", SwingConstants.CENTER);
-		textoUsuario0.setBounds(415, -5, 125, 30);
-		textoUsuario0.setFont(new Font("Arial Black", Font.PLAIN, 16));
+	public static JLabel setupTextoUsuario0() { //https://www.youtube.com/watch?v=BBJa32lCaaY&ab_channel=LegacyPNDA
+		JLabel textoUsuario0 = new JLabel("<html>U<br>S<br>U<br>A<br>R<br>&nbsp;I<br>O<br> <br>0<br></html>", SwingConstants.CENTER); 
+		textoUsuario0.setBounds(535, 5, 30, 150);
+		textoUsuario0.setFont(new Font("Arial", Font.PLAIN, 14));
 		textoUsuario0.setForeground(Color.yellow);
 		return textoUsuario0;
 	}
@@ -331,7 +331,7 @@ public class Recurso {
 		panelUsuario0.setLineWrap(true);
 		panelUsuario0.setFont(new Font("Arial", Font.PLAIN, 12));
 		panelUsuario0.setBackground(new Color(214,217,223));
-		panelUsuario0.setBounds(410, 25, 135, 128);
+		panelUsuario0.setBounds(385, 15, 135, 130);
 		return panelUsuario0;
 	}
 

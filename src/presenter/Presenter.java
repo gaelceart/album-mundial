@@ -30,6 +30,10 @@ public class Presenter {
 
 	public Presenter(Interfaz gui) {
 		_gui = gui;
+		setModel();
+	}
+
+	private void setModel() {
 		_model = new Model();
 		_model.registrar(new ObservadorModel(this));
 	}
@@ -51,6 +55,7 @@ public class Presenter {
 
 	public void eventoIniciar(JTextField figuAlbum, JTextField figuPaquete, JTextField figusRaras,
 			JTextField precioPaquete, JTextField cantUser, JTextField cantSimulaciones) {
+		setModel();
 		Paquete.setGenerador(new GeneradorRandom());
 		_model.setCantFigusAlbum(Integer.parseInt(figuAlbum.getText()));
 		_model.setCantFigusPaquete(Integer.parseInt(figuPaquete.getText()));
@@ -64,7 +69,7 @@ public class Presenter {
 	public DefaultCategoryDataset cargarDatos() {
 		baseDeDatos = new DefaultCategoryDataset();
 		for (int simu = 0; simu < _model.getCantSimulaciones(); simu++) {
-			if (simu < 5) {
+			if (simu < 7) {
 				baseDeDatos.setValue(_model.getDatosDelGrafico()[simu], "Simu " + simu, "Simu " + simu);
 			}
 		}
