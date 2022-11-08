@@ -1,9 +1,12 @@
 package simulacion;
 
+import javax.swing.SwingWorker;
+
 import albumMundial.Album;
+import observador.ObservadorModel;
 import promedio.Promedio;
 
-public class Model {
+public class Model extends SwingWorker<Object, Object> {
 
 	private int _cantSimulaciones;
 	private int _cantUsuarios;
@@ -20,14 +23,11 @@ public class Model {
 	private Simulacion[] _s;
 	private Thread[] _t;
 	private int[] _datosDelGrafico;
+	private ObservadorModel _observador;
 
 	public Model() {
 		setearVariables();
 		_escenario = tipoEscenario.individual;
-	}
-
-	public void iniciarSimulacion() {
-		simular();
 	}
 
 	public void setearVariables() {
@@ -172,6 +172,26 @@ public class Model {
 
 	public String getUsuario0() {
 		return _s[0].datosDelUsuario0();
+	}
+
+	@Override
+	protected Object doInBackground() throws Exception {
+		simular();
+		return null;
+	}
+	
+	public void done() {
+		try {
+			if (!this.isCancelled()) {
+				_observador.notificar();
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e);
+		}
+	}
+	
+	public void registrar(ObservadorModel o) {
+		_observador = o;
 	}
 
 }

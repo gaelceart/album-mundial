@@ -1,6 +1,5 @@
 package interfaz;
 
-import java.awt.Cursor;
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -29,9 +28,8 @@ import javax.swing.JComboBox;
 public class Interfaz {
 	private Presenter _presenter;
 	private JFrame frame;
-	private ChartPanel _graficoBarras;
 	private JPanel _albumContainer;
-	private JPanel _graficoContainer;
+	public JPanel _graficoContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
 
@@ -44,15 +42,17 @@ public class Interfaz {
 	private JTextField _simulaciones;
 
 	private JButton _iniciar;
+	
 	private JProgressBar _barraDeProgreso;
-	private JFreeChart _grafico;
-	private DefaultCategoryDataset _datos;
+	public ChartPanel _graficoBarras;
+	public JFreeChart _grafico;
+	public DefaultCategoryDataset _datos;
 
-	private JTextField _costoPromedio;
-	private JTextField _tipoDeEscenario;
-	private JTextField _paquetesComprados;
-	private JTextField _figuritasRepetidas;
-	private JTextArea _usuario0;
+	public JTextField _costoPromedio;
+	public JTextField _tipoDeEscenario;
+	public JTextField _paquetesComprados;
+	public JTextField _figuritasRepetidas;
+	public JTextArea _usuario0;
 
 	/**
 	 * Launch the application.
@@ -218,31 +218,29 @@ public class Interfaz {
 		_iniciar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				setInteracciones(false);
 				if (camposContienenTexto() && argumentosValidos()) {
 					modoEspera();
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios,
 							_simulaciones);
+					/*
 					_presenter.actualizarGrafico(_grafico, _graficoBarras, _graficoContainer);
 					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados,
 							_figuritasRepetidas, _usuario0);
-					
-					modoNormal();
+					*/
 				}
-				setInteracciones(true);
 			}
 
 		});
 	}
 
 	public void modoEspera() {
+		setInteracciones(false);
 		_barraDeProgreso.setIndeterminate(true);
-		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	}
 
-	private void modoNormal() {
+	public void modoNormal() {
+		setInteracciones(true);
 		_barraDeProgreso.setIndeterminate(false);
-		frame.getContentPane().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 
 	private boolean argumentosValidos() {

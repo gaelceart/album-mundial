@@ -354,7 +354,7 @@ public class Recurso {
 	public static JProgressBar setupBarraDeProgreso() {
 		JProgressBar barra = new JProgressBar();
 		barra.setLayout(null);
-		barra.setBounds(200, 375, 200, 20);
+		barra.setBounds(23, 375, 530, 16);
 		
 		return barra;
 	}

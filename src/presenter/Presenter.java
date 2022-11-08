@@ -17,6 +17,7 @@ import albumMundial.Paquete;
 import generadores.GeneradorRandom;
 import interfaz.Interfaz;
 import interfaz.Recurso;
+import observador.ObservadorModel;
 import simulacion.Model;
 import simulacion.tipoEscenario;
 
@@ -30,6 +31,7 @@ public class Presenter {
 	public Presenter(Interfaz gui) {
 		_gui = gui;
 		_model = new Model();
+		_model.registrar(new ObservadorModel(this));
 	}
 
 	public void eventoElegirEscenario(JComboBox _escenarios) {
@@ -56,7 +58,7 @@ public class Presenter {
 		_model.setPrecioPaquete(Integer.parseInt(precioPaquete.getText()));
 		_model.setCantUsuarios(Integer.parseInt(cantUser.getText()));
 		_model.setCantSimulaciones(Integer.parseInt(cantSimulaciones.getText()));
-		_model.iniciarSimulacion();
+		_model.execute();
 	}
 
 	public DefaultCategoryDataset cargarDatos() {
@@ -125,6 +127,13 @@ public class Presenter {
 
 	private boolean campoVacio(JTextField campoDeTexto) {
 		return campoDeTexto.getText().isEmpty();
+	}
+	
+
+	public void update() {
+		actualizarGrafico(_gui._grafico, _gui._graficoBarras, _gui._graficoContainer);
+		mostrarResultados(_gui._tipoDeEscenario, _gui._costoPromedio, _gui._paquetesComprados, _gui._figuritasRepetidas, _gui._usuario0);
+		_gui.modoNormal();
 	}
 
 }
