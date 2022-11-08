@@ -1,8 +1,6 @@
 package presenter;
 
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -69,19 +67,16 @@ public class Presenter {
 			}
 		}
 		baseDeDatos.addValue(Double.parseDouble(_model.getCostoPromedio()), "PROM", "Promedio");
-		System.out.println("ENTRE A CARGAR DATOS");
 		return baseDeDatos;
 	}
 
-	public void actualizarGrafico(JFreeChart grafico, ChartPanel graficoContainer, JPanel albumContainer) {
-		albumContainer.removeAll();
-		System.out.println("ACTUALIZAR GRAFICO");
+	public void actualizarGrafico(JFreeChart grafico, ChartPanel graficoBarras, JPanel graficoContainer) {
+		graficoContainer.removeAll();
 		grafico = ChartFactory.createBarChart3D("Costo promedio de simulaciones", "SIMULACIONES", "COSTO",
 				cargarDatos(), PlotOrientation.VERTICAL, true, false, false);
-		graficoContainer = Recurso.setupGraficoContainer(grafico);
-
-		graficoContainer.setVisible(true);
-		albumContainer.add(graficoContainer);
+		graficoBarras = Recurso.setupChartPanel(grafico);
+		graficoBarras.setVisible(true);
+		graficoContainer.add(graficoBarras);
 	}
 
 	public void mostrarResultados(JTextField escenarioActual, JTextField costoPromedio, JTextField paqComprados,

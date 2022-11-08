@@ -1,5 +1,6 @@
 package interfaz;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -48,7 +49,14 @@ public class Recurso {
 		albumContainer.setLayout(null);
 		return albumContainer;
 	}
-
+	
+	public static JPanel setupGraficoContainer() {
+		JPanel graficoContainer = new JPanel();
+		graficoContainer.setBounds(25, 90, 525, 275);
+		graficoContainer.setLayout(new BorderLayout());
+		return graficoContainer;
+	}
+	
 	public static JPanel setupStatisticsContainer() {
 		JPanel statisticsContainer = new JPanel();
 		statisticsContainer.setBounds(0, 400, 575, 200);
@@ -353,13 +361,16 @@ public class Recurso {
 	
 	public static JFreeChart setupGrafico(DefaultCategoryDataset datos ) {
 		JFreeChart grafico = ChartFactory.createBarChart3D("Costo promedio de simulaciones", "CANTIDAD", "USUARIOS", 
-				datos, PlotOrientation.VERTICAL, /*etiqueta de abajo*/false, false, false);
+				datos, PlotOrientation.VERTICAL,false, false,false);
 
 		return grafico;
 	}
 
-	public static ChartPanel setupGraficoContainer(JFreeChart grafico) {
+	public static ChartPanel setupChartPanel(JFreeChart grafico) {
 		ChartPanel contenedorGrafico = new ChartPanel(grafico);
+		contenedorGrafico.setZoomTriggerDistance(Integer.MAX_VALUE);
+		contenedorGrafico.setFillZoomRectangle(false);
+		contenedorGrafico.setZoomOutlinePaint(new Color(0f, 0f, 0f, 0f));
 		contenedorGrafico.setBounds(25, 90, 525, 275);
 		contenedorGrafico.setVisible(true);
 		return contenedorGrafico;

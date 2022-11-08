@@ -35,8 +35,9 @@ import javax.swing.JComboBox;
 public class Interfaz {
 	private Presenter _presenter;
 	private JFrame frame;
-	private ChartPanel _graficoContainer;
+	private ChartPanel _graficoBarras;
 	private JPanel _albumContainer;
+	private JPanel _graficoContainer;
 	private JPanel _statisticsContainer;
 	private JPanel _userContainer;
 
@@ -125,6 +126,13 @@ public class Interfaz {
 	private void setupAlbumContainer() {
 		_albumContainer = Recurso.setupAlbumContainer();
 		_barraDeProgreso = Recurso.setupBarraDeProgreso();
+		_graficoContainer = Recurso.setupGraficoContainer();
+		
+		_grafico = Recurso.setupGrafico(_datos);
+		_graficoBarras = Recurso.setupChartPanel(_grafico);
+		_graficoContainer.add(_graficoBarras);
+		
+		_albumContainer.add(_graficoContainer);
 		_albumContainer.add(Recurso.setupUserLogoUngs());
 		_albumContainer.add(_barraDeProgreso);
 		_albumContainer.add(Recurso.setupAlbumImage());
@@ -230,11 +238,10 @@ public class Interfaz {
 					modoEspera();
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios,
 							_simulaciones);
-					_presenter.actualizarGrafico(_grafico, _graficoContainer, _albumContainer);
-
+					_presenter.actualizarGrafico(_grafico, _graficoBarras, _graficoContainer);
 					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados,
 							_figuritasRepetidas, _usuario0);
-
+					
 					modoNormal();
 				}
 				setInteracciones(true);
