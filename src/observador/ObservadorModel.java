@@ -13,7 +13,6 @@ public class ObservadorModel implements Observador {
 	@Override
 	public void notificar() {
 		_presenter.update();
-		System.out.println("NOTIFIQUÉ");
 	}
 
 }

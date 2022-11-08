@@ -78,20 +78,6 @@ public class Simulacion implements Runnable {
 		return true;
 	}
 
-	public int cantidadFigusIntercambiadasUsuario(int i) {
-		if (i > _users.length || i < 0) {
-			throw new IndexOutOfBoundsException("Indice fuera de rango: " + i);
-		}
-		return _users[i].getCantidadFigusIntercambiadas();
-	}
-
-	public int cantidadFigusDonadasUsuario(int i) {
-		if (i > _users.length || i < 0) {
-			throw new IndexOutOfBoundsException("Indice fuera de rango: " + i);
-		}
-		return _users[i].getCantidadFigusDonadas();
-	}
-
 	private Usuario[] inicializarUsers(int cantUsuarios) {
 		Usuario[] ret = new Usuario[cantUsuarios];
 		for (int i = 0; i < cantUsuarios; i++)
@@ -185,7 +171,7 @@ public class Simulacion implements Runnable {
 			}
 		}
 	}
-	
+
 	private void calcularEnUsuarios() {
 		for (Usuario u : _users) {
 			calcularFigusRepetidasTotales(u);
@@ -209,6 +195,54 @@ public class Simulacion implements Runnable {
 
 	private void calcularCostoTotal(Usuario u) {
 		_costoTotal += u.getCantidadPaquetesComprados() * _costoPaquete;
+	}
+
+	public int cantidadFigusIntercambiadasUsuario(int i) {
+		if (i > _users.length || i < 0) {
+			throw new IndexOutOfBoundsException("Indice fuera de rango: " + i);
+		}
+		return _users[i].getCantidadFigusIntercambiadas();
+	}
+
+	public int cantidadFigusDonadasUsuario(int i) {
+		if (i > _users.length || i < 0) {
+			throw new IndexOutOfBoundsException("Indice fuera de rango: " + i);
+		}
+		return _users[i].getCantidadFigusDonadas();
+	}
+
+	public String datosDelUsuario0() {
+		if (_escenario.equals(tipoEscenario.donacion)) {
+			return datosUsuarioDeDonacion();
+		} else if (_escenario.equals(tipoEscenario.intercambio)) {
+			return datosUsuarioDeIntercambio();
+		}
+		return datosUsuario();
+	}
+
+	private String datosUsuario() {
+		StringBuilder s = new StringBuilder();
+		s.append("Paquetes Comprados\n");
+		s.append(_users[0].getCantidadPaquetesComprados());
+		s.append("\nRepetidas\n");
+		s.append(_users[0].getCantidadFigusRepetidas());
+		s.append("\nRaras\n");
+		s.append(_users[0].getAlbum().getCantidadFiguritasRaras());
+		return s + "\n";
+	}
+
+	private String datosUsuarioDeIntercambio() {
+		StringBuilder s = new StringBuilder(datosUsuario());
+		s.append("Intercambiadas\n");
+		s.append(_users[0].getCantidadFigusIntercambiadas());
+		return s + "\n";
+	}
+
+	private String datosUsuarioDeDonacion() {
+		StringBuilder s = new StringBuilder(datosUsuario());
+		s.append("Donadas\n");
+		s.append(_users[0].getCantidadFigusDonadas());
+		return s + "\n";
 	}
 
 	public int getcantidadIntercambiosRealizados() {
@@ -237,40 +271,6 @@ public class Simulacion implements Runnable {
 
 	public int getCostoTotal() {
 		return _costoTotal;
-	}
-
-	public String datosDelUsuario0() {
-		if(_escenario.equals(tipoEscenario.donacion)) {
-			return datosUsuarioDeDonacion();
-		} else if (_escenario.equals(tipoEscenario.intercambio)) {
-			return datosUsuarioDeIntercambio();
-		}
-		return datosUsuario();	
-	}
-
-	private String datosUsuario() {
-		StringBuilder s = new StringBuilder();
-		s.append("Paquetes Comprados\n");
-		s.append(_users[0].getCantidadPaquetesComprados());
-		s.append("\nRepetidas\n");
-		s.append(_users[0].getCantidadFigusRepetidas());
-		s.append("\nRaras\n");
-		s.append(_users[0].getAlbum().getCantidadFiguritasRaras());
-		return s+"\n";
-	}
-
-	private String datosUsuarioDeIntercambio() {
-		StringBuilder s = new StringBuilder(datosUsuario());
-		s.append("Intercambiadas\n");
-		s.append(_users[0].getCantidadFigusIntercambiadas());
-		return s+"\n";
-	}
-
-	private String datosUsuarioDeDonacion() {
-		StringBuilder s = new StringBuilder(datosUsuario());
-		s.append("Donadas\n");
-		s.append(_users[0].getCantidadFigusDonadas());
-		return s+"\n";
 	}
 
 }

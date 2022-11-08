@@ -12,10 +12,6 @@ public class Usuario {
 	private int _cantidadFigusDonadas;
 	private int _cantidadFigusIntercambiadas;
 
-	public void setCantidadFigusRepetidasTotal(int _cantidadFigusRepetidasTotal) {
-		this._cantidadFigusRepetidas = _cantidadFigusRepetidasTotal;
-	}
-
 	public Usuario() {
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
@@ -46,9 +42,7 @@ public class Usuario {
 			}
 		}
 	}
-	
-	
-	
+
 	public Album getAlbum() {
 		return _album;
 	}
@@ -60,6 +54,10 @@ public class Usuario {
 
 	public boolean esFiguritaRepetida(int n) {
 		return _album.esFiguritaRepetida(n);
+	}
+
+	public void setCantidadFigusRepetidasTotal(int _cantidadFigusRepetidasTotal) {
+		this._cantidadFigusRepetidas = _cantidadFigusRepetidasTotal;
 	}
 
 	public void contarFiguritaIntercambiada() {
