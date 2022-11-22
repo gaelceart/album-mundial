@@ -27,6 +27,7 @@ public class Presenter {
 	private Interfaz _gui;
 	private Model _model;
 	private DefaultCategoryDataset baseDeDatos;
+	private tipoEscenario _escenarioSimulacion;
 
 	public Presenter(Interfaz gui) {
 		_gui = gui;
@@ -44,11 +45,11 @@ public class Presenter {
 			return;
 		}
 		if (_escenarios.getSelectedIndex() == 1) {
-			_model.setTipoEscenario(tipoEscenario.individual);
+			_escenarioSimulacion = tipoEscenario.individual;
 		} else if (_escenarios.getSelectedIndex() == 2) {
-			_model.setTipoEscenario(tipoEscenario.donacion);
+			_escenarioSimulacion = tipoEscenario.donacion;
 		} else if (_escenarios.getSelectedIndex() == 3) {
-			_model.setTipoEscenario(tipoEscenario.intercambio);
+			_escenarioSimulacion = tipoEscenario.intercambio;
 		}
 		_gui.setBtnIniciar(true);
 	}
@@ -63,6 +64,7 @@ public class Presenter {
 		_model.setPrecioPaquete(Integer.parseInt(precioPaquete.getText()));
 		_model.setCantUsuarios(Integer.parseInt(cantUser.getText()));
 		_model.setCantSimulaciones(Integer.parseInt(cantSimulaciones.getText()));
+		_model.setTipoEscenario(_escenarioSimulacion);
 		_model.execute();
 	}
 

@@ -27,7 +27,6 @@ public class Model extends SwingWorker<Object, Object> {
 
 	public Model() {
 		setearVariables();
-		_escenario = tipoEscenario.individual;
 	}
 
 	public void setearVariables() {
