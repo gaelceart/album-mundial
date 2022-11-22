@@ -222,11 +222,6 @@ public class Interfaz {
 					modoEspera();
 					_presenter.eventoIniciar(_figusPorAlbum, _figusPorPaquete, _figusRaras, _precioPaquete, _usuarios,
 							_simulaciones);
-					/*
-					_presenter.actualizarGrafico(_grafico, _graficoBarras, _graficoContainer);
-					_presenter.mostrarResultados(_tipoDeEscenario, _costoPromedio, _paquetesComprados,
-							_figuritasRepetidas, _usuario0);
-					*/
 				}
 			}
 
