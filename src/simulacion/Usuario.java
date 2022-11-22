@@ -1,6 +1,9 @@
 package simulacion;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import albumMundial.*;
 
 public class Usuario {
@@ -11,11 +14,13 @@ public class Usuario {
 	private int _cantidadFigusRepetidas;
 	private int _cantidadFigusDonadas;
 	private int _cantidadFigusIntercambiadas;
+	private Set<Integer> _figusDescartadas;
 
 	public Usuario() {
 		_figuritasRepetidas = new ArrayList<>();
 		_paquetesComprados = 0;
 		_cantidadFigusRepetidas = 0;
+		_figusDescartadas = new HashSet<>();
 	}
 
 	public void comprarAlbum(int cantFigusAlbum, int cantFigusRaras) {
@@ -87,4 +92,9 @@ public class Usuario {
 	public int getCantidadFigusIntercambiadas() {
 		return _cantidadFigusIntercambiadas;
 	}
+
+	public HashSet<Integer> getFigusDescartadas() {
+		return (HashSet<Integer>) _figusDescartadas;
+	}
+
 }

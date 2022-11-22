@@ -1,6 +1,7 @@
 package simulacion;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 
 import albumMundial.Album;
@@ -116,16 +117,28 @@ public class Simulacion implements Runnable {
 		for (int donante = 0; donante < _users.length; donante++) {
 			// recorro figus
 			Iterator<Integer> it = _users[donante].getFiguritasRepetidas().iterator();
+			HashSet<Integer> descartadas = _users[donante].getFigusDescartadas();
 			while (it.hasNext()) {
 				Integer figu = it.next();
+				
+				if (descartadas.contains(figu)) {
+					continue;
+				}
+				
+				boolean seDonoFigu = false;
 				for (int destino = donante + 1; destino < _users.length; destino++) {
-					if (!_users[destino].esFiguritaRepetida(figu)) {
+					if (!_users[destino].tieneAlbumCompleto() && !_users[destino].esFiguritaRepetida(figu)) {
 						_users[destino].pegarFigurita(figu);
 						it.remove();
 						_cantidadFigusDonadas++;
 						_users[donante].contarFiguritaDonada();
+						seDonoFigu = true;
 						break;
 					}
+				}
+
+				if (!seDonoFigu) {
+					descartadas.add(figu);
 				}
 			}
 		}

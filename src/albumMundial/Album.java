@@ -66,6 +66,10 @@ public class Album {
 	}
 
 	public boolean checkEsCompleto() {
+		if (_completo) { // si ya es completo se evita recorrer todas las figuritas otra vez
+			return true;
+		}
+		
 		for (int i = 0; i < _cantidadFiguritas; i++) {
 			if (!_figuritas[i]) {
 				_completo = false;
